@@ -13,11 +13,8 @@
 
 <h1>update</h1>
 
-<<<<<<< HEAD
 <h1>eclipse update</h1>
 
-=======
->>>>>>> branch 'main' of https://github.com/jchh0178/test.git
 <h1>github update</h1>
 
 </body>
