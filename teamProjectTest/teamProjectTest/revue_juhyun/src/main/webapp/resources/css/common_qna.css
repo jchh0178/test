@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+/* 공통 좌우 레이아웃 */
+.cols-content {
+  display: flex;
+  gap: 20px;
+}
+
+.col-aside {
+  width: 250px;
+  flex-shrink: 0;
+  border-right: 1px solid #ddd;
+  padding-right: 20px;
+}
+
+.col-detail {
+  flex-grow: 1;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* 공통 테이블 스타일 */
+.tbl_area table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tbl_area th,
+.tbl_area td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.tbl_area th {
+  background: #f8f8f8;
+}
+/* 공통 탭 스타일 */
+.qna-tab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.qna-tab li a,
+.qna-tab button {
+  display: inline-block;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+.qna-tab li a:hover,
+.qna-tab button:hover {
+  background-color: #f2f2f2;
+}
+
+/* 선택된 탭 */
+.qna-tab li.on a,
+.qna-tab button.active {
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  border-color: teal;
+}
+
+/* 공통 페이징 */
+.paging {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.paging ul {
+  list-style: none;
+  display: flex;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+}
+
+.paging ul li a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.paging ul li.on a {
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  border-color: teal;
+}
+
+.btn-paging.end {
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #aaa;
+  background: #f9f9f9;
+  border-radius: 4px;
+  cursor: pointer;
+}
