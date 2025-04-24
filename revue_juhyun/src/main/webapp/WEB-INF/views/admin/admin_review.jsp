@@ -101,6 +101,9 @@ main.content {
       <%@ include file="admin_menu.jsp" %>
 
     <main class="content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h1>리뷰 관리</h1>
       <table class="review-table">
 		<thead>
@@ -144,6 +147,8 @@ main.content {
         <a href="#">5</a>
         <a href="#">»</a>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </main>
   </div>
 

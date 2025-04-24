@@ -100,6 +100,9 @@ table th, table td {
      <%@ include file="admin_menu.jsp" %>
 
     <main class="content">
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
       <h1>공지사항</h1>
       <div class="tabs">
         <button>전체</button>
@@ -144,6 +147,9 @@ table th, table td {
   <button class="edit-btn" onclick="editSelected()">수정</button>
   <button class="delete-btn" onclick="deleteSelected()">삭제</button>
 </div>
+ <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+  </main>
 
 <script>
   // 전체 선택
@@ -180,7 +186,7 @@ table th, table td {
     }
   }
 </script>
-    </main>
+  
   </div>
 </body>
 </html>

@@ -72,6 +72,9 @@
   <div class="container">
     <%@ include file="mypage_menu.jsp" %>
     <div class="content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="page-title">나의 무비 히스토리</div>
 
       <div class="tab-menu">
@@ -97,7 +100,8 @@
           <button type="button">삭제</button>
         </div>
       </div>
-
+ <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

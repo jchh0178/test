@@ -8,6 +8,9 @@
 </head>
 <body>
 	<div class="section section-movie" style="border: 1px solid black;">
+	    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+	
 		<!-- col-head -->
 		<div class="col-head" id="skip_movie_list">
 			<h3 class="sreader">영화</h3>
@@ -253,6 +256,8 @@
 							</div>
 						</div>
 					</div>
+					 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 				</div>
 </body>
 </html>

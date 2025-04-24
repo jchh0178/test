@@ -108,6 +108,8 @@
     <div class="cols-content">
       <%@ include file="qna_menu.jsp" %>
       <div class="col-detail">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
         <div class="c_check_warp">
           <div class="c_box qna_search">
             <strong class="c_tit">자주 찾는 질문 빠른검색</strong>
@@ -160,7 +162,10 @@
             <a href="#" class="more">공지사항 더보기</a>
           </div>
         </div>
+               <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
       </div>
+
     </div>
   </div>
 </div>

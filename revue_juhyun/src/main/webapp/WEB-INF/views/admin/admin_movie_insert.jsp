@@ -137,9 +137,12 @@
   <div class="container">
     <!-- 사이드바 -->
      <%@ include file="admin_menu.jsp" %>
+ 
 
     <!-- 메인 -->
     <div class="main">
+       <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
       <h2>영화 등록하기</h2>
 
       <!-- 영화 검색 -->
@@ -198,6 +201,8 @@
       <div class="button-group">
         <button onclick="saveMovie()">저장하기</button>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 

@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 
 <body>
+<div>
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
+
 <form id="" class="" autocomplete="off" action="" method="post">
 		<div class="">
 			<h2 class="">회원가입</h2>
@@ -67,5 +72,9 @@
 			<input type="submit" class="btn" value="회원가입">
 		</div>
 	</form>
+	
+	 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+   </div>
 </body>
 </html>

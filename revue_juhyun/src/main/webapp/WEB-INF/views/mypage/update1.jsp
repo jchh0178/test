@@ -110,6 +110,9 @@
 
     
      <div class="mypage-content">
+         <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+     
     <div class="update-section">
       <h2 class="update-title">회원정보 수정</h2>
 
@@ -136,6 +139,8 @@
             </form>
         </div>
     </div>
+     <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 </div>
 </div>
 

@@ -90,12 +90,21 @@
 </head>
 <body>
 <div class="container">
+   
+
+
   <!-- 사이드바 -->
     <%@ include file="admin_menu.jsp" %>
+
 	
 
   <!-- 메인 콘텐츠 -->
   <div class="main">
+  
+      
+     <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+  
     <h2>회원 목록</h2>
 
     <div class="search-bar">
@@ -164,7 +173,11 @@
       <button>2</button>
       <button>다음</button>
     </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+    
   </div>
+
 </div>
 </body>
 </html>

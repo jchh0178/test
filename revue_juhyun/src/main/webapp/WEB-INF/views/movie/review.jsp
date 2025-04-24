@@ -78,6 +78,9 @@
   </style>
 </head>
 <body>
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
 
   <h1> 영화 리뷰</h1>
 
@@ -104,6 +107,10 @@
     <h3>📢 리뷰 목록</h3>
     <!-- JS로 추가됨 -->
   </div>
+  
+   <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+  
 
   <script>
     const reviewList = document.getElementById('reviewList');

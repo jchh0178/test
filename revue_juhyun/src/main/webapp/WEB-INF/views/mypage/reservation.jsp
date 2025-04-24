@@ -131,6 +131,9 @@
     
 
     <div class="main">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="section">
         <h2> 예매 내역</h2>
         <div class="filter-box">
@@ -178,6 +181,8 @@
           </tbody>
         </table>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

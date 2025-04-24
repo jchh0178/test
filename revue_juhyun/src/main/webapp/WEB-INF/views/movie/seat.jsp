@@ -87,6 +87,9 @@
 </head>
 <body>
 
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
   <h2>좌석 선택</h2>
   <div class="screen">스크린</div>
 
@@ -100,6 +103,9 @@
 
   <div id="selected-seats">선택된 좌석: 없음</div>
   <button onclick="bookSeats()">예매하기</button>
+  
+   <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 
   <script>
     const seatGrid = document.getElementById('seatGrid');

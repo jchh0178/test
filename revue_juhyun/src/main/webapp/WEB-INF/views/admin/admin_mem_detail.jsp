@@ -48,11 +48,16 @@
 </head>
 <body>
   <div class="container">
+    
+  
+  
     <!-- 사이드바 -->
       <%@ include file="admin_menu.jsp" %>
 
     <!-- 메인 콘텐츠 -->
     <div class="main">
+      <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
       <h2>회원 상세 정보</h2>
       <table>
         <tr>
@@ -82,7 +87,11 @@
           <td colspan="5">2025-04-08 10:22</td>
         </tr>
       </table>
+      <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
+ 
+ 
   </div>
 </body>
 </html>

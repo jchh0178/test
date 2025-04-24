@@ -7,6 +7,11 @@
 <title>비번 찾기</title>
 </head>
 <body>
+<div>
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
+
 <form class="findForm" action="/teamproject/member/tempPass" method="post" style="margin-top: 10%;">
 		<div class="findPassField">
 		<h3>비밀번호 찾기</h3>
@@ -34,5 +39,8 @@
 		<span class="bg"></span><a href="javascript:;" class="btn btn_em" onclick="" title="새 창"><button>휴대전화 인증</button></a>
 		
 	</form>
+	 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+	</div>
 </body>
 </html>

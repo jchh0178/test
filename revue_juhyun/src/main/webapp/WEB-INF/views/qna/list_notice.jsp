@@ -36,6 +36,9 @@
       <%@ include file="qna_menu.jsp" %>
 
       <div class="col-detail">
+          <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+      
         <div class="customer_top">
           <h2 class="tit">공지사항</h2>
           <p class="stit">CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>
@@ -97,6 +100,8 @@
           </ul>
           <button class="btn-paging end" type="button">▶</button>
         </div>
+         <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
       </div>
     </div>
   </div>

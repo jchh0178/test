@@ -121,6 +121,8 @@
     <%@ include file="mypage_menu.jsp" %>
 
     <div class="main">
+      <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
       <div class="profile-box">
         <div class="profile-left">
           <div class="profile-img"></div>
@@ -149,6 +151,8 @@
         </div>
         <a href="#" class="more-link">더보기</a>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

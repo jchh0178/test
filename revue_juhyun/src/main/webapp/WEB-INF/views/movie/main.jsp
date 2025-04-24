@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
     <header>
         <h1>🎬 현재 상영 중인 영화</h1>
     </header>
@@ -128,6 +131,8 @@
         <!-- 추가 영화 카드들 필요 시 복붙하면 됨 -->
 
     </div>
+ <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 
 </body>
 </html>

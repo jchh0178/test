@@ -51,6 +51,9 @@
 <div class="container">
   <%@ include file="mypage_menu.jsp" %>
   <div class="content">
+      <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+  
     <div class="page-title">선호하는 영화관</div>
     <div class="favorite-box">
       <div class="favorite-list">
@@ -59,6 +62,8 @@
         <div class="theater-btn">창원 롯데백화점</div>
       </div>
     </div>
+     <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
   </div>
 </div>
 </body>

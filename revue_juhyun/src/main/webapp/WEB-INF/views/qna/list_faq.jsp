@@ -52,6 +52,9 @@
       <%@ include file="qna_menu.jsp" %>
 
       <div class="col-detail">
+          <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+      
         <div class="customer_top">
           <h2 class="tit">자주 묻는 질문</h2>
           <p class="stit">회원님들께서 가장 자주하시는 질문을 모았습니다.<br>궁금하신 내용에 대해 검색해보세요.</p>
@@ -162,6 +165,8 @@
           </ul>
           <button class="btn-paging end" type="button" onclick="goToPage(11)">끝</button>
         </div>
+         <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
       </div>
     </div>
   </div>

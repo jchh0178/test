@@ -79,6 +79,9 @@
     <%@ include file="mypage_menu.jsp" %>
 
     <div class="mypage-content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="pw-form-box">
         <div class="pw-title">비밀번호 변경</div>
         <div class="pw-guide">
@@ -107,6 +110,8 @@
           </div>
         </form>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

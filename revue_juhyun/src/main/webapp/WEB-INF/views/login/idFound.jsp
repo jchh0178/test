@@ -8,6 +8,8 @@
 </head>
 <body>
 	<div>
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
 
 		<form class="" action=""
 			method="post">
@@ -32,6 +34,8 @@
 <!-- 			<span class="bg"></span><a href="javascript:;" class="btn btn_em" onclick="javascript:fnCheckKmcPopup(event);" title="새 창"><span>휴대전화 인증</span></a> -->
 			
 		</form>
+		 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 	</div>
 </body>
 </html>

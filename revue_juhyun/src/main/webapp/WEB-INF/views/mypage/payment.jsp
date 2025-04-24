@@ -91,6 +91,9 @@
     <%@ include file="mypage_menu.jsp" %>
 
     <div class="mypage-content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="payment-box">
         <div class="payment-title">결제 수단 등록</div>
 
@@ -151,6 +154,8 @@
           </div>
         </form>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

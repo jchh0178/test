@@ -98,6 +98,9 @@ h1 {
      <%@ include file="admin_menu.jsp" %>
 
     <main class="content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h1>결제 관리</h1>
 
       <div class="search-box">
@@ -143,6 +146,9 @@ h1 {
         <a href="#">5</a>
         <a href="#">»</a>
       </div>
+      
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </main>
   </div>
 </body>

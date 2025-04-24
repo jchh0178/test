@@ -89,6 +89,9 @@
     <%@ include file="mypage_menu.jsp" %>
 
     <div class="mypage-content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
         <div class="inquiry-title">문의 내역</div>
 
         
@@ -138,6 +141,9 @@
                 </tr>
             </tbody>
         </table>
+            <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+        
     </div>
 </div>
 </body>

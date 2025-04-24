@@ -14,6 +14,9 @@
     <h3>영화상세</h3>
 </div>
     //-->
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
 
 		<div class="sect-base-movie">
 			<h3>
@@ -188,5 +191,8 @@
 						href="javascript:void(0);" class="recom">추천순<span
 							class="arrow-down"></span></a></li>
 				</ul>
+						 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
+				
 </body>
 </html>

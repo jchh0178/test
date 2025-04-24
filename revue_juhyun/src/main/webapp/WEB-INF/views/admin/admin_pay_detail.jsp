@@ -115,6 +115,9 @@ h1 {
      <%@ include file="admin_menu.jsp" %>
 
     <main class="content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h1>결제 내역 상세 보기</h1>
 
       <table class="detail-table">
@@ -154,6 +157,8 @@ h1 {
           </div>
         </div>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </main>
   </div>
 

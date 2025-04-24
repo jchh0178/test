@@ -117,6 +117,9 @@
 
     <!-- 메인 영역 -->
     <div class="main">
+      <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h2>영화 상세보기</h2>
 
       <div class="form-container">
@@ -167,6 +170,8 @@
         <button>수정하기</button>
         <button>삭제하기</button>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

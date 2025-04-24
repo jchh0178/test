@@ -29,6 +29,9 @@ ul.type_list li {
     <div class="cols-content">
       <%@ include file="qna_menu.jsp" %>
       <div class="col-detail">
+          <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+      
         <div class="email_list_area">
           <div class="customer_top">
             <h2 class="tit">1 : 1 문의</h2>
@@ -131,6 +134,8 @@ ul.type_list li {
             </fieldset>
           </form>
         </div>
+               <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
       </div>
     </div>
   </div>

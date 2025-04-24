@@ -9,6 +9,10 @@
 <!--   <link rel="stylesheet" href="../css/login.css"> -->
 </head>
 <body>
+<div>
+    <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+
   <form action="#" method="post" class="loginForm" id="loginForm">
 
 		<span id="leadtext">아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.</span>
@@ -21,9 +25,9 @@
 		</div>
 
 		<div class="findIdPass">
-			<a href="/teamproject/member/findId" class="loginlink">아이디 찾기</a> 
-			<a href="/teamproject/member/findPass" class="loginlink">비밀번호 찾기</a> 
-			<a href="/teamproject/member/register" class="loginlink">회원가입</a>
+			<a href="/revue/idfound" class="loginlink">아이디 찾기</a> 
+			<a href="/revue/pwfound" class="loginlink">비밀번호 찾기</a> 
+			<a href="/revue/register" class="loginlink">회원가입</a>
 		</div>
 
 		<div class="buttonContainer">
@@ -36,7 +40,8 @@
 		
 
 	</form>
-<script type="text/javascript"></script>
+ <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %></div>
 
 
 </body>

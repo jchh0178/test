@@ -82,6 +82,9 @@
     
     
     <div class="content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="withdraw-box">
         <h3><탈퇴 시 유의사항 안내></h3>
         <div class="notice-list">
@@ -96,6 +99,8 @@
           <button type="button">취소</button>
         </div>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

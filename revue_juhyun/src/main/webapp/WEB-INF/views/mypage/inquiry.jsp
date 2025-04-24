@@ -113,20 +113,12 @@
 </head>
 <body>
   <div class="mypage-wrapper">
-    <div class="mypage-sidebar">
-      <div class="mypage-title">마이 메뉴</div>
-      <ul class="mypage-menu">
-        <li>예매 내역</li>
-        <li>히스토리</li>
-        <li>선호 영화관</li>
-        <li>회원정보 수정</li>
-        <li>결제 수단</li>
-        <li class="on">문의내역</li>
-        <li>회원 탈퇴</li>
-      </ul>
-    </div>
+       <%@ include file="mypage_menu.jsp" %>
 
     <div class="mypage-content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h2>문의 내역</h2>
 
      <div class="tab-menu">
@@ -164,6 +156,8 @@
           </tr>
         </tbody>
       </table>
+    <!-- Header -->
+    <%@ include file="../main/footer.jsp" %>
 
     </div>
   </div>

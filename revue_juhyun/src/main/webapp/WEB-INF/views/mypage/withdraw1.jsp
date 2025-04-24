@@ -87,6 +87,9 @@
   <%@ include file="mypage_menu.jsp" %>
 
   <div class="mypage-content">
+      <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+  
     <div class="withdraw-box">
       <h2>회원 탈퇴</h2>
       <p>&lt;탈퇴를 위해 비밀번호를 입력해주세요.&gt;</p>
@@ -107,6 +110,8 @@
         </div>
       </form>
     </div>
+     <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
   </div>
 </div>
 </body>

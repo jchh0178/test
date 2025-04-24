@@ -110,6 +110,9 @@
 
     <!-- 메인 콘텐츠 -->
     <div class="main">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <h2>영화 목록</h2>
 
       <!-- 검색창 -->
@@ -165,6 +168,8 @@
         </div>
         <button class="add-button" onclick="location.href='register.html'">추가하기</button>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>

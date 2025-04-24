@@ -92,6 +92,9 @@
     <%@ include file="mypage_menu.jsp" %>
 
     <div class="mypage-content">
+        <!-- Header -->
+    <%@ include file="../main/header.jsp" %>
+    
       <div class="form-container">
         <div class="form-title">회원정보 수정</div>
 
@@ -148,6 +151,8 @@
           </div>
         </form>
       </div>
+       <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
 </body>
