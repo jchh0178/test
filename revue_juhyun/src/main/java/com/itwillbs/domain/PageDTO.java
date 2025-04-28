@@ -1,6 +1,5 @@
 package com.itwillbs.domain;
 
-import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;

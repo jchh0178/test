@@ -34,7 +34,8 @@
 			<input type="submit" value="로그인하기" class="btn">
 			<!--  네이버 로그인  -->
 			<div class="sns">
-				<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=kI5Lk9LlaxIv_GO0bt57&redirect_uri=http%3A%2F%2Fc2d2404t1.itwillbs.com%2Fteamproject%2Fmember%2Fcallback&state=518604994891147161806049775908683158308"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+				<a href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=F_hif7XtXFlJyphbSdxx&state=267974268761645228630112013267620183121&redirect_uri=http://localhost:8080/revue/main"><img height="50" src="http://static.nid.naver.com/oauth/small_g_in.PNG" /></a>
+				
 			</div>
 		</div>
 		

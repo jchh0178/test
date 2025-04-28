@@ -229,9 +229,9 @@
       </nav>
     </div>
 
-    <div class="logo">
-      <a href="/revue/main">메인 로고</a>
-    </div>
+    <a href="${pageContext.request.contextPath}/main">
+	  <img src="${pageContext.request.contextPath}/resources/logo/ReVuelogo.png" width="100" height="100" alt="메인로고">
+	</a>
 
     <div class="header-right">
       <nav>

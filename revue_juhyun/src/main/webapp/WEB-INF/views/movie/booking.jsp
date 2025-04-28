@@ -5,11 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.section-wrapper {
+  display: flex;
+  gap: 16px; /* 각 섹션 사이 간격 */
+  padding: 20px;
+  overflow-x: auto; /* 박스가 넘칠 경우 스크롤 허용 */
+}
+
+.section {
+  flex: 0 0 auto; /* 섹션 크기 고정 (넘칠 경우 줄바꿈 X) */
+  width: 300px; /* 각 박스 너비 (필요 시 조절) */
+  border: 1px solid black;
+}
+</style>
 </head>
 <body>
-	<div class="section section-movie" style="border: 1px solid black;">
-	    <!-- Header -->
+  <!-- Header -->
     <%@ include file="../main/header.jsp" %>
+ <div class="section-wrapper">
+	<div class="section section-movie" style="border: 1px solid black;">
+	  
+	
 	
 		<!-- col-head -->
 		<div class="col-head" id="skip_movie_list">
@@ -256,8 +273,13 @@
 							</div>
 						</div>
 					</div>
-					 <!-- Footer -->
-   <%@ include file="../main/footer.jsp" %>
+					</div>
+					
 				</div>
+				</div>
+	</div>
+			
+				 <!-- Footer -->
+   <%@ include file="../main/footer.jsp" %>
 </body>
 </html>
