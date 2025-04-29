@@ -28,7 +28,7 @@ public class HomeController {
 		
 		
 		
-		return "redirect:/login/main";
+		return "redirect:/main/main";
 	}
 	
 }

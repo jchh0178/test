@@ -33,7 +33,19 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		
+		
+		
+		
 <!-- 		외부프로그램 설치 -->
+
+
+<!--  인증번호 받기 -->
+<dependency>
+  <groupId>net.nurigo</groupId>
+  <artifactId>javaSDK</artifactId>
+  <version>2.2</version>
+</dependency>
 <!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 <dependency>
     <groupId>com.mysql</groupId>

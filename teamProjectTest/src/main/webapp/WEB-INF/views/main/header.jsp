@@ -168,8 +168,8 @@
   <div class="top-right">
     <a href="${pageContext.request.contextPath}/login/login">로그인</a> |
     <a href="${pageContext.request.contextPath}/login/register">회원가입</a> |
-    <a href="${pageContext.request.contextPath}/login/mymain">마이페이지</a> |
-    <a href="${pageContext.request.contextPath}/login/adminmem">관리자페이지</a> 
+    <a href="${pageContext.request.contextPath}/mypage/mymain">마이페이지</a> |
+    <a href="${pageContext.request.contextPath}/admin/adminmem">관리자페이지</a> 
   </div>
 
   <div class="header-inner">
@@ -180,29 +180,29 @@
           <div class="hamburger-group">
             <h4>영화</h4>
             <ul>
-              <li><a href="/revue/mmain">현재상영작</a></li>
-              <li><a href="/revue/mmaind">상영예정작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmaind">상영예정작</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
             <h4>극장</h4>
             <ul>
-              <li><a href="/revue/thtmain">극장 안내</a></li>
-              <li><a href="/revue/thtdetail">극장 상세</a></li>
+              <li><a href="${pageContext.request.contextPath}/theater/thtmain">극장 안내</a></li>
+              <li><a href="${pageContext.request.contextPath}/theater/thtdetail">극장 상세</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
             <h4>예매</h4>
             <ul>
-              <li><a href="/revue/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
             <h4>고객센터</h4>
             <ul>
-              <li><a href="/revue/qnawrite">문의하기</a></li>
-              <li><a href="/revue/listfaq">자주 묻는 질문</a></li>
-              <li><a href="/revue/listnotice">공지사항</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/qnawrite">문의하기</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/listfaq">자주 묻는 질문</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/listnotice">공지사항</a></li>
               <li><a href="/revue/chatbot">챗봇</a></li>
             </ul>
           </div>
@@ -212,17 +212,17 @@
       <nav>
         <ul>
           <li>
-            <a href="/revue/mmain">영화</a>
+            <a href="${pageContext.request.contextPath}/movie/mmain">영화</a>
             <ul class="submenu">
-              <li><a href="/revue/mmain">현재상영작</a></li>
-              <li><a href="/revue/mmaind">상영예정작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mdetail">상영예정작</a></li>
             </ul>
           </li>
           <li>
-            <a href="/revue/thtmain">극장</a>
+            <a href="${pageContext.request.contextPath}/theater/thtmain">극장</a>
             <ul class="submenu">
-              <li><a href="/revue/thtmain">극장 안내</a></li>
-              <li><a href="/revue/thtdetail">극장 상세</a></li>
+              <li><a href="${pageContext.request.contextPath}/theater/thtmain">극장 안내</a></li>
+              <li><a href="${pageContext.request.contextPath}/theater/thtdetail">극장 상세</a></li>
             </ul>
           </li>
         </ul>
@@ -230,24 +230,24 @@
     </div>
 
     <div class="logo">
-      <a href="${pageContext.request.contextPath}/login/main">메인 로고</a>
+      <a href="${pageContext.request.contextPath}/main/main">메인 로고</a>
     </div>
 
     <div class="header-right">
       <nav>
         <ul>
           <li>
-            <a href="/revue/mbooking">예매</a>
+            <a href="${pageContext.request.contextPath}/movie/mbooking">예매</a>
             <ul class="submenu">
-              <li><a href="/revue/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
             </ul>
           </li>
           <li>
-            <a href="/revue/qnamain">고객센터</a>
+            <a href="${pageContext.request.contextPath}/qna/qnamain">고객센터</a>
             <ul class="submenu">
-              <li><a href="/revue/qnawrite">문의하기</a></li>
-              <li><a href="/revue/listfaq">자주 묻는 질문</a></li>
-              <li><a href="/revue/listnotice">공지사항</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/qnawrite">문의하기</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/listfaq">자주 묻는 질문</a></li>
+              <li><a href="${pageContext.request.contextPath}/qna/listnotice">공지사항</a></li>
               <li><a href="/revue/chatbot">챗봇</a></li>
             </ul>
           </li>

@@ -260,8 +260,7 @@
 
     document.querySelector('.login-button').addEventListener('click', () => {
       if (!isLoggedIn) {
-        alert('로그인이 필요합니다.');
-        // location.href = '/login';
+        location.href = '${pageContext.request.contextPath}/login/login';
       } else {
         alert('선호 극장 정보를 표시합니다.');
       }

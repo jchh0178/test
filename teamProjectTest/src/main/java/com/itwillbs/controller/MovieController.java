@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/*")
+@RequestMapping("/movie/*")
 public class MovieController {
 
 	@GetMapping("/mmain")
@@ -13,7 +13,7 @@ public class MovieController {
         return "movie/main"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
 	
-	@GetMapping("/mmaind")
+	@GetMapping("/mdetail")
     public String maind() {
         return "movie/main_detail"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }

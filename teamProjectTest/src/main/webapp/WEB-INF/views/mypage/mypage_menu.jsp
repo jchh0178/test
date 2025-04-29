@@ -61,14 +61,14 @@
 <div class="mypage-sidebar">
   <div class="mypage-title">마이 메뉴</div>
   <ul class="mypage-menu">
- 	 <li class="<%= request.getRequestURI().contains("mymain") ? "on" : "" %>"><a href="/revue/mymain">마이 메인</a></li>
-    <li class="<%= request.getRequestURI().contains("reservation") ? "on" : "" %>"><a href="/revue/reservation">예매 내역</a></li>
-    <li class="<%= request.getRequestURI().contains("history") ? "on" : "" %>"><a href="/revue/history">히스토리</a></li>
-    <li class="<%= request.getRequestURI().contains("favorite") ? "on" : "" %>"><a href="/revue/favorite">선호 영화관</a></li>
-    <li class="<%= request.getRequestURI().contains("update") ? "on" : "" %>"><a href="/revue/update">회원정보 수정</a></li>
-    <li class="<%= request.getRequestURI().contains("payment") ? "on" : "" %>"><a href="/revue/payment">결제 수단</a></li>
-    <li class="<%= request.getRequestURI().contains("inquiry") ? "on" : "" %>"><a href="/revue/inquiry">문의내역</a></li>
-    <li class="<%= request.getRequestURI().contains("withdraw") ? "on" : "" %>"><a href="/revue/withdraw">회원 탈퇴</a></li>
+ 	 <li class="<%= request.getRequestURI().contains("mymain") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/mymain">마이 메인</a></li>
+    <li class="<%= request.getRequestURI().contains("reservation") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/reservation">예매 내역</a></li>
+    <li class="<%= request.getRequestURI().contains("history") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/history">히스토리</a></li>
+    <li class="<%= request.getRequestURI().contains("favorite") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/favorite">선호 영화관</a></li>
+    <li class="<%= request.getRequestURI().contains("update") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/update">회원정보 수정</a></li>
+    <li class="<%= request.getRequestURI().contains("payment") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/payment">결제 수단</a></li>
+    <li class="<%= request.getRequestURI().contains("inquiry") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/inquiry">문의내역</a></li>
+    <li class="<%= request.getRequestURI().contains("withdraw") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/mypage/withdraw">회원 탈퇴</a></li>
   </ul>
 </div>
 </body>

@@ -80,11 +80,11 @@
   <h2>고객센터 메뉴</h2>
   <div class="snb">
     <ul>
-      <li class="<%= uri.contains("qna_main.jsp") ? "on" : "" %>"><a href="/revue/qnamain">고객센터 메인</a></li>
+      <li class="<%= uri.contains("qna_main.jsp") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/qna/qnamain">고객센터 메인</a></li>
 <%--       <li class="<%= uri.contains("list_lost.jsp") ? "on" : "" %>"><a href="/qna/list_lost.jsp">분실물 문의</a></li> --%>
-      <li class="<%= uri.contains("qna_write.jsp") ? "on" : "" %>"><a href="/revue/qnawrite">1:1 문의하기</a></li>
-      <li class="<%= uri.contains("list_faq.jsp") ? "on" : "" %>"><a href="/revue/listfaq">자주 찾는 질문</a></li>
-      <li class="<%= uri.contains("list_notice.jsp") ? "on" : "" %>"><a href="/revue/listnotice">공지사항</a></li>
+      <li class="<%= uri.contains("qna_write.jsp") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/qna/qnawrite">1:1 문의하기</a></li>
+      <li class="<%= uri.contains("list_faq.jsp") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/qna/listfaq">자주 찾는 질문</a></li>
+      <li class="<%= uri.contains("list_notice.jsp") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/qna/listnotice">공지사항</a></li>
       <li><a href="#">챗   봇</a></li>
     </ul>
   </div>

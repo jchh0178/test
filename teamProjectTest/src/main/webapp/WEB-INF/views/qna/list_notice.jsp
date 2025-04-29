@@ -4,7 +4,7 @@
 <html> 
 <head>
 <meta charset="UTF-8">
-<title>공지사항</title>
+<title>공지사항</title>		
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/common_qna.css">
 <style>
   .c_tab li a {
