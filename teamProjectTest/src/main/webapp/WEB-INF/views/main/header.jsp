@@ -191,6 +191,11 @@
               <li><a href="${pageContext.request.contextPath}/theater/thtdetail">극장 상세</a></li>
             </ul>
           </div>
+          
+          
+          
+          
+          
           <div class="hamburger-group">
             <h4>예매</h4>
             <ul>
@@ -208,6 +213,9 @@
           </div>
         </div>
       </div>
+
+
+
 
       <nav>
         <ul>
@@ -229,9 +237,16 @@
       </nav>
     </div>
 
-    <div class="logo">
-      <a href="${pageContext.request.contextPath}/main/main">메인 로고</a>
-    </div>
+
+
+<!--     <div class="logo"> 
+     <a href="${pageContext.request.contextPath}/main/main">메인 로고</a> 
+    </div> -->
+
+ <a href="${pageContext.request.contextPath}/main/main">
+	  <img src="${pageContext.request.contextPath}/resources/logo/ReVuelogo.png" width="100" height="100" alt="메인로고">
+	</a>
+
 
     <div class="header-right">
       <nav>

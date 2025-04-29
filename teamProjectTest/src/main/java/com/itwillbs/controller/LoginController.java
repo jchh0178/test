@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MemberDTO;
 import com.itwillbs.service.LoginService;
 
 import net.nurigo.java_sdk.api.Message;
@@ -51,7 +50,7 @@ public class LoginController {
 				System.out.println("로그인 성공");
 				
 				session.setAttribute("id", loginDTO.getMember_id());
-				return "redirect:/login/main";
+				return "redirect:/main/main";
 				
 			}else {
 				System.out.println("로그인 실패");
@@ -123,7 +122,6 @@ public class LoginController {
 // 회원수정 로직 ------------------------------------------
 	
 //이 프로젝트에 맞게 단어 수정 해야함 	
-	
 	/*
 	@GetMapping("update")
 	public String update(HttpSession session, Model model) {
@@ -136,7 +134,7 @@ public class LoginController {
 		 
 		LoginDTO loginDTO = loginService.info(id);
 		 if(loginDTO.getMember_gender() == null) {
-			 loginDTO.getMember_gender("남");
+			 loginDTO.getMember_gender("F");
 		 }
 //		 if(loginDTO.getAgree() == null) {
 //			 loginDTO.setAgree("disagree");
@@ -149,15 +147,16 @@ public class LoginController {
 		return "/login/update";
 	}//update()
 	@PostMapping("updatePro")
-	public String updatePro(MemberDTO memberDTO) {
+	public String updatePro(LoginDTO loginDTO) {
 		System.out.println("MemberController updatePro()");
-		MemberDTO memberDTO2 = memberService.loginMember(memberDTO);
+		LoginDTO loginDTO2 = loginService.login(loginDTO);
 		
-		if(memberDTO2 != null) {
-			memberService.updateMember(memberDTO);
-			return "redirect:/board/main";
+		if(loginDTO2 != null) {
+			
+			loginService.update(loginDTO);
+			return "redirect:/main/main";
 	} else {
-			return "/member/msg";
+			return "/login/update";
 		}
 		
 	}//updatePro()
@@ -165,8 +164,7 @@ public class LoginController {
 	
 	
 	
-	
-*/
+	*/
 
 	
 // 회원수정 로직 ------------------------------------------
@@ -209,14 +207,6 @@ public class LoginController {
 //	*/
 	
 // 회원 인증번호 로직 ------------------------------------	
-
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
