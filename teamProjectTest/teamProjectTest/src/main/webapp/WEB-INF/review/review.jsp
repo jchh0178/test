@@ -1,81 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html >
 <head>
   <meta charset="UTF-8" />
   <title>영화 리뷰</title>
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #f5f5f5;
-      padding: 30px;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    h1 {
-      color: #333;
-      text-align: center;
-    }
-
-    .movie-info {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .review-form {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    input, textarea, select, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-    }
-
-    button {
-      background-color: #e50914;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #c40812;
-    }
-
-    .review-list {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .review-item {
-      border-bottom: 1px solid #eee;
-      padding: 10px 0;
-    }
-
-    .review-item:last-child {
-      border-bottom: none;
-    }
-
-    .star {
-      color: gold;
-    }
-  </style>
+   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review.css">
 </head>
 <body>
 
@@ -106,32 +37,82 @@
   </div>
 
   <script>
-    const reviewList = document.getElementById('reviewList');
+  function createReviewItem(review) {
+	  const reviewList = document.getElementById('reviewList');
+	  const reviewDiv = document.createElement('div');
+	  reviewDiv.classList.add('review-item');
+	  reviewDiv.id = `review-${review.id}`;
+	  reviewDiv.innerHTML = `
+	    <strong>${review.username}</strong> - 
+	    <span class="star">${'⭐'.repeat(review.rating)}</span><br />
+	    <p class="comment">${review.comment}</p>
+	    <button onclick="editReview(${review.id})">수정</button>
+	    <button onclick="deleteReview(${review.id})">삭제</button>
+	  `;
+	  reviewList.appendChild(reviewDiv);
+	}
 
-    function submitReview() {
-      const name = document.getElementById('username').value.trim();
-      const rating = document.getElementById('rating').value;
-      const comment = document.getElementById('comment').value.trim();
+	function submitReview() {
+	  const name = document.getElementById('username').value.trim();
+	  const rating = document.getElementById('rating').value;
+	  const comment = document.getElementById('comment').value.trim();
 
-      if (!name || !comment) {
-        alert("닉네임과 리뷰를 모두 입력해주세요.");
-        return;
-      }
+	  if (!name || !comment) {
+	    alert("닉네임과 리뷰를 모두 입력해주세요.");
+	    return;
+	  }
 
-      const review = document.createElement('div');
-      review.classList.add('review-item');
-      review.innerHTML = `
-        <strong>${name}</strong> - 
-        <span class="star">${'⭐'.repeat(rating)}</span><br />
-        <p>${comment}</p>
-      `;
+	  fetch('/movie/api/submitReview', {
+	    method: 'POST',
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify({ username: name, rating, comment })
+	  })
+	    .then(res => res.json())
+	    .then(data => {
+	      createReviewItem(data);
+	      document.getElementById('username').value = '';
+	      document.getElementById('comment').value = '';
+	      document.getElementById('rating').value = '5';
+	    })
+	    .catch(err => console.error(err));
+	}
 
-      reviewList.appendChild(review);
+	function deleteReview(id) {
+	  if (!confirm("정말 삭제하시겠습니까?")) return;
 
-      // 입력 초기화
-      document.getElementById('username').value = '';
-      document.getElementById('comment').value = '';
-      document.getElementById('rating').value = '5';
+	  fetch(`/movie/api/deleteReview/${id}`, { method: 'DELETE' })
+	    .then(res => {
+	      if (res.ok) {
+	        document.getElementById(`review-${id}`).remove();
+	      } else {
+	        alert("삭제 실패");
+	      }
+	    })
+	    .catch(err => console.error(err));
+	}
+
+	function editReview(id) {
+	  const reviewDiv = document.getElementById(`review-${id}`);
+	  const commentP = reviewDiv.querySelector('.comment');
+	  const oldComment = commentP.innerText;
+	  const newComment = prompt("수정할 내용을 입력하세요:", oldComment);
+
+	  if (newComment === null || newComment.trim() === "") return;
+
+	  fetch(`/movie/api/editReview/${id}`, {
+	    method: 'PUT',
+	    headers: { 'Content-Type': 'application/json' },
+	    body: JSON.stringify({ comment: newComment })
+	  })
+	    .then(res => {
+	      if (res.ok) {
+	        commentP.innerText = newComment;
+	      } else {
+	        alert("수정 실패");
+	      }
+	    })
+	    .catch(err => console.error(err));
+	}
     }
   </script>
 
