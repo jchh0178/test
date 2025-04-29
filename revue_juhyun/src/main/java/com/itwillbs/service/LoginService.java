@@ -30,6 +30,10 @@ public class LoginService {
 		loginMapper.register(loginDTO);
 		
 	}
+	
+	public boolean isExist(String member_id) {
+	    return loginMapper.isExist(member_id) > 0;
+	}
 
 	
 	

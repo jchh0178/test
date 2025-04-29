@@ -15,9 +15,16 @@ https://mybatis.org/mybatis-3/getting-started.html
   
   
   	<insert id="register" >
-  	 	insert into member(member_name,member_id,member_pass,member_phone,member_email,member_address,member_gender,member_birth, member_date, member_like_genre) 
-    	values(#{member_name},#{member_id},#{member_pass},#{member_phone},#{member_email},#{member_address},#{member_gender},#{member_birth},#{member_date},#{member_like_genre})
+  	 	insert into member(member_name,member_id,member_pass,member_phone,member_email,member_address,member_gender,member_birth, member_date, member_like_genre, isnaver) 
+    	values(#{member_name},#{member_id},#{member_pass},#{member_phone},#{member_email},#{member_address},#{member_gender},#{member_birth},#{member_date},#{member_like_genre},#{isnaver})
   	</insert>
+  	
+  	
+  	<select id="isExist" parameterType="string" resultType="int">
+    	select count(*) from member
+    	where member_id = #{member_id}
+	</select>
+	
 </mapper>
 
 
