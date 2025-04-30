@@ -104,7 +104,7 @@
 <script>
 
 
-	// 주소 검색 api 적용
+	// 주소 검색 api 적용임
 	  function execDaumPostcode() {
 	    new daum.Postcode({
 	      oncomplete: function(data) {
