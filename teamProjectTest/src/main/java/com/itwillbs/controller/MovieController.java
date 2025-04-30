@@ -4,8 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
-@RequestMapping("/movie/*")
+@RequestMapping("/movie")
 public class MovieController {
 
 	@GetMapping("/mmain")
@@ -32,5 +33,10 @@ public class MovieController {
     public String seat() {
         return "movie/seat"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+	
+	
+
+	
+	
 	
 }
