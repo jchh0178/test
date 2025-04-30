@@ -23,8 +23,8 @@ public class LoginDTO {
 	private String member_status;
 	private String member_like_genre;
 	private int theater_id;
-	private int iskako;
-	private int isnaver;
+	private boolean iskako;
+	private boolean isnaver;
 	
 	
 	

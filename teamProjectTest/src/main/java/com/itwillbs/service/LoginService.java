@@ -31,6 +31,10 @@ public class LoginService {
 		
 	}
 
+	public boolean isExist(String member_id) {
+	    return loginMapper.isExist(member_id) > 0;
+	}
+
 	
 	
 	

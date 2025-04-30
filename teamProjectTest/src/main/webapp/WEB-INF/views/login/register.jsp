@@ -5,27 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-// 주소 검색 api 적용
-  function execDaumPostcode() {
-    new daum.Postcode({
-      oncomplete: function(data) {
-        document.getElementById("address1").value = data.address;
-//         updateFullAddress();
-      }
-    }).open();
-  }
-  
-//  // 주소 검색 후 상세 주소와 합치기
-//   function updateFullAddress() {
-// 	  const addr1 = document.getElementById("address1").value;
-// 	  const addr2 = document.getElementById("address2").value;
-// 	  document.getElementById("member_address").value = addr1 + " " + addr2;
-// 	}
 
-//   document.getElementById("address2").addEventListener("input", updateFullAddress);
-</script>
 </head>
 <body>
 
@@ -76,9 +56,9 @@
 			<div class="essentialtf">
 				<div class="genderContainer">
 					<label for="gender" class="genderlabel">남</label> 
-					<input type="radio" id="gender" class="gender" name="member_gender" value="남"> 
+					<input type="radio" id="gender" class="gender" name="member_gender" value="M"> 
 					<label for="gender2" class="genderlabel">여</label>
-					<input type="radio" id="gender2" class="gender" name="member_gender" value="여">
+					<input type="radio" id="gender2" class="gender" name="member_gender" value="F">
 				</div>
 				<input id="birth" name="member_birth" type="text" class="birth" placeholder="생년월일(8자리)" maxlength="8">
 			</div>
@@ -120,8 +100,21 @@
 <!-- Footer -->
 <%@ include file="../main/footer.jsp" %>
 
-
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
+
+	// 주소 검색 api 적용
+	  function execDaumPostcode() {
+	    new daum.Postcode({
+	      oncomplete: function(data) {
+	        document.getElementById("address1").value = data.address;
+	      }
+	    }).open();
+	  }
+
+
+
 	//이메일 도메인 저장
 	document.getElementById("domainList").addEventListener("change", function() {
     document.getElementById("emailDomain").value = this.value;
