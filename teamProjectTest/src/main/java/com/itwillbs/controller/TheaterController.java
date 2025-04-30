@@ -17,4 +17,10 @@ public class TheaterController {
     public String thtdetail() {
         return "theater/tht02"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+	
+	@GetMapping("/screen")
+    public String screen() {
+        return "theater/screen"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
+    }
+	
 }

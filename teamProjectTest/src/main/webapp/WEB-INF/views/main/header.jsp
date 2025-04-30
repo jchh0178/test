@@ -170,7 +170,8 @@
     <a href="${pageContext.request.contextPath}/login/register">회원가입</a> |
     <a href="${pageContext.request.contextPath}/mypage/mymain">마이페이지</a> |
     <a href="${pageContext.request.contextPath}/admin/adminmem">관리자페이지</a> |
-    <a href="${pageContext.request.contextPath}/movie/payment">결제</a>
+    <a href="${pageContext.request.contextPath}/movie/payment">결제</a> |
+    <a href="${pageContext.request.contextPath}/theater/screen">상영정보</a>
     
   </div>
 

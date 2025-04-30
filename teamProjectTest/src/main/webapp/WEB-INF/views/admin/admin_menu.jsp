@@ -46,14 +46,14 @@
 <div class="side_bar">
       <h2>관리자 메뉴</h2>
       <ul>
-       <li class="<%= request.getRequestURI().contains("adminmem") ? "on" : "" %>"><a href="/revue/adminmem">회원 관리</a></li>
-       <li class="<%= request.getRequestURI().contains("adminmovie") ? "on" : "" %>"><a href="/revue/adminmovie">영화 관리</a></li>
-        <li class="<%= request.getRequestURI().contains("adminmoviei") ? "on" : "" %>"><a href="/revue/adminmoviei">영화 등록</a></li>
-        <li class="<%= request.getRequestURI().contains("adminmovied") ? "on" : "" %>"><a href="/revue/adminmovied">상영 스케줄 관리</a></li>
-       <li class="<%= request.getRequestURI().contains("adminreview") ? "on" : "" %>"><a href="/revue/adminreview">리뷰 관리</a></li>
-       <li class="<%= request.getRequestURI().contains("adminpay") ? "on" : "" %>"><a href="/revue/adminpay">결제 관리</a></li>
-        <li class="<%= request.getRequestURI().contains("adminnotice") ? "on" : "" %>"><a href="/revue/adminnotice">공지사항</a></li>
-       <li class="<%= request.getRequestURI().contains("adminfaq") ? "on" : "" %>"><a href="/revue/adminfaq">자주 묻는 질문</a></li>
+       <li class="<%= request.getRequestURI().contains("adminmem") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminmem">회원 관리</a></li>
+       <li class="<%= request.getRequestURI().contains("adminmovie") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminmovie">영화 관리</a></li>
+        <li class="<%= request.getRequestURI().contains("adminmoviei") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminmoviei">영화 등록</a></li>
+        <li class="<%= request.getRequestURI().contains("adminmovied") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminscreen">상영 스케줄 관리</a></li>
+       <li class="<%= request.getRequestURI().contains("adminreview") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminreview">리뷰 관리</a></li>
+       <li class="<%= request.getRequestURI().contains("adminpay") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminpay">결제 관리</a></li>
+        <li class="<%= request.getRequestURI().contains("adminnotice") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminnotice">공지사항</a></li>
+       <li class="<%= request.getRequestURI().contains("adminfaq") ? "on" : "" %>"><a href="${pageContext.request.contextPath}/admin/adminfaq">자주 묻는 질문</a></li>
       </ul>
 </div>
 
