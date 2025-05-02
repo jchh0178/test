@@ -5,22 +5,20 @@
 
 <mapper namespace="com.itwillbs.mapper.MovieMapper">
 
-    <insert id="insertMovie" parameterType="com.itwillbs.domain.Movie">
-        INSERT INTO movie (
-            movie_name_kr, movie_open_date, movie_poster,
-            movie_director, movie_genre, movie_runtime, movie_grade, movie_fav,
-            movie_name_en, movie_cast, movie_context, movie_close_date,
-            movie_photo, movie_booth_rate
+   <insert id="insertMovie" parameterType="com.itwillbs.domain.MovieDTO">
+        INSERT INTO movieTest (
+            movie_cd, movie_nm, open_dt, movie_rank, poster_url
         ) VALUES (
-            #{movie_name_kr}, #{movie_open_date}, #{movie_poster},
-            #{movie_director}, #{movie_genre}, #{movie_runtime}, #{movie_grade}, #{movie_fav},
-            #{movie_name_en}, #{movie_cast}, #{movie_context}, #{movie_close_date},
-            #{movie_photo}, #{movie_booth_rate}
+            #{movieCd}, #{movieNm}, #{openDt}, #{movieRank}, #{posterUrl}
         )
     </insert>
 
-    <select id="selectAllMovies" resultType="com.itwillbs.domain.Movie">
-        SELECT * FROM movie
+    <select id="isMovieExists" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM movieTest WHERE movie_cd = #{movieCd}
+    </select>
+
+    <select id="getMovieList" resultType="com.itwillbs.domain.MovieDTO">
+        SELECT * FROM movieTest ORDER BY movie_rank ASC
     </select>
 
 </mapper>
