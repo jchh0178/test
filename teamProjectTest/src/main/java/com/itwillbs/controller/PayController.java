@@ -41,7 +41,7 @@ public class PayController {
 	}
 	
 	
-	// 결제 로직 --------------------------------------------
+	// 결제 로직 ----------------------------------------------
 	@GetMapping("/pay/success")
 	public String paySuccess(@RequestParam String paymentKey,@RequestParam String orderId,@RequestParam String amount,Model model, HttpSession session) throws Exception {
 	    
