@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwillbs.mapper.ReviewMapper">
+  <insert id="insertReview" parameterType="com.itwillbs.domain.ReviewDTO">
+    INSERT INTO review (
+      review_id, member_id, movie_id, review_rating,
+      review_content, review_select, review_date, review_like
+    ) VALUES (
+      #{reviewId}, #{memberId}, #{movieId}, #{reviewRating},
+      #{reviewContent}, #{reviewSelect}, NOW(), #{reviewLike}
+    )
+  </insert>
+
+  <select id="getReviewsByMovieId" parameterType="int" resultType="com.itwillbs.domain.ReviewDTO">
+    SELECT * FROM review WHERE movie_id = #{movieId} ORDER BY review_date DESC
+  </select>
+
+  <select id="getReviewById" parameterType="int" resultType="com.itwillbs.domain.ReviewDTO">
+    SELECT * FROM review WHERE review_id = #{reviewId}
+  </select>
+
+  <update id="updateReview" parameterType="com.itwillbs.domain.ReviewDTO">
+    UPDATE review
+    SET review_content = #{reviewContent}, review_rating = #{reviewRating}, review_select = #{reviewSelect}
+    WHERE review_id = #{reviewId}
+  </update>
+
+  <delete id="deleteReview" parameterType="int">
+    DELETE FROM review WHERE review_id = #{reviewId}
+  </delete>
+</mapper>

@@ -29,7 +29,7 @@
             <img class="movie-review" src="https://via.placeholder.com/200x300.png?text=Movie+2" alt="Review 1 chart">
             <div class="movie-info">
                 <div class="movie-title">영화 1 리뷰</div>
-                <a class="details-button" href="#">리뷰 내역  보기</a>
+                <a class="details-button" href="${pageContext.request.contextPath}/review/review">리뷰 내역  보기</a>
             </div>
         </div>
 
