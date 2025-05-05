@@ -9,20 +9,14 @@ public class ReviewDTO {
     private int reviewId;
     private String memberId;
     private int movieId;
-    private int reviewRating;
+    private float reviewRating;
     private String reviewContent;
     private boolean reviewSelect;
     private Timestamp reviewDate;
     private int reviewLike;
-    private String reviewEmotion;  // 긍정/부정 감정 분석 결과를 저장하는 필드
+    private String review_Emotion;  // 긍정/부정 감정 분석 결과를 저장하는 필드
     
-    
-	public String getReviewEmotion() {
-		return reviewEmotion;
-	}
-	public void setReviewEmotion(String reviewEmotion) {
-		this.reviewEmotion = reviewEmotion;
-	}
+	
 	public int getReviewId() {
 		return reviewId;
 	}
@@ -41,10 +35,10 @@ public class ReviewDTO {
 	public void setMovieId(int movieId) {
 		this.movieId = movieId;
 	}
-	public int getReviewRating() {
+	public float getReviewRating() {
 		return reviewRating;
 	}
-	public void setReviewRating(int reviewRating) {
+	public void setReviewRating(float reviewRating) {
 		this.reviewRating = reviewRating;
 	}
 	public String getReviewContent() {
@@ -71,6 +65,15 @@ public class ReviewDTO {
 	public void setReviewLike(int reviewLike) {
 		this.reviewLike = reviewLike;
 	}
+	public String getReview_Emotion() {
+		return review_Emotion;
+	}
+	public void setReview_Emotion(String review_Emotion) {
+		this.review_Emotion = review_Emotion;
+	}
+    
+    
+	
 
    
 }

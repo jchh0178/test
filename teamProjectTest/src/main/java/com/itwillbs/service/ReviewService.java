@@ -33,5 +33,10 @@ public class ReviewService {
     public void deleteReview(int reviewId) {
         reviewMapper.deleteReview(reviewId);
     }
+
+	public void addReviewWithSentiment(ReviewDTO reviewDTO) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

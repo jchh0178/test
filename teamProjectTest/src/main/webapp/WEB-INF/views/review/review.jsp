@@ -96,28 +96,24 @@
 	      if (!res.ok) throw new Error("리뷰 등록 실패");
 	      return res.json(); // 서버에서 새 리뷰 객체 반환
 	    })
-	    .then(review => {
-	      // 리뷰 HTML 추가
-	      const reviewList = document.getElementById("reviewList");
-
-	      const stars = "⭐".repeat(review.reviewRating);
-
-	      const newReview = document.createElement("div");
-	      newReview.className = "review-item";
-	      newReview.id = `review-${review.reviewId}`;
-	      newReview.innerHTML = `
-	        <strong>${review.memberId}</strong> -
-	        <span class="star">${stars}</span><br />
-	        <p class="comment">${review.reviewContent}</p>
-	        <div class="review-buttons">
-	          <button type="button" onclick="editReview(${review.reviewId})">수정</button>
-	          <button type="button" onclick="deleteReview(${review.reviewId})">삭제</button>
-	        </div>
-	      `;
-	      reviewList.prepend(newReview); // 맨 위에 추가
-
-	      form.reset(); // 폼 초기화
-	    })
+.then(review => {
+  const reviewList = document.getElementById("reviewList");
+  const stars = "⭐".repeat(review.reviewRating);
+  const newReview = document.createElement("div");
+  newReview.className = "review-item";
+  newReview.id = `review-${review.reviewId}`;
+  newReview.innerHTML = `
+    <strong>${review.memberId}</strong> -
+    <span class="star">${stars}</span><br />
+    <p class="comment">${review.reviewContent}</p>
+    <div class="review-buttons">
+      <button type="button" onclick="editReview(${review.reviewId})">수정</button>
+      <button type="button" onclick="deleteReview(${review.reviewId})">삭제</button>
+    </div>
+  `;
+  reviewList.prepend(newReview);
+  form.reset();
+});
 	    .catch(err => {
 	      console.error(err);
 	      alert("등록 중 오류가 발생했습니다.");
