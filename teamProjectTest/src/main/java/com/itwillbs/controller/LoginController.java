@@ -236,10 +236,9 @@ public class LoginController {
 	/*
 	@GetMapping("update")
 	public String update(HttpSession session, Model model) {
-		System.out.println("MemberController update()");
-		//세션값 가져오기 => String id 변수에 저장
-		//infoMember(id) 메서드 호출
-		//model에 담아서 이동 "memberDTO", memberDTO 
+		System.out.println("LoginController update()");
+
+		//세션값으로 받아오기
 		String id = (String)session.getAttribute("id");
 
 		 

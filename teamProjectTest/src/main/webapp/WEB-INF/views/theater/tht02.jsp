@@ -112,7 +112,11 @@
 
         <!-- 출력 영역 -->
         <div class="content-area" id="contentArea">
-            <p>동성로점 극장 정보가 여기에 출력됩니다.</p>
+            <p>브랜드:${theaterDTO.brand }</p>
+            <p>지역:${theaterDTO.region }</p>
+            <p>지점:${theaterDTO.name }</p>
+            <p>code:${theaterDTO.code }</p>
+            <p>special:${theaterDTO.special }</p>
         </div>
          <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
