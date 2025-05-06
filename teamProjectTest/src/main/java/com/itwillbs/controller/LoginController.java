@@ -56,7 +56,7 @@ public class LoginController {
 			if(loginDTO2 != null) {
 				System.out.println("로그인 성공");
 				
-				session.setAttribute("id", loginDTO.getMember_id());
+				session.setAttribute("loginDTO", loginDTO2);
 				return "redirect:/main/main";
 				
 			}else {

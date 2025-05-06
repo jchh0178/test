@@ -7,11 +7,12 @@ import org.apache.ibatis.annotations.Mapper;
 import com.itwillbs.domain.TheaterDTO;
 
 @Mapper
-public class TheaterMapper {
+public interface TheaterMapper {
 
+	    // 전체 극장 목록 가져오기
+	    public List<TheaterDTO> listTheater();
 
-	public interface Theater1Mapper {
-	    List<TheaterDTO> getTheaterList(); // 극장 목록 가져오기
-	}
+	 
 	
 }
+
