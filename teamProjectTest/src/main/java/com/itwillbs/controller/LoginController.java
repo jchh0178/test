@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
-import java.sql.Date;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.itwillbs.domain.LoginDTO;
+import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.LoginService;
+import com.itwillbs.service.MovieService;
 @Controller
 @RequestMapping("/login/*")
 public class LoginController {
@@ -20,11 +24,25 @@ public class LoginController {
 	@Inject
 	private LoginService loginService;
 	
+	@Inject
+	private MovieService movieService;
+	
 	// 메인 페이지 로직
 	@GetMapping("/main")
-	public String main() {
+	public String main(Model model) {
 		System.out.println("LoginController main()");
+		// 한 화면에 보여줄 글개수 설정
+    	int pageSize = 5;
+    	int currentPage = Integer.parseInt("1");
+    	
+    	PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum("1");
+		pageDTO.setCurrentPage(currentPage);
+    	
+		List<MovieDTO> movieList = movieService.getMovieList(pageDTO);
 		
+		model.addAttribute("movieList", movieList);
 		
 		return "/main/main";  
 	}

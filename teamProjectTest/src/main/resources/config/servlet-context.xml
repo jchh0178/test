@@ -37,7 +37,7 @@
 D:\Shared\JSP\workspace_sts\TourWeb\src\main\webapp\resources\upload
 -->
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\\Users\\ITWILL\\git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\images"></beans:constructor-arg>
+		<beans:constructor-arg value="D:\\workspace_git\\project\\teamProjectTest\\src\\main\\webapp\\resources\\images"></beans:constructor-arg>
 	</beans:bean>
 	
 </beans:beans>
