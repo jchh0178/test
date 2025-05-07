@@ -11,7 +11,7 @@ import lombok.ToString;
 public class MovieDTO {
 
     private int movie_id;
-    private String movie_name_kr;
+    private String movie_nm;
 	
 	
 }

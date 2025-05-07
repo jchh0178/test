@@ -14,7 +14,7 @@ https://mybatis.org/mybatis-3/getting-started.html
 	</insert>
 	
 	<select id="listScreen" resultMap="ScreenJoinResultMap">
-    	select s.screen_id, s.screen_date, s.screen_start_time, s.screen_end_time, m.movie_name_kr, t.theater_name, r.room_name
+    	select s.screen_id, s.screen_date, s.screen_start_time, s.screen_end_time, m.movie_nm, t.theater_name, r.room_name
     	from screen s
     	join movie m on s.movie_id = m.movie_id
     	join theater t on s.theater_id = t.theater_id
