@@ -22,6 +22,10 @@ public interface MypageMapper {
 
 	public void updatePass(LoginDTO loginDTO);
 
+	public void updateGenre(LoginDTO loginDTO);
+
+	public List<String> getDistinctGenres();
+
 
 	
    

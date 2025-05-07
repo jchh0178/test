@@ -151,7 +151,7 @@
 	    <div class="preference-box">
 	      나의 영화취향: ${sessionScope.loginDTO.member_like_genre }
 	    </div>
-	    <button class="edit-btn">수정</button>
+	    <button class="edit-btn" onclick="window.open('${pageContext.request.contextPath}/mypage/popup1', 'popup', 'width=400,height=500')">수정</button>
 	  </div>
 	</div>
 
@@ -177,7 +177,7 @@
     </c:otherwise>
   </c:choose>
 
-        <a href="${pageContext.request.contextPath }/mypage/history" class="more-link">더보기</a>
+        <a href="${pageContext.request.contextPath }/mypage/reservation" class="more-link">더보기</a>
       </div>
        <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>

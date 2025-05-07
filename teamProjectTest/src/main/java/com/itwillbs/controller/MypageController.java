@@ -49,6 +49,27 @@ public class MypageController {
         return "mypage/mypage_main"; 
     }
 	
+	// 선호 장르 업데이트 -------------------------------
+	@PostMapping("/mypage/updateGenre")
+	public String updateGenre(@RequestParam("genres") List<String> genres, HttpSession session) {
+		System.out.println("MypageController updateGenre()");
+		System.out.println("전달받은 genres : " + genres);
+		
+	    LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+
+	    if (loginDTO != null) {
+	        // 쉼표로 문자열 합치기
+	        String genreStr = String.join(", ", genres);
+	        loginDTO.setMember_like_genre(genreStr);
+	        mypageService.updateGenre(loginDTO);
+	        session.setAttribute("loginDTO", loginDTO);
+	    }
+
+	    return "redirect:/mypage/mymain";  
+	}
+	
+	
+	
 	// 마이페이지 내 회원정보 수정 -----------------------------------
 	
 	// 비밀번호 확인 ------------------------------
@@ -278,8 +299,15 @@ public class MypageController {
         return "mypage/withdraw2"; 
     }
 	
+	// 영화 취향 수정 팝업창 ---------------------------
 	@GetMapping("/popup1")
-    public String popup1() {
+	public String showEditGenrePopup(HttpSession session, Model model) {
+	    LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+	    if (loginDTO == null) return "redirect:/login/login";
+
+	    List<String> genreList = mypageService.getDistinctGenres();
+	    model.addAttribute("genreList", genreList);
+
         return "mypage/popup_edit_preference";
     }
 	
@@ -307,5 +335,18 @@ public class MypageController {
     public String popup6() {
         return "mypage/popup_delete"; 
 	}
+	
+//	@GetMapping("/mypage/ticketPrint")
+//	public String ticketPrint(@RequestParam("payId") String payId, Model model, HttpSession session) {
+//	    // 예매 정보를 DB에서 조회
+//	    BookingDTO booking = mypageService.getBookingInfo(payId);
+//
+//	    model.addAttribute("movieTitle", booking.getMovieTitle());
+//	    model.addAttribute("screenTime", booking.getScreenTime());
+//	    model.addAttribute("seatInfo", booking.getSeatInfo());
+//	    model.addAttribute("payId", payId);
+//
+//	    return "mypage/ticket_print"; // /WEB-INF/views/mypage/ticket_print.jsp
+//	}
 	
 }

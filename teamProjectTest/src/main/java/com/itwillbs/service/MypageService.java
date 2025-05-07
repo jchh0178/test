@@ -48,6 +48,16 @@ public class MypageService {
 	}
 
 
+	public void updateGenre(LoginDTO loginDTO) {
+		
+		mypageMapper.updateGenre(loginDTO);
+	}
+	
+	public List<String> getDistinctGenres() {
+	    return mypageMapper.getDistinctGenres();
+	}
+
+
 
 
 	

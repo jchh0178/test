@@ -35,6 +35,19 @@ https://mybatis.org/mybatis-3/getting-started.html
 	  update member set member_pass = #{member_pass}
 	  where member_id = #{member_id}
 	</update>
+	
+	<!-- 영화 취향 수정 -->
+	<update id="updateGenre" parameterType="com.itwillbs.domain.LoginDTO">
+		update member set member_like_genre = #{member_like_genre}
+		where member_id = #{member_id}
+	</update>
+	
+	<!-- 영화 테이블 내 장르 가지고 오기 -->
+	<select id="getDistinctGenres" resultType="string">
+	  select distinct genre_nm from movie
+	  where genre_nm is not null and genre_nm != ''
+	  order by genre_nm
+	</select>
 </mapper>
 
 

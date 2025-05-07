@@ -155,7 +155,7 @@
 
             <div class="btn-group">
               <button>결제내역</button>
-              <button>교환권 출력</button>
+              <button onclick="window.open('/mypage/ticketPrint?payId=1234', '_blank', 'width=500,height=600')">교환권 출력</button>
               <button>예매 취소</button>
             </div>
           </div>
