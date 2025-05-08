@@ -60,32 +60,38 @@
     <%@ include file="../main/header.jsp" %>
       <h2>회원 상세 정보</h2>
       <table>
-        <tr>
-          <td>회원 번호</td>
-          <td>1</td>
-          <td>회원 아이디</td>
-          <td>min</td>
-          <td>회원 이름</td>
-          <td>김민수</td>
-        </tr>
-        <tr>
-          <td>회원 이메일</td>
-          <td>kim@naver.com</td>
-          <td>주소</td>
-          <td colspan="3">부산광역시 부산진구 동천로</td>
-        </tr>
-        <tr>
-          <td>성별</td>
-          <td>남</td>
-          <td>회원 전화번호</td>
-          <td>010-1111-2222</td>
-          <td>영화 취향</td>
-          <td>액션</td>
-        </tr>
-        <tr>
-          <td>가입 날짜</td>
-          <td colspan="5">2025-04-08 10:22</td>
-        </tr>
+       <tr>
+		  <td>회원 아이디</td>
+		  <td>${infoMember.member_id}</td>
+		  <td>회원 이름</td>
+		  <td>${infoMember.member_name}</td>
+		  <td>비밀번호</td>
+		  <td>${infoMember.member_pass}</td>
+		</tr>
+		<tr>
+		  <td>이메일</td>
+		  <td>${infoMember.member_email}</td>
+		  <td>전화번호</td>
+		  <td>${infoMember.member_phone}</td>
+		  <td>영화 취향</td>
+		  <td>${infoMember.member_like_genre}</td>
+		</tr>
+		<tr>
+ 		  <td>성별</td>
+		  <td>${infoMember.member_gender}</td>
+		  <td>생년월일</td>
+		  <td>${infoMember.member_birth}</td>
+		  <td>회원상태</td>
+		  <td>${infoMember.member_status}</td>
+		</tr>
+		<tr>
+		  <td>주소</td>
+		  <td colspan="5">${infoMember.member_address}</td>
+		</tr>
+		<tr>
+		  <td>가입일</td>
+		  <td colspan="5">${infoMember.member_date}</td>
+		</tr>
       </table>
       <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>

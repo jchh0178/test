@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -100,22 +101,27 @@
 
   <!-- 메인 콘텐츠 -->
   <div class="main">
-  
       
      <!-- Header -->
     <%@ include file="../main/header.jsp" %>
   
     <h2>회원 목록</h2>
 
+<!--     <div class="search-bar"> -->
+<!--       <input type="text" placeholder="회원 검색"> -->
+<!--       <button>검색</button> -->
+<!--     </div> -->
+    
     <div class="search-bar">
-      <input type="text" placeholder="회원 검색">
-      <button>검색</button>
-    </div>
+	  	<form action="${pageContext.request.contextPath}/admin/adminmem" method="get" class="search-bar">
+		  <input type="text" name="search" value="${search}" placeholder="회원 ID 또는 이름 검색">
+		  <button type="submit">검색</button>
+		</form>
+	</div>
 
     <table>
       <thead>
         <tr>
-          <th>회원 번호</th>
           <th>회원 ID</th>
           <th>회원 이름</th>
           <th>이메일</th>
@@ -123,56 +129,38 @@
           <th>상세 정보</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>admin</td>
-          <td>관리자</td>
-          <td><a href="mailto:abc123@gmail.com">abc123@gmail.com</a></td>
-          <td>액션</td>
-          <td><button class="btn-detail" onclick="location.href='adminmemd'">상세 정보 확인</button></td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>id1</td>
-          <td>이순신</td>
-          <td>a123@naver.com</td>
-          <td>SF</td>
-          <td><button class="btn-detail" onclick="location.href='adminmemd'">상세 정보 확인</button></td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>id2</td>
-          <td>김유신</td>
-          <td>kim2@gmail.com</td>
-          <td>로맨스</td>
-          <td><button class="btn-detail" onclick="location.href='adminmemd'">상세 정보 확인</button></td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>id3</td>
-          <td>이성계</td>
-          <td>b123@itwills.co.kr</td>
-          <td>가족</td>
-          <td><button class="btn-detail" onclick="location.href='adminmemd'">상세 정보 확인</button></td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>id4</td>
-          <td>김민수</td>
-          <td>c12@naver.com</td>
-          <td>만화</td>
-          <td><button class="btn-detail" onclick="location.href='adminmemd'">상세 정보 확인</button></td>
-        </tr>
-      </tbody>
+		 	<tbody>
+			<c:forEach var="member" items="${listMember}">
+			  <tr>
+			    <td>${member.member_id}</td>
+			    <td>${member.member_name}</td>
+			    <td><a href="mailto:${member.member_email}">${member.member_email}</a></td>
+			    <td>${member.member_like_genre}</td>
+			    <td>
+			      <button class="btn-detail" 
+			        onclick="location.href='${pageContext.request.contextPath}/admin/adminmemd?member_id=${member.member_id}'">
+			        상세 정보 확인
+			      </button>
+			    </td>
+			  </tr>
+			</c:forEach>
+			</tbody>
     </table>
 
     <div class="pagination">
-      <button>이전</button>
-      <button>1</button>
-      <button>2</button>
-      <button>다음</button>
-    </div>
+	  <c:if test="${pageDTO.currentPage > 1}">
+		<a href="?pageNum=${pageDTO.currentPage - 1}&search=${pageDTO.search}">이전</a>
+	  </c:if>
+	
+	  <c:forEach begin="${pageDTO.startPage}" end="${pageDTO.endPage}" var="i">
+	    <a href="?pageNum=${i}&search=${pageDTO.search}" 
+	       style="${i == pageDTO.currentPage ? 'font-weight:bold;' : ''}">${i}</a>
+	  </c:forEach>
+	
+	  <c:if test="${pageDTO.currentPage < pageDTO.pageCount}">
+		<a href="?pageNum=${pageDTO.currentPage + 1}&search=${pageDTO.search}">다음</a>
+	  </c:if>
+	</div>
        <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
     

@@ -40,7 +40,7 @@
             <select name="movie_id">
                 <option>-- 영화 선택 --</option>
                 <c:forEach var="movie" items="${movieList}">
-                    <option value="${movie.movie_id}">${movie.movie_name_kr}</option>
+                    <option value="${movie.movie_id}">${movie.movie_nm}</option>
                 </c:forEach>
             </select><br/>
 
@@ -88,7 +88,7 @@
             <tbody>
                 <c:forEach var="screen" items="${screenList}">
                     <tr>
-                        <td>${screen.movie_name_kr}</td>
+                        <td>${screen.movie_nm}</td>
                         <td>${screen.theater_name}</td>
                         <td>${screen.room_name}</td>
                         <td>${screen.screen_date}</td>

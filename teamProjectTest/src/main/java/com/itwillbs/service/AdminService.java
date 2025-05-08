@@ -2,12 +2,15 @@ package com.itwillbs.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.domain.TheaterDTO;
@@ -24,6 +27,7 @@ public class AdminService {
 	// 상영 정보 추가
 	public void insertScreen(ScreenDTO screenDTO) {
 		System.out.println("AdminService insertScreen()");
+		System.out.println("💡 등록 시도 movie_id: " + screenDTO.getMovie_id());
 		
 		adminMapper.insertScreen(screenDTO);
 	}
@@ -59,9 +63,26 @@ public class AdminService {
 		
 		return adminMapper.listRoom();
 	}
-    
+
+	
     // Screen (상영) 서비스 모음 -----------------------------
 	
+	// 회원 목록 가져오기
+		public List<LoginDTO> listMember(PageDTO pageDTO) {
+
+			return adminMapper.listMember(pageDTO);
+		}
+
+		public LoginDTO infoMember(String member_id) {
+
+			return adminMapper.infoMember(member_id);
+		}
+
+		public int countMember(PageDTO pageDTO) {
+			
+			return adminMapper.countMember(pageDTO);
+		}
+
 	
 
 	

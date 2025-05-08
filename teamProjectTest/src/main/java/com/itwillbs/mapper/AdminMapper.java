@@ -1,10 +1,13 @@
 package com.itwillbs.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.domain.TheaterDTO;
@@ -23,6 +26,13 @@ public interface AdminMapper {
 	public List<TheaterDTO> listTheater();
 
 	public List<RoomDTO> listRoom();
+
+	public List<LoginDTO> listMember(PageDTO pageDTO);
+
+	public LoginDTO infoMember(String member_id);
+
+	public int countMember(PageDTO pageDTO);
+
    
 	
 }
