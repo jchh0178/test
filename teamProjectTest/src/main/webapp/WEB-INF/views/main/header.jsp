@@ -183,8 +183,7 @@
           <div class="hamburger-group">
             <h4>영화</h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
-              <li><a href="${pageContext.request.contextPath}/movie/mmaind">상영예정작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/main">무비차트</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
@@ -223,10 +222,9 @@
       <nav>
         <ul>
           <li>
-            <a href="${pageContext.request.contextPath}/movie/mmain">영화</a>
+            <a href="${pageContext.request.contextPath}/movie/main">영화</a>
             <ul class="submenu">
-              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
-              <li><a href="${pageContext.request.contextPath}/movie/mdetail">상영예정작</a></li>
+             <li><a href="${pageContext.request.contextPath}/movie/main">무비차트</a></li>
             </ul>
           </li>
           <li>

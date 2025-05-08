@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
@@ -112,25 +113,26 @@
 
     <!-- Box Office -->
     <section class="poster-section">
-      <h2>박스 오피스</h2>
-      <div class="poster-list">
-        <div>
-          <div class="poster" onmouseover="showDetail(1)" onclick="goDetail(1)">영화 포스터</div>
+    <h2>박스 오피스</h2>
+    <div class="poster-list">
+      <c:forEach var="movieDTO" items="${movieList}">
+      	<div>
+      		<div class="poster" onmouseover="showDetail(1)" onclick="goDetail(1)">
+			<c:choose>
+			  <c:when test="${empty movieDTO.posterUrl}">
+			    <img src="<c:url value='/resources/images/no-image.png'/>" alt="기본 포스터" width="150"/>
+			  </c:when>
+			  <c:otherwise>
+			    <img src="${movieDTO.posterUrl}"
+			         onerror="this.onerror=null; this.src='/resources/images/no-image.png';"
+			         alt="${movieDTO.movieNm} 포스터" width="150"/>
+			  </c:otherwise>
+			</c:choose>
+			</div>
           <button class="reserve-btn" onclick="goBooking(1)">빠른 예매 버튼</button>
-        </div>
-        <div>
-          <div class="poster" onmouseover="showDetail(2)" onclick="goDetail(2)">영화 포스터</div>
-          <button class="reserve-btn" onclick="goBooking(2)">빠른 예매 버튼</button>
-        </div>
-        <div>
-          <div class="poster" onmouseover="showDetail(3)" onclick="goDetail(3)">영화 포스터</div>
-          <button class="reserve-btn" onclick="goBooking(3)">빠른 예매 버튼</button>
-        </div>
-        <div>
-          <div class="poster" onmouseover="showDetail(4)" onclick="goDetail(4)">영화 포스터</div>
-          <button class="reserve-btn" onclick="goBooking(4)">빠른 예매 버튼</button>
-        </div>
-      </div>
+      	</div>
+      </c:forEach>
+	</div>
     </section>
 
     <!-- Footer -->

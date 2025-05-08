@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mapper.MovieMapper">
+    
+    <insert id="insertMoviesFromAPI" parameterType="com.itwillbs.domain.MovieDTO">
+	    INSERT INTO movie (
+	        movie_cd, movie_nm, open_dt, movie_rank, poster_url,
+	        movie_nm_en, prdt_year, prdt_stat_nm, nation_nm, genre_nm,
+	        show_tm, directors, actors, actor_roles, watch_grade_nm,
+	        show_type, audits
+	    ) VALUES (
+	        #{movieCd}, #{movieNm}, #{openDt}, #{rank}, #{posterUrl},
+	        #{movieNmEn}, #{prdtYear}, #{prdtStatNm}, #{nationNm}, #{genreNm},
+	        #{showTm}, #{directors}, #{actors}, #{actorRoles}, #{watchGradeNm},
+	        #{showType}, #{audits}
+	    )
+    </insert>
+
+    <select id="isMovieExists" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM movie WHERE movie_cd = #{movieCd}
+    </select>
+    
+    <resultMap id="movieMap" type="com.itwillbs.domain.MovieDTO">
+	    <result property="movieCd" column="movie_cd"/>
+	    <result property="movieNm" column="movie_nm"/>
+	    <result property="openDt" column="open_dt"/>
+	    <result property="rank" column="movie_rank"/>
+	    <result property="posterUrl" column="poster_url"/>
+	    <result property="movieNmEn" column="movie_nm_en"/>
+	    <result property="prdtYear" column="prdt_year"/>
+	    <result property="prdtStatNm" column="prdt_stat_nm"/>
+	    <result property="nationNm" column="nation_nm"/>
+	    <result property="genreNm" column="genre_nm"/>
+	    <result property="showTm" column="show_tm"/>
+	    <result property="directors" column="directors"/>
+	    <result property="actors" column="actors"/>
+	    <result property="actorRoles" column="actor_roles"/>
+	    <result property="watchGradeNm" column="watch_grade_nm"/>
+	    <result property="showType" column="show_type"/>
+	    <result property="audits" column="audits"/>
+	</resultMap>
+
+    <select id="getMovieList" resultMap="movieMap">
+        SELECT * FROM movie
+        ORDER BY movie_rank
+  		limit #{startRow}, #{pageSize}
+    </select>
+	
+	<select id="countMovie" resultType="java.lang.Integer">
+  		select count(*) from movie
+  	</select>
+	
+	<select id="getMovieDetail" parameterType="String" resultMap="movieMap">
+    	SELECT * FROM movie WHERE movie_cd = #{movieCd}
+ 	</select>
+	
+</mapper>
