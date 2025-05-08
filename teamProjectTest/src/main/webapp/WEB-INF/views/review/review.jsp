@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +13,9 @@
 
 	<h1>영화 리뷰</h1>
 
-	<div class="movie-info">
-		<h2>영화 제목: ${movie.title}</h2>
-		<p>${movie.description}</p>
+	<div class="movie-title">
+		<h2>영화 제목: ${movieDTO.rank} - ${movieDTO.movieNm}</h2>
+<%-- 		<p>${movie.description}</p> --%>
 	</div>
 
 	<div class="review-form">
@@ -85,7 +85,7 @@
 	      reviewContent
 	    };
 
-	    fetch(`${pageContext.request.contextPath}/review/api/add`, {
+	    fetch(`${pageContext.request.contextPath}/review/add`, {
 	      method: "POST",
 	      headers: {
 	        "Content-Type": "application/json"
@@ -162,14 +162,14 @@
     }
     
 //     <!-- 차트 라이브러리 -->
-<!--     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+<%--     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
 
 <!--     차트 표시용 캔버스 -->
 <%--     <canvas id="sentimentChart" width="400" height="200"></canvas> --%>
 
 <!--     차트 스크립트 -->
 <!--     <script> -->
-<!-- //       const ctx = document.getElementById('sentimentChart').getContext('2d'); -->
+<!-- //       const ctx = document.getElementById('sentimentChart').getContext('2d');  -->
 <!-- //       const sentimentChart = new Chart(ctx, { -->
 <!-- //         type: 'pie', -->
 <!-- //         data: { -->

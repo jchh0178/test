@@ -24,6 +24,14 @@ public class MovieService {
     private final String KOBIS_API_KEY = "ec2a6f2289307037c841a7058c7ef545";
     private final String TMDB_API_KEY = "1bc367920d0e2dd5917e50e9f9e75923";
 
+    
+    public MovieDTO getMovieById(int movieId) {
+       
+    	
+    	
+    	return movieMapper.getMovieById(movieId);
+    }
+    
     public void insertMoviesFromAPI(String date) {
     	System.out.println("MovieService insertMoviesFromAPI()");
         List<MovieDTO> movies = getBoxOffice(date);

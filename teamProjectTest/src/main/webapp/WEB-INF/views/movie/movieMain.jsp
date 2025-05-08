@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html >
 <head>
@@ -88,11 +88,14 @@
 <%--                 <canvas id="chart-${i.index}" class="review-chart"></canvas> --%>
 
 				<!-- 영화 카드 샘플 1 -리뷰작성란 -->
-	            <img class="movie-review" src="https://via.placeholder.com/200x300.png?text=Movie+2" alt="Review 1 chart">
-	            <div class="movie-info">
-	                <div class="movie-title">영화 1 리뷰</div>
-	                <a class="details-button" href="#">리뷰 내역  보기</a>
-	            </div>
+        <div class="movie-info">
+            <div class="movie-title">리뷰 차트 (예시)</div>
+            <img class="movie-review" src="https://via.placeholder.com/200x300.png?text=Review+Chart" alt="Review Chart">
+            <c:url var="reviewUrl" value="/review/review">
+                <c:param name="movieId" value="${movieDTO.movieId}" />
+            </c:url>
+            <a href="${reviewUrl}" class="reserve-button">리뷰 보기</a>
+        </div>
 
                 <!-- 예매 버튼 -->
 <%--                 <button class="reserve-button" onclick="location.href='/reserve?movieCd=${movie.movieCd}'">예매</button> --%>
