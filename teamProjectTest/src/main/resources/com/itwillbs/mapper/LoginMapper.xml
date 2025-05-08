@@ -18,6 +18,15 @@ https://mybatis.org/mybatis-3/getting-started.html
   	 	insert into member(member_name,member_id,member_pass,member_phone,member_email,member_address,member_gender,member_birth, member_date, member_like_genre) 
     	values(#{member_name},#{member_id},#{member_pass},#{member_phone},#{member_email},#{member_address},#{member_gender},#{member_birth},#{member_date},#{member_like_genre})
   	</insert>
+  	
+  	<select id="isExist" resultType="int" parameterType="String">
+	    select count(*) from member where member_id = #{member_id}
+	</select>
+	
+	<select id="getMember" parameterType="String" resultType="com.itwillbs.domain.LoginDTO">
+	    select * from member where member_id = #{member_id}
+	</select>
+	
 </mapper>
 
 

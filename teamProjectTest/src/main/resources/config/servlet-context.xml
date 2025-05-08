@@ -40,7 +40,7 @@ D:\Shared\JSP\workspace_sts\TourWeb\src\main\webapp\resources\upload
 <!-- 주현 노트북 : C:\\jsp\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload -->
 <!-- 대부분의 컴퓨터 : D:\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload -->
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg value="C:\\jsp\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
+		<beans:constructor-arg value="D:\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
 		
 	</beans:bean>
 	

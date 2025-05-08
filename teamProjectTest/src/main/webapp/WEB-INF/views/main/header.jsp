@@ -230,7 +230,7 @@
           <div class="hamburger-group">
             <h4>예매</h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/booking">바로 예매</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
@@ -283,9 +283,9 @@
       <nav>
         <ul>
           <li>
-            <a href="${pageContext.request.contextPath}/movie/mbooking">예매</a>
+            <a href="${pageContext.request.contextPath}/movie/booking">예매</a>
             <ul class="submenu">
-              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/booking">바로 예매</a></li>
             </ul>
           </li>
           <li>

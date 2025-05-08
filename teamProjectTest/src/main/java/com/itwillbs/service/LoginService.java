@@ -35,6 +35,10 @@ public class LoginService {
 	    return loginMapper.isExist(member_id) > 0;
 	}
 
+	public LoginDTO getMember(String id) {
+		return loginMapper.getMember(id);
+	}
+
 	
 	
 	

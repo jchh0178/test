@@ -19,10 +19,7 @@ public class MovieController {
         return "movie/main_detail"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
 	
-	@GetMapping("/mbooking")
-    public String booking() {
-        return "movie/booking"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
-    }
+	
     
 	@GetMapping("/mreview")
     public String review() {
