@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%-- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,7 +113,7 @@
   `;
   reviewList.prepend(newReview);
   form.reset();
-});
+})
 	    .catch(err => {
 	      console.error(err);
 	      alert("등록 중 오류가 발생했습니다.");
@@ -160,7 +160,36 @@
       })
       .catch(err => console.error(err));
     }
-  </script>
+    
+//     <!-- 차트 라이브러리 -->
+<!--     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+
+<!--     차트 표시용 캔버스 -->
+<%--     <canvas id="sentimentChart" width="400" height="200"></canvas> --%>
+
+<!--     차트 스크립트 -->
+<!--     <script> -->
+<!-- //       const ctx = document.getElementById('sentimentChart').getContext('2d'); -->
+<!-- //       const sentimentChart = new Chart(ctx, { -->
+<!-- //         type: 'pie', -->
+<!-- //         data: { -->
+<!-- //           labels: ['긍정', '부정'], -->
+<!-- //           datasets: [{ -->
+<%-- //             data: [${positive}, ${negative}], --%>
+<!-- //             backgroundColor: ['#36A2EB', '#FF6384'] -->
+<!-- //           }] -->
+<!-- //         }, -->
+<!-- //         options: { -->
+<!-- //           responsive: true, -->
+<!-- //           plugins: { -->
+<!-- //             title: { -->
+<!-- //               display: true, -->
+<!-- //               text: '리뷰 감정 분석 결과' -->
+<!-- //             } -->
+<!-- //           } -->
+<!-- //         } -->
+<!-- //       }); -->
+<!--     </script> -->
 
 </body>
 </html>
