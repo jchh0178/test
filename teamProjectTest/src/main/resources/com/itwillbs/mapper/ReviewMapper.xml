@@ -5,6 +5,19 @@
 
 <mapper namespace="com.itwillbs.mapper.ReviewMapper">
 
+	<resultMap id="reviewResultMap"
+		type="com.itwillbs.domain.ReviewDTO">
+		<id property="reviewId" column="review_id" />
+		<result property="memberId" column="member_id" />
+		<result property="movieId" column="movie_id" />
+		<result property="reviewRating" column="review_rating" />
+		<result property="reviewContent" column="review_content" />
+		<result property="reviewSelect" column="review_select" />
+		<result property="reviewDate" column="review_date" />
+		<result property="reviewLike" column="review_like" />
+		<result property="reviewEmotion" column="review_emotion" />
+	</resultMap>
+
 	<!-- 리뷰 등록 -->
 	<insert id="insertReview"
 		parameterType="com.itwillbs.domain.ReviewDTO" useGeneratedKeys="true"
@@ -19,8 +32,8 @@
 
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="int">
-		DELETE FROM review WHERE
-		review_id = #{reviewId}
+		DELETE FROM review
+		WHERE review_id = #{reviewId}
 	</delete>
 
 	<!-- 리뷰 수정 -->
@@ -35,9 +48,15 @@
 		#{reviewId}
 	</update>
 
+	<update id="updateReviewContent"
+		parameterType="com.itwillbs.domain.ReviewDTO">
+		UPDATE review
+		SET review_content = #{reviewContent}, review_date = NOW()
+		WHERE review_id = #{reviewId}
+	</update>
+
 	<!-- 특정 영화의 리뷰 목록 불러오기 -->
-	<select id="getReviewsByMovieId"
-		resultType="com.itwillbs.domain.ReviewDTO">
+	<select id="getReviewsByMovieId" resultMap="reviewResultMap">
 		SELECT * FROM review
 		WHERE movie_id = #{movieId}
 		ORDER BY

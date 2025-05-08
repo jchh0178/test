@@ -22,8 +22,15 @@ public class ReviewService {
 		reviewMapper.deleteReview(reviewId);
 	}
 
-	public void updateReview(ReviewDTO review) {
-		reviewMapper.updateReview(review);
+//	public void updateReview(ReviewDTO review) {
+//		reviewMapper.updateReview(review);
+//	}
+	
+	public void updateReviewContent(int id, String content) {
+	    ReviewDTO dto = new ReviewDTO();
+	    dto.setReviewId(id);
+	    dto.setReviewContent(content);
+	    reviewMapper.updateReviewContent(dto);
 	}
 
 	public List<ReviewDTO> getReviewsByMovieId(int movieId) {

@@ -9,6 +9,7 @@ public interface ReviewMapper {
     void insertReview(ReviewDTO review);
     void deleteReview(int reviewId);
     void updateReview(ReviewDTO review);
+    void updateReviewContent(ReviewDTO review);
 //    Map<String, Integer> countSentimentByMovieId(int movieId);
     List<ReviewDTO> getReviewsByMovieId(int movieId);
 }

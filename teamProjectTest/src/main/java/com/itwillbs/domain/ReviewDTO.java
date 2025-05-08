@@ -18,8 +18,6 @@ public class ReviewDTO {
     private boolean reviewSelect;
     private Timestamp reviewDate;
     private int reviewLike;
-    private String review_Emotion;  // 긍정/부정 감정 분석 결과를 저장하는 필드
-    
-	
+    private String reviewEmotion;  // 긍정/부정 감정 분석 결과를 저장하는 필드
 
 }
