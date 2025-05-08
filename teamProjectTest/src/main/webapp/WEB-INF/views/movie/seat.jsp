@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html >
+<html>
 <head>
   <meta charset="UTF-8">
   <title>좌석 선택</title>
@@ -87,8 +87,8 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <%@ include file="../main/header.jsp" %>
+  <!-- Header -->
+  <%@ include file="../main/header.jsp" %>
 
   <h2>좌석 선택</h2>
   <div class="screen">스크린</div>
@@ -103,9 +103,9 @@
 
   <div id="selected-seats">선택된 좌석: 없음</div>
   <button onclick="bookSeats()">예매하기</button>
-  
-   <!-- Footer -->
-   <%@ include file="../main/footer.jsp" %>
+
+  <!-- Footer -->
+  <%@ include file="../main/footer.jsp" %>
 
   <script>
     const seatGrid = document.getElementById('seatGrid');
@@ -143,18 +143,23 @@
       seatGrid.appendChild(seat);
     }
 
+    function formatSeatNumber(index) {
+      const row = Math.floor(index / cols); // 0~9
+      const col = index % cols;             // 0~11
+
+      const rowLabel = String.fromCharCode(65 + row); // A~J
+      const colNumber = col + 1;                      // 1~12
+
+      return `${rowLabel}${colNumber}`; // 예: A1
+    }
+
     function updateSelectedSeatsDisplay() {
       if (selectedSeats.length === 0) {
         selectedSeatsDisplay.textContent = '선택된 좌석: 없음';
       } else {
-        selectedSeatsDisplay.textContent = '선택된 좌석: ' + selectedSeats.map(s => formatSeatNumber(s)).join(', ');
+        const seatLabels = selectedSeats.map(formatSeatNumber);
+        selectedSeatsDisplay.textContent = '선택된 좌석: ' + seatLabels.join(', ');
       }
-    }
-
-    function formatSeatNumber(index) {
-      const row = Math.floor(index / cols) + 1;
-      const col = (index % cols) + 1;
-      return `${row}열 ${col}번`;
     }
 
     function bookSeats() {
@@ -163,11 +168,16 @@
         return;
       }
 
-      alert("예매 완료!\n" + selectedSeats.map(formatSeatNumber).join('\n'));
+      const seatLabels = selectedSeats.map(formatSeatNumber);
+      console.log("🪑 선택된 인덱스:", selectedSeats);
+      console.log("🪑 변환된 좌석:", seatLabels);
+
+      alert("예매 완료!\n" + seatLabels.join('\n'));
+
+      // TODO: 이후 결제 페이지로 seatLabels 정보를 넘기기
+      // location.href = '/movie/payment?seats=' + encodeURIComponent(seatLabels.join(','));
     }
   </script>
 
 </body>
-</html>
-
 </html>

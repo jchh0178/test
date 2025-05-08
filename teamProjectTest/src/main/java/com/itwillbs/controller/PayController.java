@@ -98,13 +98,14 @@ public class PayController {
 
 	        // (2) DTO 생성
 	        PayDTO payDTO = new PayDTO();
-	        payDTO.setBooth_id(1); // 임시로 해둠, 나중에 파라미터로 들고와야 됨!
-	        payDTO.setMember_id("kim"); // HttpSession에서 로그인한 아이디 받아오면 좋음
+	        payDTO.setBooth_id((Integer) session.getAttribute("booth_id"));
+	        String memberId = (String) session.getAttribute("member_id");
+	        payDTO.setMember_id(memberId);
 	        payDTO.setPay_price(Integer.parseInt(amount));
 	        payDTO.setPay_method(method);
 	        payDTO.setPay_status("결제완료");
 	        payDTO.setPay_date(payDate);
-	        payDTO.setBooth_type_id(1); // 임시로 해둠, 나중에 선택한 예매자 유형에 따라 넘겨야 됨!
+	        payDTO.setBooth_type_id((Integer) session.getAttribute("booth_type_id"));	       
 	        System.out.println("booth_id: " + payDTO.getBooth_id());
 	        System.out.println("member_id: " + payDTO.getMember_id());
 	        System.out.println("booth_type_id: " + payDTO.getBooth_type_id());
