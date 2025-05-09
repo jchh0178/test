@@ -10,11 +10,13 @@
 <body>
   <h1>영화 리뷰</h1>
 
+  <!-- ✅ 영화 정보 출력 -->
   <div class="movie-title">
     <h2>영화 제목: ${movieDTO.rank} - ${movieDTO.movieNm}</h2>
     <input type="hidden" id="movieId" value="${movieDTO.movieId}" />
   </div>
 
+  <!-- ✅ 리뷰 작성 폼 -->
   <div class="review-form">
     <h3>리뷰 작성</h3>
     <form id="reviewForm">
@@ -32,32 +34,77 @@
     </form>
   </div>
 
+  <!-- ✅ 리뷰 목록 출력 영역 -->
   <div class="review-list">
     <h3>📢 리뷰 목록</h3>
-    <div id="reviewList">
-      <c:if test="${not empty reviews}">
-        <c:forEach var="review" items="${reviews}">
-          <div class="review-item" id="review-${review.reviewId}">
-            <strong>${review.memberId}</strong> -
-            <span class="star">
-              <c:forEach begin="1" end="${review.reviewRating}" var="i">⭐</c:forEach>
-            </span><br />
-            <p class="comment">${review.reviewContent}</p>
-            <div class="review-buttons">
-              <button type="button" onclick="editReview(${review.reviewId})">수정</button>
-              <button type="button" onclick="deleteReview(${review.reviewId})">삭제</button>
-            </div>
-          </div>
-        </c:forEach>
-      </c:if>
-      <c:if test="${empty reviews}">
-        <p>작성된 리뷰가 없습니다.</p>
-      </c:if>
-    </div>
+    <div id="reviewList"></div>
   </div>
 
+  <!-- ✅ 스크립트 -->
   <script>
-    // 리뷰 등록
+    const contextPath = "${pageContext.request.contextPath}";
+
+    // ✅ 페이지 로드시 자동 리뷰 불러오기
+    window.addEventListener("DOMContentLoaded", () => {
+      const movieId = document.getElementById("movieId").value;
+     // alert(movieId);
+      loadReviews(movieId);
+    });
+
+    // ✅ 리뷰 목록 불러오기
+    function loadReviews(movieId) {
+      movieId = Number(movieId);
+
+      if (!movieId || isNaN(movieId)) {
+        console.error("🚫 잘못된 movieId:", movieId);
+        return;
+      }
+	const list = contextPath + "/review/list/" + movieId;
+	//alert(UUID);
+      fetch(list)
+        .then(res => {
+          if (!res.ok) throw new Error("리뷰 불러오기 실패");
+          return res.json();
+        })
+        .then(reviews => {
+          const reviewList = document.getElementById("reviewList");
+          reviewList.innerHTML = "";
+
+          if (!reviews || reviews.length === 0) {
+            reviewList.innerHTML = "<p>작성된 리뷰가 없습니다.</p>";
+            return;
+          }
+
+          console.log(`✅ ${reviews.length}개의 리뷰를 불러왔습니다.`);
+          reviews.forEach((review, idx) => {
+ 	      	console.log(`[${idx}] 리뷰 내용:`, review.reviewContent); // <- 이거로 먼저 확인
+            const stars = "⭐".repeat(Number(review.reviewRating));
+            const div = document.createElement("div");
+//             const content = `${review.reviewContent}`;
+            div.className = "review-item";
+            div.id = `review-${review.reviewId}`;
+
+            div.innerHTML = 
+//             '<p>디버그용 출력: ' + review.reviewContent + '</p>;' + 
+               	  '<strong>' + review.memberId + '</strong> -' +
+            	  '<span class="star">'+ stars + '</span>' + '<br>' +
+            	  '<p class="comment">' + review.reviewContent + '-</p>' +
+            	  '<div class="review-buttons">' + 
+            	  	'<button type="button" onclick="editReview(' + review.reviewId + ')">수정</button>'+
+            	    '<button type="button" onclick="deleteReview(' + review.reviewId + ')">삭제</button>' +
+            	  '</div>'
+            	;
+
+            reviewList.appendChild(div);
+          });
+        })
+        .catch(err => {
+          console.error("리뷰 목록 오류:", err);
+          alert("리뷰 목록을 불러오지 못했습니다.");
+        });
+    }
+
+    // ✅ 리뷰 등록
     document.getElementById("reviewForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const form = e.target;
@@ -71,14 +118,9 @@
         return;
       }
 
-      const data = {
-        movieId,
-        memberId,
-        reviewRating,
-        reviewContent
-      };
+      const data = { movieId, memberId, reviewRating, reviewContent };
 
-      fetch("/teamProjectTest/review/add", {
+      fetch(`${contextPath}/review/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -87,107 +129,56 @@
         if (!res.ok) throw new Error("리뷰 등록 실패");
         return res.json();
       })
-      .then(review => {
-        const reviewList = document.getElementById("reviewList");
-        const stars = "⭐".repeat(review.reviewRating);
-        const newReview = document.createElement("div");
-        newReview.className = "review-item";
-        newReview.id = `review-${review.reviewId}`;
-        newReview.innerHTML = `
-          <strong>${review.memberId}</strong> -
-          <span class="star">${stars}</span><br />
-          <p class="comment">${review.reviewContent}</p>
-          <div class="review-buttons">
-            <button type="button" onclick="editReview(${review.reviewId})">수정</button>
-            <button type="button" onclick="deleteReview(${review.reviewId})">삭제</button>
-          </div>
-        `;
-        reviewList.prepend(newReview);
+      .then(() => {
         form.reset();
+        loadReviews(movieId); // ✅ 등록 후 갱신
       })
       .catch(err => {
-        console.error(err);
-        alert("등록 중 오류가 발생했습니다.");
+        console.error("등록 중 오류:", err);
+        alert("리뷰 등록에 실패했습니다.");
       });
     });
 
-    // 삭제 기능
-    function deleteReview(id) {
-    	console.log("🧨 deleteReview 호출됨. ID:", id);
-      if (!id) {
-        alert("리뷰 ID가 유효하지 않습니다.");
-        return;
-      }
+    // ✅ 리뷰 수정
+    window.editReview = function(reviewId) {
+      const reviewDiv = document.getElementById(`review-${reviewId}`);
+      const commentP = reviewDiv.querySelector('.comment');
+      const oldContent = commentP.innerText.trim();
+      const newContent = prompt("수정할 내용을 입력하세요:", oldContent);
 
+      if (newContent === null || newContent.trim() === "") return;
+      const edit = contextPath + "/review/edit/" + reviewId;
+      fetch(edit, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ reviewContent: newContent.trim() })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error("수정 실패");
+        loadReviews(document.getElementById("movieId").value);
+      })
+      .catch(err => {
+        console.error("수정 중 오류:", err);
+        alert("리뷰 수정에 실패했습니다.");
+      });
+    };
+
+    // ✅ 리뷰 삭제
+    window.deleteReview = function(reviewId) {
       if (!confirm("정말 삭제하시겠습니까?")) return;
-
-      fetch(`/teamProjectTest/review/delete/${id}`, {
+      const del = contextPath + "/review/delete/" + reviewId;
+      fetch(del, {
         method: 'DELETE'
       })
       .then(res => {
-        if (res.ok) {
-          document.getElementById(`review-${id}`).remove();
-        } else {
-          alert("삭제 실패");
-        }
+        if (!res.ok) throw new Error("삭제 실패");
+        loadReviews(document.getElementById("movieId").value); // ✅ 삭제 후 갱신
       })
-      .catch(err => console.error(err));
-    }
-
-    // 수정 기능
-    function editReview(id) {
-    	  console.log("✏️ editReview 호출됨. ID:", id);
-      const reviewDiv = document.getElementById(`review-${id}`);
-      const commentP = reviewDiv.querySelector('.comment');
-      const oldComment = commentP.innerText;
-      const newComment = prompt("수정할 내용을 입력하세요:", oldComment);
-
-      if (newComment === null || newComment.trim() === "") return;
-
-      fetch(`/teamProjectTest/review/edit/${id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ reviewContent: newComment })
-      })
-      .then(res => {
-        if (res.ok) {
-          commentP.innerText = newComment;
-        } else {
-          alert("수정 실패");
-        }
-      })
-      .catch(err => console.error(err));
-    }
-    
-//  <!-- 차트 라이브러리 -->
-    <%--     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-
-    <!--     차트 표시용 캔버스 -->
-    <%--     <canvas id="sentimentChart" width="400" height="200"></canvas> --%>
-
-    <!--     차트 스크립트 -->
-    <!--     <script> -->
-    <!-- //       const ctx = document.getElementById('sentimentChart').getContext('2d');  -->
-    <!-- //       const sentimentChart = new Chart(ctx, { -->
-    <!-- //         type: 'pie', -->
-    <!-- //         data: { -->
-    <!-- //           labels: ['긍정', '부정'], -->
-    <!-- //           datasets: [{ -->
-    <%-- //             data: [${positive}, ${negative}], --%>
-    <!-- //             backgroundColor: ['#36A2EB', '#FF6384'] -->
-    <!-- //           }] -->
-    <!-- //         }, -->
-    <!-- //         options: { -->
-    <!-- //           responsive: true, -->
-    <!-- //           plugins: { -->
-    <!-- //             title: { -->
-    <!-- //               display: true, -->
-    <!-- //               text: '리뷰 감정 분석 결과' -->
-    <!-- //             } -->
-    <!-- //           } -->
-    <!-- //         } -->
-    <!-- //       }); -->
-    
+      .catch(err => {
+        console.error("삭제 중 오류:", err);
+        alert("리뷰 삭제에 실패했습니다.");
+      });
+    };
   </script>
 </body>
 </html>

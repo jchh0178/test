@@ -14,12 +14,12 @@ public class ReviewService {
 	@Autowired
 	private ReviewMapper reviewMapper;
 
-	public void insertReview(ReviewDTO review) {
-		reviewMapper.insertReview(review);
+	public void insertReview(ReviewDTO reviewDTO) {
+		reviewMapper.insertReview(reviewDTO);
 	}
 
-	public void deleteReview(int reviewId) {
-		reviewMapper.deleteReview(reviewId);
+	public int deleteReview(int reviewId) {
+		return reviewMapper.deleteReview(reviewId);
 	}
 
 //	public void updateReview(ReviewDTO review) {

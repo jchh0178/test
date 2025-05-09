@@ -6,10 +6,10 @@ import java.util.List;
 import com.itwillbs.domain.ReviewDTO;
 
 public interface ReviewMapper {
-    void insertReview(ReviewDTO review);
-    void deleteReview(int reviewId);
-    void updateReview(ReviewDTO review);
-    void updateReviewContent(ReviewDTO review);
+    void insertReview(ReviewDTO reviewDTO);
+    int deleteReview(int reviewId);
+    void updateReview(ReviewDTO reviewDTO);
+    void updateReviewContent(ReviewDTO reviewDTO);
 //    Map<String, Integer> countSentimentByMovieId(int movieId);
     List<ReviewDTO> getReviewsByMovieId(int movieId);
 }

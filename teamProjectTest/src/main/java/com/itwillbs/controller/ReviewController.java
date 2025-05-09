@@ -23,7 +23,7 @@ public class ReviewController {
     private ReviewService reviewService;
     @Autowired
     private MovieService movieService;
-    
+
 //    /** ✅ [1] 리뷰 JSP 렌더링용 메서드 */
     @GetMapping("/review")
     public String showReviewPage(@RequestParam("movieId") int movieId, Model model) {
@@ -33,47 +33,59 @@ public class ReviewController {
         if (movie == null) {
             return "redirect:/main/main";
         }else {
-            List<ReviewDTO> reviews = reviewService.getReviewsByMovieId(movieId);
-            model.addAttribute("movieDTO", movie);
-            model.addAttribute("reviews", reviews);
+             model.addAttribute("movieDTO", movie);
             
             return "review/review";
         }
+        
         // ✅ 감정 분석 결과 통계
 //      Map<String, Integer> sentiment = reviewService.countSentimentByMovieId(movieId);
 //      model.addAttribute("positive", sentiment.getOrDefault("positive", 0));
 //      model.addAttribute("negative", sentiment.getOrDefault("negative", 0));
 
    }
+    
+    // (옵션) 특정 영화의 리뷰 목록 불러오기
+    @GetMapping("/list/{movieId}")
+    @ResponseBody
+    public List<ReviewDTO> getReviewList(@PathVariable("movieId") int movieId) {
+    	System.out.println("getReviewList" + movieId);
+        return reviewService.getReviewsByMovieId(movieId);
+    }
+    
     // 리뷰 등록
     @PostMapping("/add")
     @ResponseBody
     public ReviewDTO addReview(@RequestBody ReviewDTO reviewDTO) {
+    	System.out.println("addReview");
         reviewService.insertReview(reviewDTO);
         return reviewDTO;
     }
 
     // 리뷰 삭제
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/delete/{reviewId}")
     @ResponseBody
-    public ResponseEntity<?> deleteReview(@PathVariable int id) {
-        System.out.println("\uD83D\uDDD1 삭제 요청 들어옴 id=" + id);
-        reviewService.deleteReview(id);
+    public ResponseEntity<?> deleteReview(@PathVariable int reviewId) {
+        System.out.println(" deleteReview: reviewId=" + reviewId);
+        reviewService.deleteReview(reviewId);
         return ResponseEntity.ok().build();
     }
-
+    
     // 리뷰 수정
-    @PutMapping("/edit/{id}")
+    @PutMapping("/edit/{reviewId}")
     @ResponseBody
-    public ResponseEntity<?> editReview(@PathVariable int id, @RequestBody Map<String, String> body) {
+    public ResponseEntity<?> editReview(@PathVariable("reviewId") int reviewId,
+                                        @RequestBody Map<String, String> body) {
+        System.out.println("✅ editReview() 호출됨 - reviewId: " + reviewId);
+        
         String content = body.get("reviewContent");
-        reviewService.updateReviewContent(id, content);
+        if (content == null || content.trim().isEmpty()) {
+            return ResponseEntity.badRequest().body("내용이 없습니다.");
+        }
+
+        reviewService.updateReviewContent(reviewId, content);
         return ResponseEntity.ok().build();
     }
 
-//    // (옵션) 특정 영화의 리뷰 목록 불러오기
-//    @GetMapping("/list/{movieId}")
-//    public List<ReviewDTO> getReviewList(@PathVariable("movieId") int movieId) {
-//        return reviewService.getReviewsByMovieId(movieId);
-//    }
+
 }
