@@ -51,9 +51,9 @@
 
   <div class="info-box">
     <h2>예매 정보 확인</h2>
-    <p>영화: ${param.movie}</p>
+    <p>영화: ${sessionScope.movie}</p>
     <p>극장: ${param.theater}</p>
-    <p>상영 시간: ${param.time}</p>
+    <p id="screenTime">상영 시간: </p>
     <p>선택한 좌석: ${param.seats}</p>
     <p>총 금액: ${param.price}</p>
 
@@ -84,11 +84,23 @@
                 amount: "${param.price}",  
                 orderId: "ORDER_" + new Date().getTime(),
                 orderName: orderName,
-                customerName: "박주현",  // 로그인 세션에서 꺼내는 것도 가능
+                customerName: "${customerName}",  
                 successUrl: "http://localhost:8080/teamProjectTest/booth/pay/success",
                 failUrl: "http://localhost:8080/teamProjectTest/booth/pay/fail"
             });
         }
+        
+        (function() {
+        	  const rawTime = "${param.time}";
+        	  if (!isNaN(rawTime)) {
+        	    const date = new Date(Number(rawTime));
+        	    const hours = String(date.getHours()).padStart(2, '0');
+        	    const minutes = String(date.getMinutes()).padStart(2, '0');
+        	    document.getElementById("screenTime").textContent = "상영 시간: " + hours + ":" + minutes;
+        	  } else {
+        	    document.getElementById("screenTime").textContent = "상영 시간: 알 수 없음";
+        	  }
+        	})();
     </script>
 
 </body>

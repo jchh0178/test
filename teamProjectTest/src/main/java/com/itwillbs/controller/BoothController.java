@@ -58,7 +58,7 @@ public class BoothController {
 	}
     
 	@PostMapping("/confirm")
-	public String bookingConfirm(@RequestParam int screen_id, @RequestParam String seats, HttpSession session) {
+	public String bookingConfirm(@RequestParam int screen_id, @RequestParam String seats, HttpSession session, Model model) {
 	    System.out.println("BoothController bookingConfirm");
 
 	    LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
@@ -75,6 +75,9 @@ public class BoothController {
 
 	    session.setAttribute("booth_id", booth_id);
 	    session.setAttribute("booth_type_id", 1);
+
+	    // 고객 이름 모델에 추가
+	    model.addAttribute("customerName", loginDTO.getMember_name());
 
 	    return "booth/confirm";  
 	}

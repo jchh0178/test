@@ -18,6 +18,16 @@ https://mybatis.org/mybatis-3/getting-started.html
 	  select * from screen where screen_date = #{screen_date}
 	</select>
 	
+	<select id="getBoothInfo" resultType="com.itwillbs.domain.BoothDTO">
+	  select b.*, m.movie_nm, t.theater_name, r.room_name
+	  from booth b
+	  join screen s on b.screen_id = s.screen_id
+	  join movie m on s.movie_id = m.movie_id
+	  join theater t on s.theater_id = t.theater_id
+	  join rooms r on s.room_id = r.room_id
+	  where b.booth_id = #{booth_id}
+	</select>
+	
 </mapper>
 
 

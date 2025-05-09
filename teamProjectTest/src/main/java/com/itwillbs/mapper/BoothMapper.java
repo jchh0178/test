@@ -13,5 +13,7 @@ public interface BoothMapper {
 	public void insertBooth(BoothDTO boothDTO);
 
 	public List<ScreenDTO> listScreen(String screen_date);
+
+	public BoothDTO getBoothInfo(int booth_id);
 	
 }

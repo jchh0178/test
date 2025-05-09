@@ -22,8 +22,10 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itwillbs.domain.BoothDTO;
 import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.PayDTO;
+import com.itwillbs.service.BoothService;
 import com.itwillbs.service.PayService;
 
 
@@ -33,6 +35,9 @@ public class PayController {
 
 	@Inject
 	private PayService payService;
+	
+	@Inject
+	private BoothService boothService;
 	
 	@GetMapping("/payment")
 	public String payment() {
@@ -120,9 +125,19 @@ public class PayController {
 
 	        // (3) insert 호출
 	        payService.insertPay(payDTO);
+	        
+	        BoothDTO boothDTO = boothService.getBoothInfo(payDTO.getBooth_id());
 
+	        System.out.println("포스터 URL: " + boothDTO.getPoster_url());
 	        // 뷰 페이지에 보내겠습니다 -------------------
 	        // payment_success.jsp로 넘길 정보 모델에 받기
+	        model.addAttribute("poster", boothDTO.getPoster_url());
+	        model.addAttribute("movieTitle", boothDTO.getMovie_nm());
+	        model.addAttribute("theaterName", boothDTO.getTheater_name());
+	        model.addAttribute("screenName", boothDTO.getRoom_name());
+	        model.addAttribute("schedule", boothDTO.getBooth_date() + " " + boothDTO.getScreen_start_time());
+	        model.addAttribute("seatNames", boothDTO.getSeat_name());
+	        model.addAttribute("pay_price", payDTO.getPay_price());
 	        model.addAttribute("orderId", orderId);
 	        model.addAttribute("method", method);
 	        model.addAttribute("approvedAt", approvedAt);

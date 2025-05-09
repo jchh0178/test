@@ -34,6 +34,11 @@ public class BoothService {
 		
 		return boothMapper.listScreen(screen_date);
 	}
+
+	public BoothDTO getBoothInfo(int booth_id) {
+
+		return boothMapper.getBoothInfo(booth_id);
+	}
 	
 	
 

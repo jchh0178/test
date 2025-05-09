@@ -20,6 +20,7 @@
     </div>
 
     <div class="section movie-info">
+    <p>포스터 경로: ${poster}</p>
       <img src="${poster}" alt="영화 포스터">
       <h2>${movieTitle}</h2>
     </div>

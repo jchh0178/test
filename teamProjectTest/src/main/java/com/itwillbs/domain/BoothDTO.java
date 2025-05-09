@@ -19,6 +19,12 @@ public class BoothDTO {
     private Timestamp booth_date;
     private String booth_status;
     
+    private String poster_url;
+    private String movie_nm;
+    private String theater_name;
+    private String room_name;
+    private String screen_start_time;
 	
+    
 	
 }

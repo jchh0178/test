@@ -113,7 +113,7 @@
   <form action="${pageContext.request.contextPath }/booth/confirm" method="post" id="reserveForm">
 	  <input type="hidden" name="member_id" value="${sessionScope.member_id}">
 	  
-	  <input type="hidden" name="screen_id" value="1"> <!-- 현재 상영관 ID 고정 or 동적 -->
+	  <input type="hidden" name="screen_id" value="${param.screen_id}"> 
 	
 	  <input type="hidden" name="movie" id="movieInput">
 	  <input type="hidden" name="theater" id="theaterInput">
