@@ -9,18 +9,40 @@ body {
 
 .container {
   width: 100vw;
-  padding: 0;
+  padding: 10;
   margin: 0;
 }
 
-.review-form,
-.review-list,
-.movie-info {
-  width: 100%;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.review-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review-form input[type="text"],
+.review-form select,
+.review-form textarea,
+.review-form button {
+  width: 90%;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.review-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.review-form button {
+  background-color: #e50914;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.review-form button:hover {
+  background-color: #c40812;
 }

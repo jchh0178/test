@@ -9,10 +9,15 @@ import com.itwillbs.domain.TheaterDTO;
 @Mapper
 public interface TheaterMapper {
 
-	    // 전체 극장 목록 가져오기
-	    public List<TheaterDTO> listTheater();
+   TheaterDTO detail(TheaterDTO theateDTO);
 
-	 
-	
+   List<TheaterDTO> list();
+   
+   List<TheaterDTO> list2();
+
+   TheaterDTO detail2(TheaterDTO theaterDTO);
+
+   List<TheaterDTO> list3(TheaterDTO theaterDTO);
+
+
 }
-

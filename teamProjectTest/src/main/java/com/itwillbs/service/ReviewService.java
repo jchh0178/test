@@ -14,7 +14,13 @@ public class ReviewService {
 	@Autowired
 	private ReviewMapper reviewMapper;
 
-	public void insertReview(ReviewDTO reviewDTO) {
+    @Autowired
+    private OpenAiService openAiService;
+
+	public void insertReview(ReviewDTO reviewDTO) throws Exception {
+        // ✅ 감정 분석 결과 저장
+        String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
+        reviewDTO.setSentiment(sentiment); // DTO에 sentiment 필드 추가해야 함
 		reviewMapper.insertReview(reviewDTO);
 	}
 
@@ -36,6 +42,9 @@ public class ReviewService {
 	public List<ReviewDTO> getReviewsByMovieId(int movieId) {
 		return reviewMapper.getReviewsByMovieId(movieId);
 	}
+	
+
+    
 }
 
 //================================= 오픈 api 추가된 코딩 ======================================================
