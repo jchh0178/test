@@ -149,22 +149,24 @@ fieldset {
 	        <fieldset>
 	          <div class="left">
 	            <table>
-	              <tr><th>영화코드</th><td><input type="text" name="movieCd" id="movieCd"></td></tr>
-	              <tr><th>제목</th><td><input type="text" name="movieNm" id="movieNm"></td></tr>
-	              <tr><th>감독</th><td><input type="text" name="directors" id="directors"></td></tr>
-	              <tr><th>배우</th><td><input type="text" name="actors" id="actors"></td></tr>
-	              <tr><th>장르</th><td><input type="text" name="genreNm" id="genreNm"></td></tr>
-	              <tr><th>국가</th><td><input type="text" name="nationNm" id="nationNm"></td></tr>
-	              <tr><th>상영시간</th><td><input type="text" name="showTm" id="showTm"></td></tr>
-	              <tr><th>개봉일</th><td><input type="text" name="openDt" id="openDt"></td></tr>
+	              <tr><th>영화코드</th><td><input type="text" name="movieCd" id="movieCd" readonly></td></tr>
+	              <tr><th>제목</th><td><input type="text" name="movieNm" id="movieNm" readonly></td></tr>
+	              <tr><th>영어제목</th><td><input type="text" name="movieNmEn" id="movieNmEn" readonly></td></tr>
+	              <tr><th>감독</th><td><input type="text" name="directors" id="directors" readonly></td></tr>
+	              <tr><th>배우</th><td><input type="text" name="actors" id="actors" readonly></td></tr>
+	              <tr><th>장르</th><td><input type="text" name="genreNm" id="genreNm" readonly></td></tr>
+	              <tr><th>국가</th><td><input type="text" name="nationNm" id="nationNm" readonly></td></tr>
+	              <tr><th>상영시간</th><td><input type="text" name="showTm" id="showTm" readonly></td></tr>
+	              <tr><th>개봉일</th><td><input type="text" name="openDt" id="openDt" readonly></td></tr>
 	              <tr><th>관람등급</th><td><input type="text" name="watchGradeNm" id="watchGradeNm"></td></tr>
 	              <tr><th>상영형태</th><td><input type="text" name="showType" id="showType"></td></tr>
 	              <tr><th>줄거리</th><td><textarea name="summary" id="summary" readonly></textarea></td></tr>
+	              <tr style="display:none;"><td colspan="2"><input type="hidden" name="posterUrl" id="posterUrl"></td></tr>
 	            </table>
 	          </div>
 	          <div class="right">
 	            <div class="poster-box" id="poster-box">
-	            	<img id="poster" alt="포스터" width="100px" height="140px">
+	            	<img id="poster" name="poster" alt="포스터" width="100px" height="140px">
 	            </div>
 	          </div>
 	        </fieldset>
@@ -177,26 +179,49 @@ fieldset {
 	</div>
 	<%@ include file="../main/footer.jsp" %>
 	
-	<script>
-    $('#searchBtn').on('click', function () {
-      const title = $('#movieTitle').val();
-      if (!title) return alert('제목을 입력하세요');
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const btn = document.getElementById("searchBtn");
 
-      fetch(`/movie/searchTMDB?title=${encodeURIComponent(title)}`)
+    if (!btn) {
+      console.error("❌ 버튼을 찾을 수 없습니다");
+      return;
+    }
+
+    btn.addEventListener("click", function () {
+      console.log("✅ 검색 버튼 클릭됨");
+
+      const title = document.getElementById("movieTitle").value;
+      if (!title) {
+        alert("제목을 입력하세요");
+        return;
+      }
+
+      fetch("${pageContext.request.contextPath}/movie/searchTMDB?title=" + encodeURIComponent(title))
         .then(res => res.json())
-        .then(tmdb => {
-          $('#movie_nm').val(tmdb.movieNm);
-          $('#movie_nm_en').val(tmdb.movieNmEn);
-          $('#open_dt').val(tmdb.openDt);
-          $('#poster').attr('src', tmdb.posterUrl);
-          $('#summary').val(tmdb.summary);
-          $('#directors').val(tmdb.directors);
-          $('#show_tm').val(tmdb.showTm);
-          $('#genre_nm').val(tmdb.genreNm);
-          $('#nation_nm').val(tmdb.nationNm);
-          $('#actors').val(tmdb.actors);
+        .then(data => {
+          console.log("📦 받은 데이터:", data);
+		  
+          document.getElementById("movieCd").value = data.movieCd || "";
+          document.getElementById("movieNm").value = data.movieNm || "";
+          document.getElementById("movieNmEn").value = data.movieNmEn || "";
+          document.getElementById("openDt").value = data.openDt || "";
+          document.getElementById("summary").value = data.summary || "";
+          document.getElementById("directors").value = data.directors || "";
+          document.getElementById("actors").value = data.actors || "";
+          document.getElementById("showTm").value = data.showTm || "";
+          document.getElementById("genreNm").value = data.genreNm || "";
+          document.getElementById("nationNm").value = data.nationNm || "";
+        
+          document.getElementById("poster").src = data.posterUrl || "";
+          document.getElementById("posterUrl").value = data.posterUrl || "";
+        })
+        .catch(err => {
+          console.error("❌ API 호출 실패:", err);
+          alert("영화 정보를 가져오는 중 오류가 발생했습니다.");
         });
     });
-  </script>
+  });
+</script>
 </body>
 </html>

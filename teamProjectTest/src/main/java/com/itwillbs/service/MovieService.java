@@ -196,6 +196,11 @@ public class MovieService {
 	}
 	
 	public MovieDTO getMovieFromTMDB(String title) {
+		if (title == null || title.trim().isEmpty()) {
+	        System.out.println("❌ 영화 제목(title)이 null이거나 빈 문자열입니다");
+	        return null;
+	    }
+		
         try {
             RestTemplate restTemplate = new RestTemplate();
             ObjectMapper mapper = new ObjectMapper();
@@ -206,7 +211,7 @@ public class MovieService {
                 + "&language=ko-KR";
             String searchJson = restTemplate.getForObject(searchUrl, String.class);
             JsonNode result = mapper.readTree(searchJson).path("results").get(0);
-
+            
             int movieId = result.path("id").asInt();
             String detailUrl = "https://api.themoviedb.org/3/movie/" + movieId
                 + "?api_key=" + TMDB_API_KEY + "&language=ko-KR";
@@ -217,6 +222,7 @@ public class MovieService {
             JsonNode credits = mapper.readTree(restTemplate.getForObject(creditsUrl, String.class));
 
             MovieDTO dto = new MovieDTO();
+            dto.setMovieCd(detail.path("imdb_id").asText()); // imdb_id → movieCd에 저장
             dto.setMovieNm(result.path("title").asText());
             dto.setMovieNmEn(result.path("original_title").asText());
             dto.setOpenDt(result.path("release_date").asText());
@@ -247,5 +253,9 @@ public class MovieService {
             return null;
         }
     }
+	
+	public void insertMovie(MovieDTO dto) {
+	    movieMapper.insertMovie(dto);
+	}
 
 }

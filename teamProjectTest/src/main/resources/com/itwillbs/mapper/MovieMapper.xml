@@ -8,14 +8,14 @@
     <insert id="insertMoviesFromAPI" parameterType="com.itwillbs.domain.MovieDTO">
 	    INSERT INTO movie (
 	        movie_cd, movie_nm, open_dt, movie_rank, poster_url,
-	        movie_nm_en, prdt_year, prdt_stat_nm, nation_nm, genre_nm,
-	        show_tm, directors, actors, actor_roles, watch_grade_nm,
-	        show_type, audits
+	        movie_nm_en, prdt_year, nation_nm, genre_nm,
+	        show_tm, directors, actors, watch_grade_nm,
+	        show_type, summary
 	    ) VALUES (
 	        #{movieCd}, #{movieNm}, #{openDt}, #{rank}, #{posterUrl},
-	        #{movieNmEn}, #{prdtYear}, #{prdtStatNm}, #{nationNm}, #{genreNm},
-	        #{showTm}, #{directors}, #{actors}, #{actorRoles}, #{watchGradeNm},
-	        #{showType}, #{audits}
+	        #{movieNmEn}, #{prdtYear}, #{nationNm}, #{genreNm},
+	        #{showTm}, #{directors}, #{actors}, #{watchGradeNm},
+	        #{showType}, #{summary}
 	    )
     </insert>
 
@@ -56,5 +56,15 @@
 	<select id="getMovieDetail" parameterType="String" resultMap="movieMap">
     	SELECT * FROM movie WHERE movie_cd = #{movieCd}
  	</select>
+ 	
+ 	<insert id="insertMovie" parameterType="com.itwillbs.domain.MovieDTO">
+	    INSERT INTO movie (
+	      movie_cd, movie_nm, movie_nm_en, open_dt, poster_url, summary,
+	      show_tm, directors, actors, genre_nm, nation_nm, watch_grade_nm, show_type
+	    ) VALUES (
+	      #{movieCd}, #{movieNm}, #{movieNmEn}, #{openDt}, #{posterUrl}, #{summary},
+	      #{showTm}, #{directors}, #{actors}, #{genreNm}, #{nationNm}, #{watchGradeNm}, #{showType}
+	    )
+  	</insert>
 	
 </mapper>

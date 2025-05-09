@@ -154,9 +154,6 @@ body {
     <div class="tab-content" id="info">
       <h2>개봉년도</h2>
       <p>${movie.openDt}</p>
-	
-	  <h2>제작년도</h2>
-      <p>${movie.prdtYear}</p>
 	  
       <div class="stats">
         <div>

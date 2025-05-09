@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.service.AdminService;
+import com.itwillbs.service.MovieService;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -16,6 +18,9 @@ public class AdminController {
 
 	@Inject
 	private AdminService adminService;
+	
+	@Inject
+	private MovieService movieService;
 	
 	@GetMapping("/adminfaq")
     public String adminfaq() {
@@ -40,6 +45,17 @@ public class AdminController {
 	@GetMapping("/adminmoviei")
     public String adminmoviei() {
         return "admin/admin_movie_insert"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
+    }
+	
+	@PostMapping("/insertMovie")
+    public String insertMovie(MovieDTO dto) {
+		if (dto.getMovieCd() == null || dto.getMovieNm() == null) {
+	        System.out.println("❌ 저장할 movieCd 또는 movieNm이 null입니다");
+	        return "admin/admin_movie_insert"; // 다시 폼으로 리턴
+	    }
+		
+        movieService.insertMovie(dto);
+        return "redirect:/main/main"; // 목록 페이지
     }
 	
 	@GetMapping("/adminmovie")
