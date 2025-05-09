@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.PageDTO;
@@ -107,6 +108,12 @@ public class MovieController {
         MovieDTO movie = movieService.getMovieDetail(movieCd);
         model.addAttribute("movie", movie);
         return "movie/movieDetail";
+    }
+    
+    @GetMapping("/searchTMDB")
+    @ResponseBody
+    public MovieDTO searchTMDB(@RequestParam String title) {
+        return movieService.getMovieFromTMDB(title);
     }
     
     @GetMapping("/mbooking")
