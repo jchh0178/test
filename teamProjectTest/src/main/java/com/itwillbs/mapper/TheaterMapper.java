@@ -9,10 +9,15 @@ import com.itwillbs.domain.TheaterDTO;
 @Mapper
 public interface TheaterMapper {
 
-	List<TheaterDTO> list(TheaterDTO theaterDTO);
+	TheaterDTO detail(TheaterDTO theateDTO);
 
-	TheaterDTO detail(String name);
+	List<TheaterDTO> list();
+	
+	List<TheaterDTO> list2();
 
-	
-	
+	TheaterDTO detail2(TheaterDTO theaterDTO);
+
+	List<TheaterDTO> list3(TheaterDTO theaterDTO);
+
+
 }

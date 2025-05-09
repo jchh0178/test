@@ -13,10 +13,10 @@ import lombok.ToString;
 @Getter
 public class TheaterDTO {
 
+	private int code;
 	private String brand;
 	private String region;
 	private String name;
-	private int code;
-	private String special;
 	
 }
+ 
