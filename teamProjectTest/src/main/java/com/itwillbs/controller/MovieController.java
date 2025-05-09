@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.PageDTO;
@@ -109,10 +110,15 @@ public class MovieController {
         return "movie/movieDetail";
     }
     
-    @GetMapping("/mbooking")
-    public String booking() {
-        return "movie/booking"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
+    @GetMapping("/searchTMDB")
+    
+    
+    
+    @ResponseBody
+    public MovieDTO searchTMDB(@RequestParam String title) {
+        return movieService.getMovieFromTMDB(title);
     }
+    
     
 	@GetMapping("/mreview")
     public String review() {

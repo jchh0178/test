@@ -165,15 +165,43 @@
 <body>
 
 <header>
-  <div class="top-right">
-    <a href="${pageContext.request.contextPath}/login/login">로그인</a> |
-    <a href="${pageContext.request.contextPath}/login/register">회원가입</a> |
-    <a href="${pageContext.request.contextPath}/mypage/mymain">마이페이지</a> |
-    <a href="${pageContext.request.contextPath}/admin/adminmem">관리자페이지</a> |
-    <a href="${pageContext.request.contextPath}/movie/payment">결제</a> |
-    <a href="${pageContext.request.contextPath}/theater/screen">상영정보</a>
-    
-  </div>
+
+<%-- <%-- 디버깅용 --%> 
+<%-- <c:if test="${not empty sessionScope.loginDTO}"> --%>
+<%--     <p>세션 있음! 로그인 아이디: ${sessionScope.loginDTO.member_id}</p> --%>
+<%-- </c:if> --%>
+<%-- <c:if test="${empty sessionScope.loginDTO}"> --%>
+<!--     <p>세션 없음! 로그인 안됨!</p> -->
+<%-- </c:if> --%>
+<!--   <div class="top-right"> -->
+<%--     <a href="${pageContext.request.contextPath}/login/login">로그인</a> | --%>
+<%--     <a href="${pageContext.request.contextPath}/login/register">회원가입</a> | --%>
+<%--     <a href="${pageContext.request.contextPath}/mypage/mymain">마이페이지</a> | --%>
+<%--     <a href="${pageContext.request.contextPath}/admin/adminmem">관리자페이지</a> | --%>
+<%--     <a href="${pageContext.request.contextPath}/movie/payment">결제</a>  --%>
+<!--   </div> -->
+
+<div class="top-right">
+    <!-- 로그인 안한 경우 -->
+    <c:if test="${empty sessionScope.loginDTO}">
+        <a href="${pageContext.request.contextPath}/login/login">로그인</a> |
+        <a href="${pageContext.request.contextPath}/login/register">회원가입</a>
+    </c:if>
+
+    <!-- 로그인 했을 때 -->
+    <c:if test="${!empty sessionScope.loginDTO}">
+    	${sessionScope.loginDTO.member_name}님 안녕하세요! |
+        <a href="${pageContext.request.contextPath}/login/logout">로그아웃</a> |
+        <a href="${pageContext.request.contextPath}/mypage/mymain">마이페이지</a> |
+
+        <!-- 관리자일 경우에만 관리자페이지 메뉴 추가 -->
+        <c:if test="${sessionScope.loginDTO.member_id == 'admin'}">
+            <a href="${pageContext.request.contextPath}/admin/adminmem">관리자페이지</a> |
+        </c:if>
+
+        <a href="${pageContext.request.contextPath}/movie/payment">결제</a>
+    </c:if>
+</div>
 
   <div class="header-inner">
     <div class="header-left">
@@ -183,7 +211,8 @@
           <div class="hamburger-group">
             <h4>영화</h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath}/movie/main">무비차트</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmaind">상영예정작</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
@@ -201,7 +230,7 @@
           <div class="hamburger-group">
             <h4>예매</h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/booking">바로 예매</a></li>
             </ul>
           </div>
           <div class="hamburger-group">
@@ -222,9 +251,10 @@
       <nav>
         <ul>
           <li>
-            <a href="${pageContext.request.contextPath}/movie/main">영화</a>
+            <a href="${pageContext.request.contextPath}/movie/mmain">영화</a>
             <ul class="submenu">
-             <li><a href="${pageContext.request.contextPath}/movie/main">무비차트</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/mdetail">상영예정작</a></li>
             </ul>
           </li>
           <li>
@@ -253,9 +283,11 @@
       <nav>
         <ul>
           <li>
-            <a href="${pageContext.request.contextPath}/movie/mbooking">예매</a>
+            <a href="${pageContext.request.contextPath}/booth/booking">예매</a>
+
             <ul class="submenu">
-              <li><a href="${pageContext.request.contextPath}/movie/mbooking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/booth/booking">바로 예매</a></li>
+
             </ul>
           </li>
           <li>

@@ -1,11 +1,16 @@
+
 package com.itwillbs.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 public class MovieDTO {
+	private int movieId;
+	private String title;
     private String movieCd;
     private String movieNm;
     private String openDt;
@@ -25,4 +30,9 @@ public class MovieDTO {
     private String watchGradeNm;
     private String showType;
     private String audits;
+    private String summary;
+
 }
+
+
+

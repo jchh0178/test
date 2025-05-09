@@ -22,30 +22,37 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itwillbs.domain.BoothDTO;
+import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.PayDTO;
+import com.itwillbs.service.BoothService;
 import com.itwillbs.service.PayService;
-
+//결제 http://localhost:8080/teamProjectTest/booth/pay/success?orderId=ORDER_1746788306585&paymentKey=tviva20250509195827eFIJ7&amount=24000
+//DTO 문제 
 
 @Controller
-@RequestMapping("/movie")
+@RequestMapping("/booth")
 public class PayController {
 
 	@Inject
 	private PayService payService;
 	
+	@Inject
+	private BoothService boothService;
+	
 	@GetMapping("/payment")
 	public String payment() {
 		System.out.println("PayController payment()");
 		
-		return "movie/payment";
+		return "booth/payment";
 	}
 	
 	
-	// 결제 로직 --------------------------------------------
+	// 결제 로직 ----------------------------------------------
 	@GetMapping("/pay/success")
 	public String paySuccess(@RequestParam String paymentKey,@RequestParam String orderId,@RequestParam String amount,Model model, HttpSession session) throws Exception {
 	    
-	    System.out.println("MovieController paySuccess()");
+	    System.out.println("PayController paySuccess()");
 
 	    // 토스에 결제 승인 요청 보내기
 	    String secretKey = "test_sk_24xLea5zVAa4woGlewMlVQAMYNwW"; // 내 토스 시크릿키 넣음
@@ -93,27 +100,45 @@ public class PayController {
 	        // 정보 추출 완료 ---------------------------
 	        
 	        // DB에 넣어보겠습니다 -----------------------
+	        LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+	        if (loginDTO == null) {
+	            System.out.println("로그인 정보 없음, 결제 불가");
+	            return "redirect:/login";
+	        }
+	        String member_id = loginDTO.getMember_id();
+	        System.out.println("세션에서 꺼낸 member_id: " + member_id);
+	        
 	        // (1) Timestamp로 변환
 	        Timestamp payDate = Timestamp.valueOf(approvedAt.replace("T", " ").substring(0, 19));
 
 	        // (2) DTO 생성
 	        PayDTO payDTO = new PayDTO();
-	        payDTO.setBooth_id(1); // 임시로 해둠, 나중에 파라미터로 들고와야 됨!
-	        payDTO.setMember_id("kim"); // HttpSession에서 로그인한 아이디 받아오면 좋음
+	        payDTO.setBooth_id((Integer) session.getAttribute("booth_id"));
+	        payDTO.setMember_id(member_id);
 	        payDTO.setPay_price(Integer.parseInt(amount));
 	        payDTO.setPay_method(method);
 	        payDTO.setPay_status("결제완료");
 	        payDTO.setPay_date(payDate);
-	        payDTO.setBooth_type_id(1); // 임시로 해둠, 나중에 선택한 예매자 유형에 따라 넘겨야 됨!
+	        payDTO.setBooth_type_id((Integer) session.getAttribute("booth_type_id"));	       
 	        System.out.println("booth_id: " + payDTO.getBooth_id());
 	        System.out.println("member_id: " + payDTO.getMember_id());
 	        System.out.println("booth_type_id: " + payDTO.getBooth_type_id());
 
 	        // (3) insert 호출
 	        payService.insertPay(payDTO);
+	        
+	        BoothDTO boothDTO = boothService.getBoothInfo(payDTO.getBooth_id());
 
+	        System.out.println("포스터 URL: " + boothDTO.getPoster_url());
 	        // 뷰 페이지에 보내겠습니다 -------------------
 	        // payment_success.jsp로 넘길 정보 모델에 받기
+	        model.addAttribute("poster", boothDTO.getPoster_url());
+	        model.addAttribute("movieTitle", boothDTO.getMovie_nm());
+	        model.addAttribute("theaterName", boothDTO.getTheater_name());
+	        model.addAttribute("screenName", boothDTO.getRoom_name());
+	        model.addAttribute("schedule", boothDTO.getBooth_date() + " " + boothDTO.getScreen_start_time());
+	        model.addAttribute("seatNames", boothDTO.getSeat_name());
+	        model.addAttribute("pay_price", payDTO.getPay_price());
 	        model.addAttribute("orderId", orderId);
 	        model.addAttribute("method", method);
 	        model.addAttribute("approvedAt", approvedAt);
@@ -122,13 +147,13 @@ public class PayController {
 	        model.addAttribute("approveNo", approveNo);
 	        model.addAttribute("message", "결제가 성공적으로 완료되었습니다!");
 
-	        return "movie/payment_success";
+	        return "booth/payment_success";
 
 	    }  catch (RestClientException e) {
 	        System.out.println("❌ 결제 승인 오류 전체 로그:");
 	        e.printStackTrace();  // 전체 오류 출력
 	        model.addAttribute("error", "결제 승인 중 오류가 발생했습니다.");
-	        return "movie/payment_fail";
+	        return "booth/payment_fail";
 	    }
 	}
 
@@ -136,7 +161,7 @@ public class PayController {
     public String payFail(@RequestParam String code,@RequestParam String message, Model model) {
     	System.out.println("MovieController payFail()");
         model.addAttribute("error", message);
-        return "movie/payment_fail";
+        return "booth/payment_fail";
     }
 	 // 결제 로직 --------------------------------------------
 

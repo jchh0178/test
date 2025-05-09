@@ -6,6 +6,7 @@ import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.PageDTO;
 
 public interface MovieMapper {
+	MovieDTO getMovieById(int movieId);
     void insertMovie(MovieDTO movie);
     int isMovieExists(String movieCd);
     List<MovieDTO> getMovieList(PageDTO pageDTO);

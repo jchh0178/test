@@ -25,6 +25,7 @@ public class LoginDTO {
 	private int theater_id;
 	private boolean iskako;
 	private boolean isnaver;
+	private String member_profile;
 	
 	
 	
