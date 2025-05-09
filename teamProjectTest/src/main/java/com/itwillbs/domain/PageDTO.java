@@ -29,5 +29,4 @@ public class PageDTO {
 	
 	//검색어
 	private String search;
-	
 }

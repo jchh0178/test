@@ -1,6 +1,5 @@
 package com.itwillbs.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -28,7 +27,7 @@ import com.itwillbs.service.LoginService;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @Controller
-@RequestMapping("/login/*")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Inject
@@ -56,7 +55,7 @@ public class LoginController {
 			if(loginDTO2 != null) {
 				System.out.println("로그인 성공");
 				
-				session.setAttribute("id", loginDTO.getMember_id());
+				session.setAttribute("loginDTO", loginDTO2);
 				return "redirect:/main/main";
 				
 			}else {
@@ -137,7 +136,11 @@ public class LoginController {
 	        
 	        //회원가입 여부 확인
 	        if (loginService.isExist(id)) { // DB에 네이버로 로그인한 id정보가 이미 있으면
-	            session.setAttribute("member_id", id);
+	        	// DB에서 기존 회원 정보 가져오기
+	            LoginDTO loginDTO = loginService.getMember(id);
+
+	            // 세션에 loginDTO 통째로 저장
+	            session.setAttribute("loginDTO", loginDTO);
 	            return "redirect:/main/main"; // 메인 페이지로 이동
 	        } else { // 신규 사용자
 	            // 추가 정보 입력을 위해 데이터를 모델에 담아서

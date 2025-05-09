@@ -101,6 +101,7 @@ public class MovieController {
 //        model.addAttribute("movies", movies);
 //        return "movie/main";
     }
+
     
     @GetMapping("/detail")
     public String showMovieDetail(@RequestParam("movieCd") String movieCd, Model model) {
@@ -113,14 +114,17 @@ public class MovieController {
     public String booking() {
         return "movie/booking"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+
     
 	@GetMapping("/mreview")
     public String review() {
         return "movie/review"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
 	
+
 	@GetMapping("/mseat")
     public String seat() {
         return "movie/seat"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+
 }

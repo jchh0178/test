@@ -1,8 +1,11 @@
+
 package com.itwillbs.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 @Getter
 @Setter
 public class MovieDTO {
@@ -28,3 +31,4 @@ public class MovieDTO {
     private String showType;
     private String audits;
 }
+

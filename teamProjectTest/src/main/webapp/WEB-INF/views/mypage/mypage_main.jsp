@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -123,33 +124,60 @@
     <div class="main">
       <!-- Header -->
     <%@ include file="../main/header.jsp" %>
-      <div class="profile-box">
-        <div class="profile-left">
-          <div class="profile-img"></div>
-          <div class="greeting">
-            안녕하세요! <br>
-            <strong>김땡땡 님</strong>
-          </div>
-        </div>
-        <div>
-          <div class="preference-box">나의 영화취향</div>
-          <button class="edit-btn">수정</button>
-        </div>
-      </div>
+     <div class="profile-box" style="flex-direction: column; align-items: flex-start;">
+	  <div class="profile-left">
+		<!-- 프로필 사진 출력 -->
+	    <div class="profile-img">
+		  <c:choose>
+		    <c:when test="${not empty sessionScope.loginDTO.member_profile}">
+		      <img src="${pageContext.request.contextPath}/resources/upload/${sessionScope.loginDTO.member_profile}" 
+		           alt="프로필" width="60" height="60" style="border-radius: 50%;">
+		    </c:when>
+		    <c:otherwise>
+		      <img src="${pageContext.request.contextPath}/resources/images/default_profile.png" 
+		           alt="기본프로필" width="60" height="60" style="border-radius: 50%;">
+		    </c:otherwise>
+		  </c:choose>
+		</div>
+	    <!-- 인사말 + 회원 이름 출력 -->
+	    <div class="greeting">
+	      안녕하세요! <br>
+	      <strong>${sessionScope.loginDTO.member_name } 님</strong>
+	    </div>
+	  </div>
+	  <div style="margin-top: 10px;">
+	  
+	    <!-- 영화취향 출력 -->
+	    <div class="preference-box">
+	      나의 영화취향: ${sessionScope.loginDTO.member_like_genre }
+	    </div>
+	    <button class="edit-btn" onclick="window.open('${pageContext.request.contextPath}/mypage/popup1', 'popup', 'width=400,height=500')">수정</button>
+	  </div>
+	</div>
 
       <div class="booking-section">
         <h3>나의 예매 내역</h3>
-        <div class="booking-box">
-          <div class="poster">영화<br>포스터</div>
-          <div class="movie-info">
-            <div>결제일시: 2025-04-01</div>
-            <div>예매 번호: 12345678</div>
-            <div>예매 극장: 강남CGV</div>
-            <div>상영 날짜: 2025-04-10</div>
+         <c:choose>
+		    <c:when test="${empty listBooking}">
+		      <p>예매한 내역이 없습니다.</p>
+		    </c:when>
+		    <c:otherwise>
+		      <c:forEach var="booking" items="${listBooking}">
+		        <div class="booking-box">
+		          <div class="poster">영화<br>포스터</div>
+		          <div class="movie-info">
+		            <div>결제일시: ${booking.pay_date}</div>
+		            <div>예매 번호: ${booking.pay_id}</div>
+		            <div>예매 극장: ${booking.theater_name}</div>
+		            <div>상영 날짜: ${booking.screen_date}</div>
             <button class="cancel-btn">예매 취소</button>
           </div>
         </div>
-        <a href="#" class="more-link">더보기</a>
+      </c:forEach>
+    </c:otherwise>
+  </c:choose>
+
+        <a href="${pageContext.request.contextPath }/mypage/reservation" class="more-link">더보기</a>
       </div>
        <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
