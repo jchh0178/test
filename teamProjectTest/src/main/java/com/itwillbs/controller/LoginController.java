@@ -49,13 +49,14 @@ public class LoginController {
 		System.out.println("LoginController LoginPro()");
 		try {
 			LoginDTO loginDTO2 = loginService.login(loginDTO);
-		
+			
 		
 			
 			if(loginDTO2 != null) {
 				System.out.println("로그인 성공");
 				
 				session.setAttribute("loginDTO", loginDTO2);
+				session.setAttribute("id", loginDTO2.getMember_id());
 				return "redirect:/main/main";
 				
 			}else {

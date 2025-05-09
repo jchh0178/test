@@ -1,49 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8" />
-  <title>영화 리뷰</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/review.css" />
+<meta charset="UTF-8" />
+<title>영화 리뷰</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/review.css" />
 </head>
-<body>
-  <h1>영화 리뷰</h1>
+<body class="container">
+  <!-- Header -->
+  <%@ include file="../main/header.jsp" %>
+	<h1>영화 리뷰</h1>
 
-  <!-- ✅ 영화 정보 출력 -->
-  <div class="movie-title">
-    <h2>영화 제목: ${movieDTO.rank} - ${movieDTO.movieNm}</h2>
-    <input type="hidden" id="movieId" value="${movieDTO.movieId}" />
-  </div>
+	<!-- ✅ 영화 정보 출력 -->
+	<div class="movie-title">
+		<h2>영화 제목: ${movieDTO.rank} - ${movieDTO.movieNm}</h2>
+		<input type="hidden" id="movieId" value="${movieDTO.movieId}" /> <input
+			type="hidden" id="loginUserId" value="${sessionScope.id}" />
+	</div>
 
-  <!-- ✅ 리뷰 작성 폼 -->
-  <div class="review-form">
-    <h3>리뷰 작성</h3>
-    <form id="reviewForm">
-      <input type="hidden" name="movieId" value="${movieDTO.movieId}" />
-      <input type="text" name="memberId" placeholder="회원 ID를 입력하세요" required />
-      <select name="reviewRating">
-        <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
-        <option value="4">⭐⭐⭐⭐ (4점)</option>
-        <option value="3">⭐⭐⭐ (3점)</option>
-        <option value="2">⭐⭐ (2점)</option>
-        <option value="1">⭐ (1점)</option>
-      </select>
-      <textarea name="reviewContent" rows="4" placeholder="리뷰를 입력하세요" required></textarea>
-      <button type="submit">리뷰 등록</button>
-    </form>
-  </div>
+	  <!-- ✅ 로그인한 경우에만 리뷰 작성 폼 출력 -->
+  <c:if test="${not empty sessionScope.id}">
+    <div class="review-form">
+      <h3>리뷰 작성</h3>
+      <form id="reviewForm">
+        <input type="hidden" name="movieId" value="${movieDTO.movieId}" />
+        <input type="text" name="memberId" value="${sessionScope.id}" />
+        <select name="reviewRating">
+          <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
+          <option value="4">⭐⭐⭐⭐ (4점)</option>
+          <option value="3">⭐⭐⭐ (3점)</option>
+          <option value="2">⭐⭐ (2점)</option>
+          <option value="1">⭐ (1점)</option>
+        </select>
+        <textarea name="reviewContent" rows="4" placeholder="리뷰를 입력하세요" required></textarea>
+        <button type="submit">리뷰 등록</button>
+      </form>
+    </div>
+  </c:if>
+  <c:if test="${empty sessionScope.id}">
+    <p style="color:gray;">로그인 후 리뷰를 작성하실 수 있습니다.</p>
+  </c:if>
 
-  <!-- ✅ 리뷰 목록 출력 영역 -->
-  <div class="review-list">
-    <h3>📢 리뷰 목록</h3>
-    <div id="reviewList"></div>
-  </div>
+	<!-- ✅ 리뷰 목록 출력 영역 -->
+	<div class="review-list">
+		<h3>📢 리뷰 목록</h3>
+		<div id="reviewList"></div>
+	</div>
 
-  <!-- ✅ 스크립트 -->
-  <script>
+  <!-- Footer -->
+  <%@ include file="../main/footer.jsp" %>
+  
+	<!-- ✅ 스크립트 -->
+	<script>
     const contextPath = "${pageContext.request.contextPath}";
-
+    const loginUserId = document.getElementById("loginUserId").value;
+    
     // ✅ 페이지 로드시 자동 리뷰 불러오기
     window.addEventListener("DOMContentLoaded", () => {
       const movieId = document.getElementById("movieId").value;
@@ -55,12 +69,12 @@
     function loadReviews(movieId) {
       movieId = Number(movieId);
 
-      if (!movieId || isNaN(movieId)) {
-        console.error("🚫 잘못된 movieId:", movieId);
-        return;
-      }
+//       if (!movieId || isNaN(movieId)) {
+//         console.error("🚫 잘못된 movieId:", movieId);
+//         return;
+//       }
 	const list = contextPath + "/review/list/" + movieId;
-	//alert(UUID);
+	//alert(list);
       fetch(list)
         .then(res => {
           if (!res.ok) throw new Error("리뷰 불러오기 실패");
@@ -83,18 +97,22 @@
 //             const content = `${review.reviewContent}`;
             div.className = "review-item";
             div.id = `review-${review.reviewId}`;
-
-            div.innerHTML = 
+            console.log("리뷰 작성 ID =", review.memberId);
+            console.log("세션 로그인 ID =", loginUserId);
+           let html = 
 //             '<p>디버그용 출력: ' + review.reviewContent + '</p>;' + 
                	  '<strong>' + review.memberId + '</strong> -' +
             	  '<span class="star">'+ stars + '</span>' + '<br>' +
-            	  '<p class="comment">' + review.reviewContent + '-</p>' +
-            	  '<div class="review-buttons">' + 
-            	  	'<button type="button" onclick="editReview(' + review.reviewId + ')">수정</button>'+
-            	    '<button type="button" onclick="deleteReview(' + review.reviewId + ')">삭제</button>' +
-            	  '</div>'
-            	;
-
+            	  '<p class="comment">' + review.reviewContent + '-</p>' ;
+            	  if(review.memberId == loginUserId){
+            		 html += '<div class="review-buttons">' + 
+              	  	  			  '<button type="button" onclick="editReview(' + review.reviewId + ')">수정</button>'+
+              	      			  '<button type="button" onclick="deleteReview(' + review.reviewId + ')">삭제</button>' +
+              	      			  '</div>'  ;
+            	  }else{
+            		  html;
+            	  }
+            div.innerHTML = html;
             reviewList.appendChild(div);
           });
         })
@@ -119,8 +137,9 @@
       }
 
       const data = { movieId, memberId, reviewRating, reviewContent };
-
-      fetch(`${contextPath}/review/add`, {
+	  
+      const add = contextPath + "/review/add/";
+      fetch(add, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
@@ -141,7 +160,7 @@
 
     // ✅ 리뷰 수정
     window.editReview = function(reviewId) {
-      const reviewDiv = document.getElementById(`review-${reviewId}`);
+      const reviewDiv = document.getElementById('review-' + reviewId);
       const commentP = reviewDiv.querySelector('.comment');
       const oldContent = commentP.innerText.trim();
       const newContent = prompt("수정할 내용을 입력하세요:", oldContent);
