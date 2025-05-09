@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.BoothDTO;
 import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.ScreenDTO;
@@ -78,6 +79,11 @@ public class BoothController {
 
 	    // 고객 이름 모델에 추가
 	    model.addAttribute("customerName", loginDTO.getMember_name());
+	    
+	    MovieDTO movieDTO = boothService.getMovieByScreenId(screen_id);
+	    System.out.println(movieDTO);
+	    System.out.println("포스터 URL: " + movieDTO.getPoster_url());
+	    model.addAttribute("poster", movieDTO.getPoster_url());
 
 	    return "booth/confirm";  
 	}

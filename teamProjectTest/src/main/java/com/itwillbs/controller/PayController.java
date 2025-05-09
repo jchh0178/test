@@ -128,6 +128,7 @@ public class PayController {
 	        
 	        BoothDTO boothDTO = boothService.getBoothInfo(payDTO.getBooth_id());
 
+	        
 	        System.out.println("포스터 URL: " + boothDTO.getPoster_url());
 	        // 뷰 페이지에 보내겠습니다 -------------------
 	        // payment_success.jsp로 넘길 정보 모델에 받기
