@@ -283,9 +283,9 @@
       <nav>
         <ul>
           <li>
-            <a href="${pageContext.request.contextPath}/movie/booking">예매</a>
+            <a href="${pageContext.request.contextPath}/booth/booking">예매</a>
             <ul class="submenu">
-              <li><a href="${pageContext.request.contextPath}/movie/booking">바로 예매</a></li>
+              <li><a href="${pageContext.request.contextPath}/booth/booking">바로 예매</a></li>
             </ul>
           </li>
           <li>

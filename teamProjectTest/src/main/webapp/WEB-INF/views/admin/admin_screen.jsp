@@ -64,10 +64,10 @@
             <input type="date" name="screen_date"/><br/>
 
             <label>시작 시간</label>
-            <input type="datetime-local" name="screen_start_time"/><br/>
+            <input type="time" name="screen_start_time"/><br/>
 
             <label>종료 시간</label>
-            <input type="datetime-local" name="screen_end_time"/><br/>
+            <input type="time" name="screen_end_time"/><br/>
 
             <button type="submit">등록</button>
         </form>

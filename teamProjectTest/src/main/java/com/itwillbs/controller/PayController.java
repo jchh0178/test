@@ -22,12 +22,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.itwillbs.domain.LoginDTO;
 import com.itwillbs.domain.PayDTO;
 import com.itwillbs.service.PayService;
 
 
 @Controller
-@RequestMapping("/movie")
+@RequestMapping("/booth")
 public class PayController {
 
 	@Inject
@@ -37,7 +38,7 @@ public class PayController {
 	public String payment() {
 		System.out.println("PayController payment()");
 		
-		return "movie/payment";
+		return "booth/payment";
 	}
 	
 	
@@ -45,7 +46,7 @@ public class PayController {
 	@GetMapping("/pay/success")
 	public String paySuccess(@RequestParam String paymentKey,@RequestParam String orderId,@RequestParam String amount,Model model, HttpSession session) throws Exception {
 	    
-	    System.out.println("MovieController paySuccess()");
+	    System.out.println("PayController paySuccess()");
 
 	    // 토스에 결제 승인 요청 보내기
 	    String secretKey = "test_sk_24xLea5zVAa4woGlewMlVQAMYNwW"; // 내 토스 시크릿키 넣음
@@ -93,14 +94,21 @@ public class PayController {
 	        // 정보 추출 완료 ---------------------------
 	        
 	        // DB에 넣어보겠습니다 -----------------------
+	        LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+	        if (loginDTO == null) {
+	            System.out.println("로그인 정보 없음, 결제 불가");
+	            return "redirect:/login";
+	        }
+	        String member_id = loginDTO.getMember_id();
+	        System.out.println("세션에서 꺼낸 member_id: " + member_id);
+	        
 	        // (1) Timestamp로 변환
 	        Timestamp payDate = Timestamp.valueOf(approvedAt.replace("T", " ").substring(0, 19));
 
 	        // (2) DTO 생성
 	        PayDTO payDTO = new PayDTO();
 	        payDTO.setBooth_id((Integer) session.getAttribute("booth_id"));
-	        String memberId = (String) session.getAttribute("member_id");
-	        payDTO.setMember_id(memberId);
+	        payDTO.setMember_id(member_id);
 	        payDTO.setPay_price(Integer.parseInt(amount));
 	        payDTO.setPay_method(method);
 	        payDTO.setPay_status("결제완료");
@@ -123,13 +131,13 @@ public class PayController {
 	        model.addAttribute("approveNo", approveNo);
 	        model.addAttribute("message", "결제가 성공적으로 완료되었습니다!");
 
-	        return "movie/payment_success";
+	        return "booth/payment_success";
 
 	    }  catch (RestClientException e) {
 	        System.out.println("❌ 결제 승인 오류 전체 로그:");
 	        e.printStackTrace();  // 전체 오류 출력
 	        model.addAttribute("error", "결제 승인 중 오류가 발생했습니다.");
-	        return "movie/payment_fail";
+	        return "booth/payment_fail";
 	    }
 	}
 
@@ -137,7 +145,7 @@ public class PayController {
     public String payFail(@RequestParam String code,@RequestParam String message, Model model) {
     	System.out.println("MovieController payFail()");
         model.addAttribute("error", message);
-        return "movie/payment_fail";
+        return "booth/payment_fail";
     }
 	 // 결제 로직 --------------------------------------------
 

@@ -160,8 +160,8 @@ public class AdminController {
 		
 		
 		// --------- DB 넣을때 문자열 변환 ---------
-		Timestamp start = Timestamp.valueOf(startStr.replace("T", " ") + ":00");
-	    Timestamp end = Timestamp.valueOf(endStr.replace("T", " ") + ":00");
+		Timestamp start = Timestamp.valueOf(dateStr + " " + startStr + ":00");
+	    Timestamp end = Timestamp.valueOf(dateStr + " " + endStr + ":00");
 
 	    Date date = Date.valueOf(dateStr); // yyyy-MM-dd 형식
 
