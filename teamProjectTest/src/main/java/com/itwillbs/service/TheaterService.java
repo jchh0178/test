@@ -45,9 +45,12 @@ public class TheaterService {
 	}
 
 
-	public List<TheaterDTO> list3(TheaterDTO theaterDTO) {
+	public List<TheaterDTO> list3(String region) {
+		System.out.println("TheaterService list3()");
+
 		
-		return theaterMapper.list3(theaterDTO);
+		
+		return theaterMapper.list3(region);
 	}
 
 

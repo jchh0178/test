@@ -17,7 +17,7 @@ public interface TheaterMapper {
 
 	TheaterDTO detail2(TheaterDTO theaterDTO);
 
-	List<TheaterDTO> list3(TheaterDTO theaterDTO);
+	List<TheaterDTO> list3(String region);
 
 
 }
