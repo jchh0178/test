@@ -6,8 +6,9 @@
 <head>
   <meta charset="UTF-8">
   <title>ReVue Header</title>
+<!--box-sizing: border-box; theater/tht01파일과 충돌 일어나서 삭제-->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0;  }
     body { font-family: 'Noto Sans KR', sans-serif; }
 
     header {
