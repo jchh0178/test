@@ -13,6 +13,68 @@ https://mybatis.org/mybatis-3/getting-started.html
         values (#{movie_id}, #{theater_id}, #{room_id}, #{screen_date}, #{screen_start_time}, #{screen_end_time})
 	</insert>
 	
+	<select id="listScreen" resultMap="ScreenJoinResultMap">
+    	select s.screen_id, s.screen_date, s.screen_start_time, s.screen_end_time, m.movie_nm, t.theater_name, r.room_name
+    	from screen s
+    	join movie m on s.movie_id = m.movie_id
+    	join theater t on s.theater_id = t.theater_id
+    	join rooms r on s.room_id = r.room_id
+	</select>
+	
+	<resultMap id="ScreenJoinResultMap" type="com.itwillbs.domain.ScreenDTO">
+	    <id property="screen_id" column="screen_id"/>
+	    <result property="screen_date" column="screen_date"/>
+	    <result property="screen_start_time" column="screen_start_time"/>
+	    <result property="screen_end_time" column="screen_end_time"/>
+	    <result property="movie_name_kr" column="movie_name_kr"/>
+	    <result property="theater_name" column="theater_name"/>
+	    <result property="room_name" column="room_name"/>
+	</resultMap>
+	
+	<delete id="deleteScreen">
+   	 delete from screen where screen_id = #{screen_id}
+	</delete>
+	
+	<select id="listMovie" resultType="com.itwillbs.domain.MovieDTO2">
+	    select * from movie
+	</select>
+	
+	<select id="listTheater" resultType="com.itwillbs.domain.TheaterDTO">
+	    select * from theater
+	</select>
+	
+	<select id="listRoom" resultType="com.itwillbs.domain.RoomDTO">
+	    select * from rooms
+	</select>
+	
+	<select id="listMember" resultType="com.itwillbs.domain.LoginDTO">
+	    select * from member
+	    <where>
+		    <if test="search != null and search != ''">
+	            (member_id LIKE CONCAT('%', #{search}, '%')
+	            OR member_name LIKE CONCAT('%', #{search}, '%'))
+	        </if>
+        </where>
+        order by member_date desc
+        limit #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="infoMember" parameterType="String" resultType="com.itwillbs.domain.LoginDTO">
+	    select * from member
+	    where member_id = #{member_id}
+	</select>
+	
+	<select id="countMember" parameterType="com.itwillbs.domain.PageDTO" resultType="int">
+	    select count(*) from member
+	    <where>
+	        <if test="search != null and search != ''">
+	            (member_id LIKE CONCAT('%', #{search}, '%')
+	             OR member_name LIKE CONCAT('%', #{search}, '%'))
+	        </if>
+	    </where>
+	</select>
+	
+
 </mapper>
 
 

@@ -34,7 +34,9 @@ public class LoginService {
 	public boolean isExist(String member_id) {
 	    return loginMapper.isExist(member_id) > 0;
 	}
-
+	public LoginDTO getMember(String id) {
+		return loginMapper.getMember(id);
+	}
 	
 	
 	

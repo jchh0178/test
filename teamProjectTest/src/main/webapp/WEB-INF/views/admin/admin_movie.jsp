@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -123,54 +124,56 @@
 
       <!-- 영화 리스트 테이블 -->
       <table>
-        <thead>
-          <tr>
-            <th>영화코드</th>
-            <th>영화제목</th>
-            <th>상영시간</th>
-            <th>장르</th>
-            <th>개봉일자</th>
-            <th>상세정보</th>
-          </tr>
+      	<thead>
+	        <tr>
+	          <th>영화번호</th>
+	          <th>영화코드</th>
+	          <th>영화제목</th>
+	          <th>영문제목</th>
+	          <th>개봉일</th>
+	          <th>상영시간</th>
+	          <th>장르</th>
+	          <th>감독</th>
+	          <th>배우</th>
+	          <th>상세정보</th>
+	        </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td><td></td><td></td><td></td><td></td>
-            <td><button class="action-button" onclick="location.href='adminmovied'">상세정보 확인</button></td>
-          </tr>
-          <tr>
-            <td>2</td><td></td><td></td><td></td><td></td>
-            <td><button class="action-button">상세정보 확인</button></td>
-          </tr>
-          <tr>
-            <td>3</td><td></td><td></td><td></td><td></td>
-            <td><button class="action-button">상세정보 확인</button></td>
-          </tr>
-          <tr>
-            <td>4</td><td></td><td></td><td></td><td></td>
-            <td><button class="action-button">상세정보 확인</button></td>
-          </tr>
+          <c:forEach var="movie" items="${movieList}">
+			  <tr>
+			    <td>${movie.movieId}</td>
+			    <td>${movie.movieCd}</td>
+			    <td>${movie.movieNm}</td>
+			    <td>${movie.movieNmEn}</td>
+			    <td>${movie.openDt}</td>
+			    <td>${movie.showTm}분</td>
+			    <td>${movie.genreNm}</td>
+			    <td>${movie.directors}</td>
+			    <td>${movie.actors}</td>
+			    <td><button class="action-button" onclick="location.href='adminmovied'">상세정보 확인</button></td>
+			  </tr>
+		  </c:forEach>
         </tbody>
       </table>
 
       <!-- 페이지네이션 + 추가버튼 -->
-      <div>
-        <div class="pagination">
-          <button>이전</button>
-          <button class="active">1</button>
-          <button>2</button>
-          <button>3</button>
-          <button>4</button>
-          <button>5</button>
-          <button>…</button>
-          <button>19</button>
-          <button>다음</button>
-        </div>
+      <div class="pagination">
+		  <c:if test="${pageDTO.startPage > pageDTO.pageBlock}">
+		    <a href="?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">이전</a>
+		  </c:if>
+		
+		  <c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}">
+		    <a href="?pageNum=${i}" class="${i == pageDTO.currentPage ? 'active' : ''}">${i}</a>
+		  </c:forEach>
+		
+		  <c:if test="${pageDTO.endPage < pageDTO.pageCount}">
+		    <a href="?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">다음</a>
+		  </c:if>
+	  </div>
         <button class="add-button" onclick="location.href='register.html'">추가하기</button>
       </div>
        <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
     </div>
-  </div>
 </body>
 </html>

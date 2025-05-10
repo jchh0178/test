@@ -120,11 +120,11 @@
       		<div class="poster" onmouseover="showDetail(1)" onclick="goDetail(1)">
 			<c:choose>
 			  <c:when test="${empty movieDTO.posterUrl}">
-			    <img src="<c:url value='/resources/images/no-image.png'/>" alt="기본 포스터" width="150"/>
+			    <img src="<c:url value='/resources/upload/no-image.png'/>" alt="기본 포스터" width="150"/>
 			  </c:when>
 			  <c:otherwise>
 			    <img src="${movieDTO.posterUrl}"
-			         onerror="this.onerror=null; this.src='/resources/images/no-image.png';"
+			         onerror="this.onerror=null; this.src='/resources/upload/no-image.png';"
 			         alt="${movieDTO.movieNm} 포스터" width="150"/>
 			  </c:otherwise>
 			</c:choose>

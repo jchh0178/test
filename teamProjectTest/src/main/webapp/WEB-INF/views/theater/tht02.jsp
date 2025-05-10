@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -77,7 +78,7 @@
             }
 
             .branch-name {
-                font-size: 1.3rem;
+                font-size: 1.3rem;s
                 padding: 10px 16px;
             }
         }
@@ -88,20 +89,26 @@
         <!-- Header -->
     <%@ include file="../main/header.jsp" %>
     
+    
+    
+    
         <!-- 지역 선택 -->
         <div class="region-tabs">
-            <button>서울</button>
-            <button>경기</button>
-            <button>인천</button>
-            <button class="active">대전/충청/세종</button>
-            <button>부산/대구/경상</button>
-            <button>광주/전라</button>
-            <button>강원</button>
-            <button>제주</button>
+
+		<c:forEach var="list" items="${list2 }">
+            <c:if test="${theaterDTO.theater_region eq list.theater_region }"  >
+           		 <button class="active"><a href="${pageContext.request.contextPath}/theater/thtdetail2?name=${list.theater_region}">${list.theater_region}</a></button>
+            </c:if>
+            
+            <c:if test="${theaterDTO.theater_region ne list.theater_region }"  >
+            		<button><a href="${pageContext.request.contextPath}/theater/thtdetail2?name=${list.theater_region}">${list.theater_region}</a></button>
+            </c:if>
+            
+    	</c:forEach>
         </div>
 
         <!-- 지점명 -->
-        <div class="branch-name" id="branchName">동성로점</div>
+        <div class="branch-name" id="branchName">${theaterDTO.theater_name }점</div>
 
         <!-- 정보 탭 -->
         <div class="info-tabs">
@@ -112,48 +119,76 @@
 
         <!-- 출력 영역 -->
         <div class="content-area" id="contentArea">
-            <p>동성로점 극장 정보가 여기에 출력됩니다.</p>
+            <p>지역:${theaterDTO.theater_region }</p>
+            <p>지점:${theaterDTO.theater_name }</p>
         </div>
          <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
     </main>
 
-    <script>
-        // 탭 클릭 시 내용 변경
-        document.querySelectorAll('.info-tabs button').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.info-tabs button').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+     <script>
+     var region = "${theaterDTO.region}";
+     var name = "${theaterDTO.name}";
+     var brand = "${theaterDTO.brand}";
+     var code = "${theaterDTO.code}";
+     const hasSessionData = ${not empty theaterDTO};
+     if (hasSessionData == true) {
+         document.getElementById("contentArea").innerHTML = 
+             "<h2>" + region + " 지역 극장 정보</h2>" +
+             "<p>극장 이름: " + name + "</p>" +
+             "<p>브랜드: " + brand + "</p>";
+     } 
+     
+     
+     
+     
+     
+     
+      // true = 세션 있음
+     
+     
+  // 탭 클릭 시 내용 변경
+  document.querySelectorAll('.info-tabs button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.info-tabs button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-                const tab = button.getAttribute('data-tab');
-                const contentArea = document.getElementById('contentArea');
+      const tab = button.getAttribute('data-tab');
+      const contentArea = document.getElementById('contentArea');
 
-                if (tab === 'info') {
-                    contentArea.innerHTML = '<p>동성로점 극장 정보가 여기에 출력됩니다.</p>';
-                } else if (tab === 'schedule') {
-                    contentArea.innerHTML = '<p>동성로점의 상영 시간표가 여기에 출력됩니다.</p>';
-                } else if (tab === 'price') {
-                    contentArea.innerHTML = '<p>동성로점의 관람료 정보가 여기에 출력됩니다.</p>';
-                }
-            });
-        });
+      // 세션이 없을 때만 출력 문구 적용
+      if (!hasSessionData) {
+        if (tab === 'info') {
+          contentArea.innerHTML = '<p>극장 정보가 여기에 출력됩니다.</p>';
+        } else if (tab === 'schedule') {
+          contentArea.innerHTML = '<p>상영 시간표가 여기에 출력됩니다.</p>';
+        } else if (tab === 'price') {
+          contentArea.innerHTML = '<p>관람료 정보가 여기에 출력됩니다.</p>';
+        }
+      }
+    });
+  });
 
-        // 지역 클릭 시
-        document.querySelectorAll('.region-tabs button').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.region-tabs button').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+  // 지역 버튼 클릭 시
+  document.querySelectorAll('.region-tabs button').forEach(button => {
+    button.addEventListener('click', () => {
+      document.querySelectorAll('.region-tabs button').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
 
-                const selectedRegion = button.textContent.trim();
-                const branchName = document.getElementById('branchName');
-                branchName.textContent = selectedRegion + ' 대표지점';
-                document.getElementById('contentArea').innerHTML = `<p>${selectedRegion} 대표지점 극장 정보가 여기에 출력됩니다.</p>`;
+      const selectedRegion = button.textContent.trim();
+      const branchName = document.getElementById('branchName');
+      branchName.textContent = selectedRegion + ' 대표지점';
 
-                // 극장정보 탭으로 자동 전환
-                document.querySelectorAll('.info-tabs button').forEach(btn => btn.classList.remove('active'));
-                document.querySelector('.info-tabs button[data-tab="info"]').classList.add('active');
-            });
-        });
-    </script>
-</body>
+      // 세션 없을 때만 출력 영역 덮어쓰기
+      if (!hasSessionData) {
+        document.getElementById('contentArea').innerHTML =
+          `<p>${selectedRegion} 대표지점 극장 정보가 여기에 출력됩니다.</p>`;
+      }
+
+      // 극장정보 탭으로 강제 전환
+      document.querySelectorAll('.info-tabs button').forEach(btn => btn.classList.remove('active'));
+      document.querySelector('.info-tabs button[data-tab="info"]').classList.add('active');
+    });
+  });
+</script>
 </html>
