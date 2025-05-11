@@ -9,6 +9,8 @@
     <link href="${pageContext.request.contextPath}/resources/css/layout.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/module.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/resources/css/module.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 </head>
 <body>
@@ -16,9 +18,9 @@
 
     <main>
     
-    
-    
-    <hr style="color:red">
+    <div id="container">
+    	<div id="contents">
+ <hr style="color:red">
     
         <div class="sect-common">
     <div class="favorite-wrap">
@@ -147,9 +149,51 @@
 			           
 			
         </div>
+       
     </div>
 </div>
+<h3 id="wrapEvent"><img src="https://img.cgv.co.kr/R2014/images/title/h3_theater.gif" alt="THEATER"></h3>
+<div class="sect-theater ">
+        <h4 class="theater-tit" ><span style='margin:0 auto;' class="selectName"></span></h4>
+<!--         <a href="/support/lease/default.aspx" class="round inred btn_lease"><span style="padding:0 14px;">단체/대관문의</span></a> -->
+        
+        <div class="wrap-theaterinfo">
+            <div class="box-image">
+                <div id="theater_img_container" class="thumb-image">
+                
+                		리스트 출력 부분
+                
+                
+                
+                </div>	<!-- theater_img_container  -->
+            </div>
+            <div class="box-contents">
+                <div class="theater-info">
+                    <span class="txt-info">서울특별시 강남구 강남대로 438 (역삼동)</span>
+                    <!-- 최대 10개까지만 보여집니다 2 -->
+<!--                     <span class="screentype"> -->
+<!--                             <a href="/theaters/special/?regioncode=SCX&amp;theaterCode=0056" class="screenX">SCREENX</a> -->
+<!--                     </span> -->
+                </div>
+               
+            </div>
+        </div>
+    </div>    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	</div>	<!-- contents -->
+    
+    </div>		<!-- container -->
+    
+   
+
 <script type="text/javascript">
+
 
 
 let region;
@@ -171,36 +215,70 @@ $(function() {
 				$('#ulcontent').html('');
 				
 				areaList.forEach(function(area) {
-					console.log("area", area);
-					console.log("area.theater_name", "${area.theater_name}");
+					console.log("area", area);		//정상적으로 불러와지는지 확인
 					var text =
-						`
-						<li>
-		                    <a style="padding: 0 5px;" href="javascript:void(0);" class="theater_name" title="${area.theater_name}">
-		                    [ID: ${area.theater_id}]${area.theater_name}
+						"<li class= >" 
+						+
+						"<a style='padding: 0 5px;' href='javascript:void(0);' class='theater_name' title='${area.theater_name}'>" 
+                        +
+                        area.theater_name 
+                        +
+                       "</a>" 
+                       +
+                   		"</li>";
+                   		
+					$('#ulcontent').append(text);
 
-			                </a>
-			            </li>
-			            `;
-		            $('.txt-info').html(area.theater_name);
-					$('#ulcontent').append(text);	
-				});
 				
-				$('.area-link:first').trigger('click');
+				});
+				 $('.theater_name').on('click',  function() {
+	                    var selectedName = $(this).text(); // 클릭된 텍스트
+	                    $('.selectName').text(selectedName); // span에 출력 (ID는 원하는 대로 설정)
+	                    $('#ulcontent li').removeClass('on'); // 기존 선택된 극장 스타일 제거
+	                    $(this).parent('li').addClass('on'); // 현재 클릭된 극장 스타일 추가
+	                });
+					
+// 				 if (region == '서울' && areaList.length > 0) {
+// 	                    // "강변" 극장을 찾아서 선택
+// 	                    areaList.forEach(function(area, index) {
+// 	                        if (area.theater_name == '강변') {
+// 	                            $('#ulcontent li').removeClass('on');
+// 	                            $('#ulcontent li:eq('+index+')').addClass('on');
+// 	                            $('.txt-info').text(area.theater_name);
+// 	                            $('.selectName').text(area.theater_name);
+// 	                            return false; // 찾았으면 반복 종료
+// 	                        }
+// 	                    });
+				//이 둘로 인해서 자동으로 클릭 이벤트가 발생하긴 하나 반복적으로 클릭 이벤트가 발생해서 
+				// 계속해서 ajax로인해 데이터가 불러들이는 현상이 발생하게 됨 
+// 				$('.theater_region:first').trigger('click');
+// 				$('.theater_name:first').trigger('click');
+				
 			},
 			error: function() {
-				alert('오류')
+				alert('오류');
 			}
 		});
+		
+		
+		$('.theater_region:contains("서울")').trigger('click');
+		
+		
+		
+		
 	});
 })
 
-</script>
-      
-        
-        
 
-			<!--  각 지점 공지 게시판 -->
+
+</script>
+
+
+
+
+
+        
+ 
     
         <%@ include file="../main/footer.jsp" %>
 

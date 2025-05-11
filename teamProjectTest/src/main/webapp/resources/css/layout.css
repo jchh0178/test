@@ -1,6 +1,54 @@
-@charset "UTF-8";
+@charset "utf-8";
 
+/* ===========================================
+   Grouping Class 
+============================================ */
+#cgvwrap .cgv-ad-wrap .sect-head-ad,
+.head, .im-wrap, 
+#contents, 
+.foot, 
+.sect-smuse, 
+.sect-cinfo {position:relative; width:980px; margin:0 auto;}
+.head h1, .sect-srh, .sect-booking,.sect-phototicket {position:absolute; z-index:1;}
+.cf:before,.cf:after                                                    {content: " "; /* 1 */display: table; /* 2 */}
+.cf:after                                                               {clear: both;}
+.cf                                                                     {*zoom: 1;}
 
+/* Background */
+.sect-service .util li > a, 
+.sect-service .gnb li > a, 
+.lnb > ul > li > a, 
+.sect-service a.showtimes, 
+.sect-booking > a, 
+.sect-phototicket > a, 
+.sect-person li > a, 
+.line-v, 
+.line-dot, 
+.sect-smuse li > a, 
+.sect-cinfo .share a, 
+.sect-cinfo .logo {overflow:hidden; background-image:url(https://img.cgv.co.kr/r2014/images/sprite/common_sprite_area_v4_2016.png); background-repeat:no-repeat; text-indent:100%; white-space:nowrap;}
+.lnb h2, 
+.sect-smuse h2, 
+.sect-cinfo h2 {font:0px/0 a; visibility:hidden;}
+.sect-service h2, 
+.im-wrap .lnb > ul > li > a, 
+.sect-srh h2, 
+.sect-booking h2, 
+.sect-booking > a, 
+.sect-phototicket h2, 
+.sect-phototicket > a, 
+.sect-person h2 {font:0px/0 a;}
+
+/* Display:block */
+.sect-service > .util li > a, .sect-service > .gnb li > a, .sect-service a.showtimes, .im-wrap .lnb > ul > li > a, .im-wrap > h2 > a, .im-wrap .ad-partner > a,
+.sect-booking > a,.sect-phototicket > a, .sect-person li > a, .sect-common li > a, .ciols-movie li > a, .sect-smuse li > a, .policy li a, .sect-cinfo .share a, .sect-bcrumb li > a,
+.sect-ad-external > a, .cols-banner .col-hd > a, .sect-showtimes .info-timetable a, .sect-aside-banner .aside-content-btm > a, .sect-aside-banner > .btn-top > a {display:block;}
+
+#cgvwrap {position:relative; width:100%;min-width:1040px}
+#cgvwrap #header {background:#fdfcf0 url(https://img.cgv.co.kr/r2014/images/common/bg/bg_header.gif) repeat-x 0 0;} /* 20140620 DanielKim Del height:255px; padding-top:80px; background-position:0 80px; */
+#cgvwrap #header > .head {position:relative; z-index:100;}
+#cgvwrap #header > .head h1 {top:40px; left:0; width:223px; height:85px; padding:18px 0 0 22px; z-index:110;}
+#cgvwrap #header > .head h1 > a {display:block;}
 
 /* S Common */
 .fixedBtn_wrap{display:flex; justify-content:flex-end; position:fixed; right:0; bottom:80px; min-height:50px; margin-left:440px; text-align:center; z-index:7}
@@ -52,24 +100,24 @@
 /* E Common */
 
 /* S Header */
-/* 	.header{position:relative; z-index:101} */
-/* 	.header .contents{width:980px; margin:0 auto} */
-/* 		.header_content{margin-bottom:50px; background-color:#fff; border-bottom:1px solid #eee} */
-/* 		.header_content .contents{display:flex; justify-content:space-between; padding:30px 6px 25px 5px; background-color:#fff} */
-/* 		.header_content .contents h1{display:inline-flex; align-items:flex-end; height:53px} */
-/* 		.header_content .contents h1 a{display:block; float:left; height:100%} */
-/* 		.header_content .contents h1 a img{display:block; width:auto; height:100%; object-fit:contain} */
-/* 		.header_content .contents h1 span{font-weight:300; font-size:16px; color:#222; letter-spacing:0.313em; line-height:1.500em} */
-/* 		.header_content .contents .memberInfo_wrap{display:flex; align-items:center} */
-/* 		.header_content .contents .memberInfo_wrap li{margin-left:44px; margin-top:2px} */
-/* 		.header_content .contents .memberInfo_wrap li:first-child{margin-left:0} */
-/* 		.header_content .contents .memberInfo_wrap li a{display:block; position:relative; padding-bottom:19px} */
-/* 		.header_content .contents .memberInfo_wrap li a img{width:36px; height:36px} */
-/* 		.header_content .contents .memberInfo_wrap li a span{position:absolute; bottom:0; left:50%; font-size:13px; color:#666; line-height:1.462em; white-space:nowrap; transform:translate(-50%, 0)} */
-/* 		.header_content .contents .memberInfo_wrap li.ad_partner{width:136px; height:39px; margin-top:5px} */
-/* 		.header_content .contents .memberInfo_wrap li.ad_partner + li{margin-left:34px} */
-/* 		.header_content .contents .memberInfo_wrap li.ad_partner a{width:100%; height:100%; padding-bottom:0} */
-/* 		.header_content .contents .memberInfo_wrap li.ad_partner a img{width:100%; height:100%} */
+	.header{position:relative; z-index:101}
+	.header .contents{width:980px; margin:0 auto}
+		.header_content{margin-bottom:50px; background-color:#fff; border-bottom:1px solid #eee}
+		.header_content .contents{display:flex; justify-content:space-between; padding:30px 6px 25px 5px; background-color:#fff}
+		.header_content .contents h1{display:inline-flex; align-items:flex-end; height:53px}
+		.header_content .contents h1 a{display:block; float:left; height:100%}
+		.header_content .contents h1 a img{display:block; width:auto; height:100%; object-fit:contain}
+		.header_content .contents h1 span{font-weight:300; font-size:16px; color:#222; letter-spacing:0.313em; line-height:1.500em}
+		.header_content .contents .memberInfo_wrap{display:flex; align-items:center}
+		.header_content .contents .memberInfo_wrap li{margin-left:44px; margin-top:2px}
+		.header_content .contents .memberInfo_wrap li:first-child{margin-left:0}
+		.header_content .contents .memberInfo_wrap li a{display:block; position:relative; padding-bottom:19px}
+		.header_content .contents .memberInfo_wrap li a img{width:36px; height:36px}
+		.header_content .contents .memberInfo_wrap li a span{position:absolute; bottom:0; left:50%; font-size:13px; color:#666; line-height:1.462em; white-space:nowrap; transform:translate(-50%, 0)}
+		.header_content .contents .memberInfo_wrap li.ad_partner{width:136px; height:39px; margin-top:5px}
+		.header_content .contents .memberInfo_wrap li.ad_partner + li{margin-left:34px}
+		.header_content .contents .memberInfo_wrap li.ad_partner a{width:100%; height:100%; padding-bottom:0}
+		.header_content .contents .memberInfo_wrap li.ad_partner a img{width:100%; height:100%}
 
 /* S > GNB
 	Description
@@ -419,10 +467,8 @@ footer .company_info_wrap{display:flex; justify-content:space-between; align-ite
 /* ===========================================
    Slider Modules
 ============================================ */
-.box{width:1400; heigth: 890; boarder:1px solid black;}
-
-.sect-common, .cols-movie {overflow:hidden; width:1400px; margin:0 auto;}
-.sect-common {height:450px; margin:0 auto;}
+.sect-common, .cols-movie {overflow:hidden; width:980px;}
+.sect-common {height:450px; margin-top:25px}
 .cols-movie {height:388px;}
 
 .slider {overflow:hidden; position:relative; z-index:1; width:100%; height:100%;}
@@ -773,9 +819,9 @@ h4.tit-showtime {padding-bottom:18px; color:#333; font-size:31px; text-align:lef
 
 .sect-showtimes .info-timetable > ul > li .minimap{display:block;position:absolute;height:25px;right:35px;bottom:0;background-color:#333;overflow:hidden;box-shadow:inset 2px 2px 2px 0 rgba(0, 0, 0, 0.4);width:200px;height:200px}
 .sect-showtimes .info-timetable > ul > li .minimap.opened{height:auto;}
-/* .sect-showtimes .info-timetable > ul > li .minimap .mini_header{position:relative;padding-right:12px;height:25px;line-height:24px;text-align:center;color:#e8e8e8;font-size:10px;font-weight:bold;font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;cursor:pointer;} */
-/* .sect-showtimes .info-timetable > ul > li .minimap .mini_header span{position:absolute;top:12px;right:7px;width:7px;height:4px;background:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/common/tabmenu_arrow_white.png) no-repeat;} */
-/* .sect-showtimes .info-timetable > ul > li .minimap.opened .mini_header span{top:11px;background-image:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/common/tabmenu_arrow_white2.png);} */
+.sect-showtimes .info-timetable > ul > li .minimap .mini_header{position:relative;padding-right:12px;height:25px;line-height:24px;text-align:center;color:#e8e8e8;font-size:10px;font-weight:bold;font-family:Verdana, Geneva, Arial, Helvetica, sans-serif;cursor:pointer;}
+.sect-showtimes .info-timetable > ul > li .minimap .mini_header span{position:absolute;top:12px;right:7px;width:7px;height:4px;background:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/common/tabmenu_arrow_white.png) no-repeat;}
+.sect-showtimes .info-timetable > ul > li .minimap.opened .mini_header span{top:11px;background-image:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/common/tabmenu_arrow_white2.png);}
 .sect-showtimes .info-timetable > ul > li .minimap .mini_container{margin:5px;margin-top:0;position:relative;}
 .sect-showtimes .info-timetable > ul > li .minimap .mini_container .mini_screen{position:absolute;top:0;width:100%;height:15px;line-height:15px;font-size:10px;text-align:center;background:url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/step2/screen_bg.png) repeat-x left;}
 .sect-showtimes .info-timetable > ul > li .minimap .mini_container .mini_seats{position:absolute;top:30px;right:15px;left:15px;bottom:15px;}
@@ -823,7 +869,7 @@ h4.tit-showtime {padding-bottom:18px; color:#333; font-size:31px; text-align:lef
 ============================================ */
 
 /* 극장별 상영시간표 */
-.favorite-wrap {position:relative; width:873px;height: 810px;padding: 60px 53px 0;background:url(https://img.cgv.co.kr/r2014/images/common/bg/bg_showtimes_favorite.gif) no-repeat 0 0;margin:0 auto;}
+.favorite-wrap {position:relative; width:874px;height: 400px;padding: 60px 53px 0;background:url(https://img.cgv.co.kr/r2014/images/common/bg/bg_showtimes_favorite.gif) no-repeat 0 0;}
 .favorite-wrap .tab-menu,
 .subtitles-wrap .tab-menu {position:absolute;top: 11px;width:874px;}
 .favorite-wrap .sect-favorite {position:relative; width:676px; height:49px; padding-left:198px;}

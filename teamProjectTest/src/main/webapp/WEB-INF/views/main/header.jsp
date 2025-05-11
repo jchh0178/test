@@ -7,7 +7,7 @@
   <meta charset="UTF-8">
   <title>ReVue Header</title>
   <style>
-    * { margin: 0; padding: 0;  }
+/*     * { margin: 0; padding: 0;  } */
     body { font-family: 'Noto Sans KR', sans-serif; }
 
     header {
