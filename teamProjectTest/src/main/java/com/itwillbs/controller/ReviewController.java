@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.ReviewDTO;
+import com.itwillbs.mapper.ReviewMapper;
 import com.itwillbs.service.MovieService;
 import com.itwillbs.service.OpenAiService;
 import com.itwillbs.service.ReviewService;
@@ -26,6 +27,8 @@ public class ReviewController {
     private MovieService movieService;
     @Autowired
     private OpenAiService openAiService;
+    @Autowired
+    private ReviewMapper reviewMapper;
 
 //    /** ✅ [1] 리뷰 JSP 렌더링용 메서드 */
     @GetMapping("/review")
@@ -60,15 +63,18 @@ public class ReviewController {
     @PostMapping("/add")
     @ResponseBody
     public ReviewDTO insertReview(@RequestBody ReviewDTO reviewDTO) {
-        // 🔍 리뷰 감정 분석
-        String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
+        try {
+            String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
+            reviewDTO.setSentiment(sentiment);
+        } catch (Exception e) {
+            e.printStackTrace();
+            reviewDTO.setSentiment("error");
+        }
 
-        // ✅ 분석 결과 저장
-        reviewDTO.setReviewEmotion(sentiment); // 예: "positive", "negative"
-
-        // ✅ DB 저장
         reviewMapper.insertReview(reviewDTO);
+        return reviewDTO;
     }
+
 
     // 리뷰 삭제
     @DeleteMapping("/delete/{reviewId}")

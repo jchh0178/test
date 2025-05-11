@@ -15,7 +15,7 @@
 		<result property="reviewSelect" column="review_select" />
 		<result property="reviewDate" column="review_date" />
 		<result property="reviewLike" column="review_like" />
-		<result property="reviewEmotion" column="review_emotion" />
+		<result property="sentiment" column="sentiment" />
 	</resultMap>
 
 	<!-- 리뷰 등록 -->
