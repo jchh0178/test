@@ -9,15 +9,26 @@ https://mybatis.org/mybatis-3/getting-started.html
 <mapper namespace="com.itwillbs.mapper.MypageMapper">
 	
 	<!-- 예매 내역 출력하기  -->
-	<select id="listMybooking" parameterType="String" resultType="com.itwillbs.domain.PayDTO">
-	  select p.pay_id, p.pay_date, t.theater_name, DATE_FORMAT(s.screen_date, '%Y-%m-%d') as screen_date, m.movie_nm
+	<select id="listbooking" parameterType="String" resultType="com.itwillbs.domain.PayDTO">
+	  select p.pay_id, p.pay_date, t.theater_name, DATE_FORMAT(s.screen_date, '%Y-%m-%d') as screen_date, m.movie_nm, b.seat_name, p.pay_price, p.pay_method
 	  from pay p join booth b on p.booth_id = b.booth_id
 	  join screen s on b.screen_id = s.screen_id
 	  join theater t on s.theater_id = t.theater_id
 	  join movie m on s.movie_id = m.movie_id
-	  where p.member_id = #{id}
+	  where p.member_id = #{member_id}
 	  order by p.pay_date desc
 	</select>
+
+
+ <!-- 디버깅용 (조건 없음) -->
+<!-- <select id="listbooking" parameterType="String" resultType="com.itwillbs.domain.PayDTO"> -->
+<!--   select p.pay_id, p.pay_date, p.member_id, t.theater_name, DATE_FORMAT(s.screen_date, '%Y-%m-%d') as screen_date, m.movie_nm -->
+<!--   from pay p join booth b on p.booth_id = b.booth_id -->
+<!--   join screen s on b.screen_id = s.screen_id -->
+<!--   join theater t on s.theater_id = t.theater_id -->
+<!--   join movie m on s.movie_id = m.movie_id -->
+<!--   order by p.pay_date desc -->
+<!-- </select> -->
 	
 	<!-- 프로필 사진 및 회원정보 업데이트 -->
 	<update id="updateProfile" parameterType="com.itwillbs.domain.LoginDTO">

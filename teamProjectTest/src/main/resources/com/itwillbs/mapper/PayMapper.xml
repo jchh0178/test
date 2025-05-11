@@ -9,8 +9,8 @@ https://mybatis.org/mybatis-3/getting-started.html
 <mapper namespace="com.itwillbs.mapper.PayMapper">
 	
 	<insert id="insertPay" parameterType="com.itwillbs.domain.PayDTO">
-   insert into pay (booth_id, member_id, pay_price, pay_method, pay_status, pay_date, booth_type_id)
-   values (#{booth_id}, #{member_id}, #{pay_price}, #{pay_method}, #{pay_status}, #{pay_date}, #{booth_type_id})
+   insert into pay (pay_id, booth_id, member_id, pay_price, pay_method, pay_status, pay_date, booth_type_id)
+   values (#{pay_id}, #{booth_id}, #{member_id}, #{pay_price}, #{pay_method}, #{pay_status}, #{pay_date}, #{booth_type_id})
 	</insert>
 	
 </mapper>

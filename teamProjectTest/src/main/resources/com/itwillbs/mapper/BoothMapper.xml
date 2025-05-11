@@ -19,7 +19,7 @@ https://mybatis.org/mybatis-3/getting-started.html
 	</select>
 	
 	<select id="getBoothInfo" resultType="com.itwillbs.domain.BoothDTO">
-	  select b.*, m.movie_nm, t.theater_name, r.room_name
+	  select b.*, m.movie_nm, t.theater_name, r.room_name, m.poster_url
 	  from booth b
 	  join screen s on b.screen_id = s.screen_id
 	  join movie m on s.movie_id = m.movie_id
@@ -27,12 +27,14 @@ https://mybatis.org/mybatis-3/getting-started.html
 	  join rooms r on s.room_id = r.room_id
 	  where b.booth_id = #{booth_id}
 	</select>
+	
 	<select id="getMovieByScreenId" resultType="com.itwillbs.domain.MovieDTO2">
-     select m.*
-     from screen s
-     join movie m on s.movie_id = m.movie_id
-     where s.screen_id = #{screen_id}
-   </select>
+	  select m.*
+	  from screen s
+	  join movie m on s.movie_id = m.movie_id
+	  where s.screen_id = #{screen_id}
+	</select>
+	
 </mapper>
 
 

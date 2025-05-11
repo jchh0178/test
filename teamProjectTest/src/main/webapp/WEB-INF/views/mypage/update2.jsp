@@ -98,51 +98,69 @@
       <div class="form-container">
         <div class="form-title">회원정보 수정</div>
 
-        <form action="updateProcess" method="post" enctype="multipart/form-data">
+        <form action="${pageContext.request.contextPath}/mypage/updateProfile" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label>프로필 사진</label>
-            <input type="file" name="profile">
-            <button type="button" class="btn-small">이미지 등록</button>
+              <input type="file" name="file">
+              <c:if test="${not empty uploadedImage}">
+				  <div style="margin-top: 20px;">
+				    <label>미리보기:</label><br>
+				    <img src="${pageContext.request.contextPath}/resources/upload/${uploadedImage}" 
+				         style="width: 100px; height: 100px; border-radius: 50%;">
+				  </div>
+			  </c:if>
+            <button type="submit" class="btn-small">이미지 등록</button>
           </div>
 
           <div class="form-group">
             <label>아이디</label>
-            <input type="text" name="id" value="kim12345" readonly>
+            <input type="text" name="id" value="${sessionScope.loginDTO.member_id }" readonly>
           </div>
 
           <div class="form-group">
             <label>이름</label>
-            <input type="text" name="name" value="김땡땡">
-            <button type="button" class="btn-small">이름 변경</button>
+            <input type="text" name="name" value="${sessionScope.loginDTO.member_name }">
+<!--             <button type="button" class="btn-small">이름 변경</button> -->
           </div>
 
           <div class="form-group">
             <label>비밀번호</label>
             <input type="password" value="********" readonly>
-            <button type="button" class="btn-small">비밀번호 변경</button>
+            <button type="button" class="btn-small"  onclick="location.href='${pageContext.request.contextPath}/mypage/updatepw'">비밀번호 변경</button>
           </div>
 
           <div class="form-group">
             <label>전화번호</label>
-            <input type="text" name="phone" value="010-1234-5678">
-            <button type="button" class="btn-small">전화번호 변경</button>
+            <input type="text" name="phone" value="${sessionScope.loginDTO.member_phone }">
+<!--             <button type="button" class="btn-small">전화번호 변경</button> -->
           </div>
 
           <div class="form-group">
             <label>이메일</label>
-            <input type="email" name="email" value="kim12345@itwillbs.co.kr">
+            <input type="email" name="email" value="${sessionScope.loginDTO.member_email }" readonly>
           </div>
 
           <div class="form-group gender">
             <label>성별</label>
-            <label><input type="radio" name="gender" value="남자"> 남자</label>
-            <label><input type="radio" name="gender" value="여자"> 여자</label>
+            <c:if test="${sessionScope.loginDTO.member_gender == 'M'}">
+            	<label><input type="radio" name="gender" value="M" checked> 남자</label>
+            	<label><input type="radio" name="gender" value="F"> 여자</label>
+            </c:if>
+            <c:if test="${sessionScope.loginDTO.member_gender == 'F'}">
+            	<label><input type="radio" name="gender" value="M" > 남자</label>
+            	<label><input type="radio" name="gender" value="F" checked> 여자</label>
+            </c:if>
           </div>
 
           <div class="form-group address">
             <label>주소</label>
-            <input type="text" name="address" value="부산광역시 부산진구 부전동 243-1">
-            <button type="button" class="btn-small">주소 검색</button>
+            <input type="text" name="address" id="address" value="${sessionScope.loginDTO.member_address }">
+            <button type="button" class="btn-small" onclick="execDaumPostcode()">주소 검색</button>
+          </div>
+          
+          <div class="form-group birth">
+            <label>생년월일</label>
+            <input type="text" name="birth" value="${sessionScope.loginDTO.member_birth }" readonly>
           </div>
 
           <div class="form-buttons">
@@ -155,5 +173,20 @@
    <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+
+//주소 검색 api 적용임
+function execDaumPostcode() {
+  new daum.Postcode({
+    oncomplete: function(data) {
+      document.getElementById("address").value = data.address;
+    }
+  }).open();
+}
+
+
+
+</script>
 </body>
 </html>

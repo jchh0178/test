@@ -99,9 +99,10 @@
 
 <!-- Footer -->
 <%@ include file="../main/footer.jsp" %>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+
 
 
 	// 주소 검색 api 적용임
@@ -167,6 +168,34 @@
       alert("❌ 인증 실패. 다시 입력해주세요.");
     }
   }
+	
+  $(function() {
+		$('#btn').click(function(){
+			updateFullEmail();
+	//아이디 => (영문, 숫자를 하나 이상 포함해야 합니다.(5~20자)
+	let idCheck = RegExp(/^[a-z0-9]{5,20}$/);
+	if(! idCheck.test($('#id').val())){
+		
+		alert("아이디 형식 아님");
+		$('#id').focus();
+		return false;
+		
+	}
+
+	//비밀번호 => (영문, 숫자, 특수문자를 하나 이상 포함해야 합니다.(5~20자)
+	let  passCheck = RegExp(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^*]).{5,20}$/);
+	if(! passCheck.test($('#pass').val())){
+		
+		alert("비밀번호 형식 아님");
+		$('#pass').focus();
+		return false;
+		
+	}
+
+	$('#regis').submit();
+		});
+	});
+
 </script>
 </body>
 </html>

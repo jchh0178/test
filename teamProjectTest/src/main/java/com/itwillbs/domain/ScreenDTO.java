@@ -19,7 +19,11 @@ public class ScreenDTO {
     private Date screen_date;
     private Timestamp screen_start_time;
     private Timestamp screen_end_time;
-	
+    
+    // join용 필드
+    private String movie_nm;
+    private String theater_name;
+    private String room_name;
 	
 	
 }

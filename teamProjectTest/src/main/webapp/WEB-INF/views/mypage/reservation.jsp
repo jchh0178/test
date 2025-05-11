@@ -142,24 +142,32 @@
           <button>조회</button>
         </div>
 
-        <div class="ticket-info">
-          <div class="poster-box">영화<br>포스터</div>
-          <div class="details">
-            <p>예매 번호: 12345678</p>
-            <p>영화명: 영화 이름</p>
-            <p>상영관: 강남 CGV</p>
-            <p>관람일시: 2025-04-25 19:00</p>
-            <p>결제일시: 2025-04-01</p>
-            <p>관람 인원: 2명</p>
-            <p>관람 좌석: F5, F6</p>
-
-            <div class="btn-group">
-              <button>결제내역</button>
-              <button>교환권 출력</button>
-              <button>예매 취소</button>
-            </div>
-          </div>
-        </div>
+        <c:choose>
+		  <c:when test="${empty listBooking}">
+		    <p>예매 내역이 없습니다.</p>
+		  </c:when>
+		  <c:otherwise>
+		    <c:forEach var="booking" items="${listBooking}">
+		      <div class="ticket-info">
+		        <div class="poster-box">영화<br>포스터</div>
+		        <div class="details">
+		          <p>예매 번호: ${booking.pay_id}</p>
+		          <p>영화명: ${booking.movie_nm}</p>
+		          <p>상영관: ${booking.theater_name}</p>
+		          <p>상영일시: ${booking.screen_date}</p>
+		          <p>결제일시: ${booking.pay_date}</p>
+		          <p>관람 좌석: ${booking.seat_name }</p>
+		
+		          <div class="btn-group">
+		            <button onclick="window.open('${pageContext.request.contextPath }/mypage/popup3?payId=${booking.pay_id}', 'popup', 'width=500,height=600')">결제내역</button>
+		            <button onclick="window.open('/mypage/ticketPrint?payId=${booking.pay_id}', '_blank', 'width=500,height=600')">교환권 출력</button>
+		            <button>예매 취소</button>
+		          </div>
+		        </div>
+		      </div>
+		    </c:forEach>
+		  </c:otherwise>
+		</c:choose>
       </div>
 
       <div class="section">

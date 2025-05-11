@@ -20,4 +20,12 @@ public interface TheaterMapper {
 	List<TheaterDTO> list3(TheaterDTO theaterDTO);
 
 
+    // 전체 극장 목록 가져오기
+    public List<TheaterDTO> listTheater();	
+
+
+
+	 
+	
 }
+

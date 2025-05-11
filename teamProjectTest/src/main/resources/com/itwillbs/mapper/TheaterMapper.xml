@@ -42,6 +42,12 @@ https://mybatis.org/mybatis-3/getting-started.html
   	
   
   	
+	<select id="listTheater" resultType="com.itwillbs.domain.TheaterDTO">
+    	select * from theater
+	</select>
+	
+
+	
 </mapper>
 
 

@@ -162,6 +162,9 @@ public class AdminController {
 		// --------- DB 넣을때 문자열 변환 ---------
 		Timestamp start = Timestamp.valueOf(dateStr + " " + startStr + ":00");
 	    Timestamp end = Timestamp.valueOf(dateStr + " " + endStr + ":00");
+	   
+	    System.out.println("넘어온 값: " + startStr);
+	    System.out.println("넘어온 값: " + endStr);
 
 	    Date date = Date.valueOf(dateStr); // yyyy-MM-dd 형식
 

@@ -113,6 +113,7 @@ public class PayController {
 
 	        // (2) DTO 생성
 	        PayDTO payDTO = new PayDTO();
+	        payDTO.setPay_id(orderId);
 	        payDTO.setBooth_id((Integer) session.getAttribute("booth_id"));
 	        payDTO.setMember_id(member_id);
 	        payDTO.setPay_price(Integer.parseInt(amount));
@@ -129,7 +130,6 @@ public class PayController {
 	        
 	        BoothDTO boothDTO = boothService.getBoothInfo(payDTO.getBooth_id());
 
-	        System.out.println("포스터 URL: " + boothDTO.getPoster_url());
 	        // 뷰 페이지에 보내겠습니다 -------------------
 	        // payment_success.jsp로 넘길 정보 모델에 받기
 	        model.addAttribute("poster", boothDTO.getPoster_url());

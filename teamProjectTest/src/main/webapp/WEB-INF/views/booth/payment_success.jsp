@@ -11,7 +11,7 @@
   </style>
 </head>
 <body>
- 	
+
   <%@ include file="../main/header.jsp" %>
 
   <div class="container">
@@ -20,7 +20,6 @@
     </div>
 
     <div class="section movie-info">
-    <p>포스터 경로: ${poster}</p>
       <img src="${poster}" alt="영화 포스터">
       <h2>${movieTitle}</h2>
     </div>
@@ -31,7 +30,7 @@
 
     <div class="section screen-info">
       <p>상영관: ${screenName}</p>
-      <p>상영 시간: ${schedule}</p>
+      <p>상영 일시: ${schedule}</p>
     </div>
 
     <div class="section seat-info">

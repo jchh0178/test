@@ -1,7 +1,5 @@
 package com.itwillbs.controller;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -109,11 +107,10 @@ public class MovieController {
         model.addAttribute("movie", movie);
         return "movie/movieDetail";
     }
+	
+	
     
     @GetMapping("/searchTMDB")
-    
-    
-    
     @ResponseBody
     public MovieDTO searchTMDB(@RequestParam String title) {
         return movieService.getMovieFromTMDB(title);
@@ -129,4 +126,11 @@ public class MovieController {
     public String seat() {
         return "movie/seat"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+	
+	
+	
+
+	
+	
+	
 }

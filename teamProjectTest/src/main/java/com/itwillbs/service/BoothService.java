@@ -44,7 +44,8 @@ public class BoothService {
 	public MovieDTO2 getMovieByScreenId(int screen_id) {
 		System.out.println("BoothService getMovieByScreenId()");
 		
-		   return boothMapper.getMovieByScreenId(screen_id);
+		
+		 return boothMapper.getMovieByScreenId(screen_id);
 	}
 	
 	

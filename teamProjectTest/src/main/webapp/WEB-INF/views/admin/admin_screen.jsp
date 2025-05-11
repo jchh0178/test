@@ -35,12 +35,12 @@
     <div class="content">
         <h2>상영 스케줄 등록</h2>
 
-        <form action="${pageContext.request.contextPath}/admin/screenAddPro" method="post">
+        <form action="${pageContext.request.contextPath}/admin/insertscreen" method="post">
             <label>영화</label>
             <select name="movie_id">
                 <option>-- 영화 선택 --</option>
                 <c:forEach var="movie" items="${movieList}">
-                    <option value="${movie.movie_id}">${movie.movie_name_kr}</option>
+                    <option value="${movie.movie_id}">${movie.movie_nm}</option>
                 </c:forEach>
             </select><br/>
 
@@ -64,10 +64,10 @@
             <input type="date" name="screen_date"/><br/>
 
             <label>시작 시간</label>
-            <input type="datetime-local" name="screen_start_time"/><br/>
+            <input type="time" name="screen_start_time"/><br/>
 
             <label>종료 시간</label>
-            <input type="datetime-local" name="screen_end_time"/><br/>
+            <input type="time" name="screen_end_time"/><br/>
 
             <button type="submit">등록</button>
         </form>
@@ -88,13 +88,14 @@
             <tbody>
                 <c:forEach var="screen" items="${screenList}">
                     <tr>
-                        <td>${screen.movie_name_kr}</td>
+                        <td>${screen.movie_nm}</td>
                         <td>${screen.theater_name}</td>
                         <td>${screen.room_name}</td>
                         <td>${screen.screen_date}</td>
                         <td>${screen.screen_start_time}</td>
                         <td>${screen.screen_end_time}</td>
-                        <td><a href="screenDelete?screen_id=${screen.screen_id}">삭제</a></td>
+                        <td><a href="${pageContext.request.contextPath}/admin/deletescreen?screen_id=${screen.screen_id}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
+                       
                     </tr>
                 </c:forEach>
             </tbody>
