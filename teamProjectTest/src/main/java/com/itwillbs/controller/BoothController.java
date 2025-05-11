@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.BoothDTO;
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.domain.TheaterDTO;
 import com.itwillbs.service.AdminService;
@@ -35,7 +35,7 @@ public class BoothController {
 	
 	@GetMapping("/booking")
     public String booking(Model model) {
-		List<MovieDTO> movies = adminService.listMovie();
+		List<MovieDTO2> movies = adminService.listMovie();
 	    List<TheaterDTO> theaters = adminService.listTheater();
 	    
 	    //지역별 극장 나누기
@@ -66,7 +66,7 @@ public class BoothController {
 
 	    if (loginDTO == null) {
 	        System.out.println("로그인 정보 없음, 예약 불가");
-	        return "redirect:/login";
+	        return "redirect:/login/login";
 	    }
 
 	    String member_id = loginDTO.getMember_id();
@@ -80,10 +80,10 @@ public class BoothController {
 	    // 고객 이름 모델에 추가
 	    model.addAttribute("customerName", loginDTO.getMember_name());
 	    
-	    MovieDTO movieDTO = boothService.getMovieByScreenId(screen_id);
-	    System.out.println(movieDTO);
-	    System.out.println("포스터 URL: " + movieDTO.getPoster_url());
-	    model.addAttribute("poster", movieDTO.getPoster_url());
+	    MovieDTO2 movieDTO2 = boothService.getMovieByScreenId(screen_id);
+	    System.out.println(movieDTO2);
+	    System.out.println("포스터 URL: " + movieDTO2.getPoster_url());
+	    model.addAttribute("poster", movieDTO2.getPoster_url());
 
 	    return "booth/confirm";  
 	}

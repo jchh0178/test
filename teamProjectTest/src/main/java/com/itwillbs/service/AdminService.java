@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
@@ -46,7 +46,7 @@ public class AdminService {
 	}
 
 	// select 박스 데이터 가져오기 (영화, 극장, 상영관 리스트) 
-	public List<MovieDTO> listMovie() {
+	public List<MovieDTO2> listMovie() {
 		System.out.println("AdminService listMovie()");
 		
 		return adminMapper.listMovie();

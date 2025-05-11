@@ -35,7 +35,7 @@ https://mybatis.org/mybatis-3/getting-started.html
    	 delete from screen where screen_id = #{screen_id}
 	</delete>
 	
-	<select id="listMovie" resultType="com.itwillbs.domain.MovieDTO">
+	<select id="listMovie" resultType="com.itwillbs.domain.MovieDTO2">
 	    select * from movie
 	</select>
 	

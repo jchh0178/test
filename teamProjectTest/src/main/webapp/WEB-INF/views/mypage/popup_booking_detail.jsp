@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -69,14 +70,17 @@
       결제상세내역
       <button onclick="window.close()">×</button>
     </div>
+    <c:forEach var="booking" items="${listBooking}">
     <div class="details-title">결제정보</div>
     <div class="details">
-      상품금액 &nbsp;&nbsp;32000원<br>
-      최종 결제 금액 &nbsp;&nbsp;32000원<br>
-      결제 수단 &nbsp;&nbsp;(네이버페이)<br>
-      결제 일시 &nbsp;&nbsp;2025.04.30&nbsp;&nbsp;10:42:30
+      상품금액 &nbsp;&nbsp; ${booking.pay_price}원<br>
+      최종 결제 금액 &nbsp;&nbsp; ${booking.pay_price}원<br>
+      결제 수단 &nbsp;&nbsp; ${booking.pay_method}<br>
+      결제 일시 &nbsp;&nbsp; ${booking.pay_date}
     </div>
+    </c:forEach>
     <button class="close-btn" onclick="window.close()">닫기</button>
   </div>
+  
 </body>
 </html>

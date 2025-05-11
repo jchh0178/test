@@ -28,7 +28,7 @@ https://mybatis.org/mybatis-3/getting-started.html
 	  where b.booth_id = #{booth_id}
 	</select>
 	
-	<select id="getMovieByScreenId" resultType="com.itwillbs.domain.MovieDTO">
+	<select id="getMovieByScreenId" resultType="com.itwillbs.domain.MovieDTO2">
 	  select m.*
 	  from screen s
 	  join movie m on s.movie_id = m.movie_id

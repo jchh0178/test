@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.PayDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
@@ -23,9 +23,9 @@ public class MypageService {
 	private MypageMapper mypageMapper;
 
 	
-	 public List<PayDTO> listMybooking(String id) {
+	 public List<PayDTO> listbooking(String member_id) {
 		 
-        return mypageMapper.listMybooking(id);
+        return mypageMapper.listbooking(member_id);
     }
 
 

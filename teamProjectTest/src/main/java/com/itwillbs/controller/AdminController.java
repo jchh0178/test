@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
@@ -139,7 +139,7 @@ public class AdminController {
 	public String adminscreen(Model model) {
 		
 		// ----------- select박스 리스트 가져오기 ---------------
-		 List<MovieDTO> movieList = adminService.listMovie();
+		 List<MovieDTO2> movieList = adminService.listMovie();
 		 List<TheaterDTO> theaterList = adminService.listTheater();
 		 List<RoomDTO> roomList = adminService.listRoom();
 		 List<ScreenDTO> screenList = adminService.listScreen(); // 기존 목록용
@@ -162,6 +162,8 @@ public class AdminController {
 		// --------- DB 넣을때 문자열 변환 ---------
 		Timestamp start = Timestamp.valueOf(dateStr + " " + startStr + ":00");
 	    Timestamp end = Timestamp.valueOf(dateStr + " " + endStr + ":00");
+	    System.out.println("넘어온 값: " + startStr);
+	    System.out.println("넘어온 값: " + endStr);
 
 	    Date date = Date.valueOf(dateStr); // yyyy-MM-dd 형식
 

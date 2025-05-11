@@ -112,6 +112,7 @@ public class PayController {
 
 	        // (2) DTO 생성
 	        PayDTO payDTO = new PayDTO();
+	        payDTO.setPay_id(orderId);
 	        payDTO.setBooth_id((Integer) session.getAttribute("booth_id"));
 	        payDTO.setMember_id(member_id);
 	        payDTO.setPay_price(Integer.parseInt(amount));

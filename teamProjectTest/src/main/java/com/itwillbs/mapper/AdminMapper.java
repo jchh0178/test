@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RoomDTO;
 import com.itwillbs.domain.ScreenDTO;
@@ -21,7 +21,7 @@ public interface AdminMapper {
 
 	public void deleteScreen(int screen_id);
 
-	public List<MovieDTO> listMovie();
+	public List<MovieDTO2> listMovie();
 
 	public List<TheaterDTO> listTheater();
 

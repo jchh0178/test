@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.domain.BoothDTO;
-import com.itwillbs.domain.MovieDTO;
+import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.mapper.BoothMapper;
 
@@ -41,7 +41,7 @@ public class BoothService {
 		return boothMapper.getBoothInfo(booth_id);
 	}
 
-	public MovieDTO getMovieByScreenId(int screen_id) {
+	public MovieDTO2 getMovieByScreenId(int screen_id) {
 		
 		 return boothMapper.getMovieByScreenId(screen_id);
 	}

@@ -37,10 +37,20 @@ public class MypageController {
 	@GetMapping("/mymain")
     public String main(HttpSession session, Model model) {
 		System.out.println("MypageController mymain()");
-		 String id = (String) session.getAttribute("id");
-
+		
+		LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+		
+		 // 로그인 안되어있으면 로그인페이지로 이동함
+		if (loginDTO == null) {
+	        System.out.println("세션에 로그인 정보 없음, 로그인 페이지로 이동");
+	        return "redirect:/login";
+	    }
+		
+		 String member_id = loginDTO.getMember_id();
+		 System.out.println("현재 로그인 ID: " + member_id);
+		 
 	    // 로그인한 회원의 예매내역 가져오기
-	    List<PayDTO> listBooking = mypageService.listMybooking(id);
+	    List<PayDTO> listBooking = mypageService.listbooking(member_id);
 	    
 	    System.out.println("예매내역 갯수: " + listBooking.size()); // 몇개인지 확인해보기
 
@@ -50,7 +60,7 @@ public class MypageController {
     }
 	
 	// 선호 장르 업데이트 -------------------------------
-	@PostMapping("/mypage/updateGenre")
+	@PostMapping("/updateGenre")
 	public String updateGenre(@RequestParam("genres") List<String> genres, HttpSession session) {
 		System.out.println("MypageController updateGenre()");
 		System.out.println("전달받은 genres : " + genres);
@@ -240,7 +250,17 @@ public class MypageController {
 	// 마이페이지 내 회원정보 수정 끝 -----------------------------------
 	
 	@GetMapping("/reservation")
-    public String reservation() {
+    public String reservation(HttpSession session, Model model) {
+		System.out.println("MypageController reservation()");
+		
+		LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+		
+		String member_id = loginDTO.getMember_id();
+		System.out.println("현재 로그인 ID: " + member_id);
+		
+		List<PayDTO> listBooking = mypageService.listbooking(member_id);
+		
+		 model.addAttribute("listBooking", listBooking);
         return "mypage/reservation"; 
     }
 	
@@ -317,7 +337,15 @@ public class MypageController {
     }
 
 	@GetMapping("/popup3")
-    public String popup3() {
+    public String popup3(HttpSession session, Model model) {
+		LoginDTO loginDTO = (LoginDTO) session.getAttribute("loginDTO");
+		
+		String member_id = loginDTO.getMember_id();
+		
+		List<PayDTO> listBooking = mypageService.listbooking(member_id);
+		
+		 model.addAttribute("listBooking", listBooking);
+		
         return "mypage/popup_booking_detail";
 	}
 	

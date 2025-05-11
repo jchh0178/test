@@ -11,6 +11,7 @@ import lombok.ToString;
 @Getter
 public class PayDTO {
 
+	private String pay_id;
 	private int booth_id;
     private String member_id;
     private int pay_price;
@@ -23,6 +24,7 @@ public class PayDTO {
     private String theater_name;
     private String screen_date;
     private String movie_nm;
+    private String seat_name;
 	
 	
 	
