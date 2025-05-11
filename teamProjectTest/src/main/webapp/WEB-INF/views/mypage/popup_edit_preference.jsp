@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -75,20 +76,60 @@
 
     <div class="section-title">나의 영화 취향</div>
     <div class="genre-box">
-      <span>공포</span> <span>로맨스</span> <span>스릴러</span> <span>액션</span> <span>코메디</span>
+      <span>${sessionScope.loginDTO.member_like_genre }</span> 
     </div>
 
-    <div class="section-title">선호 장르 선택</div>
-    <div class="genre-box">
-      <label><input type="checkbox"> 장르</label>
-      <label><input type="checkbox"> 장르</label>
-      <label><input type="checkbox"> 장르</label>
-      <label><input type="checkbox"> 장르</label>
-    </div>
+    <form id="genreForm" action="${pageContext.request.contextPath}/mypage/updateGenre" method="post">
+	  <div class="section-title">선호 장르 선택</div>
+	  <div class="genre-box">
+	    <c:forEach var="genre" items="${genreList}">
+		  <label><input type="checkbox" name="genres" value="${genre}"> ${genre}</label>
+		</c:forEach>
+<!-- 	    <label><input type="checkbox" name="genres" value="액션"> 액션</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="로맨스"> 로맨스</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="어드벤처"> 어드벤처</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="애니메이션"> 애니메이션</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="범죄"> 범죄</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="드라마"> 드라마</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="공포호러"> 공포호러</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="스릴러"> 스릴러</label> -->
+<!-- 	    <label><input type="checkbox" name="genres" value="코미디"> 코미디</label> -->
+	  </div>
 
-    <div class="popup-footer">
-      <button>수정</button>
-    </div>
+	  <div class="popup-footer">
+		<button type="submit">수정</button>
+	  </div>
+    </form>
   </div>
+  
+  <script>
+document.getElementById("genreForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // 기본 submit 막기
+
+  // 폼 데이터를 수동으로 보냄
+  const form = event.target;
+  const formData = new FormData(form);
+
+  fetch(form.action, {
+    method: "POST",
+    body: formData
+  })
+  .then(response => {
+    if (response.ok) {
+      // 부모 창 새로고침
+      window.opener.location.reload();
+      // 팝업 닫기
+      window.close();
+    } else {
+      alert("서버 오류 발생! 다시 시도해주세요.");
+    }
+  })
+  .catch(err => {
+    alert("네트워크 오류 발생!");
+    console.error(err);
+  });
+});
+</script>
+  
 </body>
 </html>

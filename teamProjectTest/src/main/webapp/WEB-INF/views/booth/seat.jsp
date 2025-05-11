@@ -112,9 +112,7 @@
   <!-- 예매하기 폼 -->
   <form action="${pageContext.request.contextPath }/booth/confirm" method="post" id="reserveForm">
 	  <input type="hidden" name="member_id" value="${sessionScope.member_id}">
-	  
 	  <input type="hidden" name="screen_id" value="${param.screen_id}"> 
-	
 	  <input type="hidden" name="movie" id="movieInput">
 	  <input type="hidden" name="theater" id="theaterInput">
 	  <input type="hidden" name="time" id="timeInput">

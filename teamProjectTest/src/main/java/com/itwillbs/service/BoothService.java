@@ -45,6 +45,7 @@ public class BoothService {
 		System.out.println("BoothService getMovieByScreenId()");
 		
 		   return boothMapper.getMovieByScreenId(screen_id);
+
 	}
 	
 	

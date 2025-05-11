@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.itwillbs.domain.BoothDTO;
+
 import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.ScreenDTO;
 

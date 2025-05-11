@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.ReviewDTO;
 import com.itwillbs.service.MovieService;
+import com.itwillbs.service.OpenAiService;
 import com.itwillbs.service.ReviewService;
 
 @Controller
@@ -23,6 +24,8 @@ public class ReviewController {
     private ReviewService reviewService;
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private OpenAiService openAiService;
 
 //    /** ✅ [1] 리뷰 JSP 렌더링용 메서드 */
     @GetMapping("/review")
@@ -56,10 +59,15 @@ public class ReviewController {
     // 리뷰 등록
     @PostMapping("/add")
     @ResponseBody
-    public ReviewDTO addReview(@RequestBody ReviewDTO reviewDTO) {
-    	System.out.println("addReview");
-        reviewService.insertReview(reviewDTO);
-        return reviewDTO;
+    public ReviewDTO insertReview(@RequestBody ReviewDTO reviewDTO) {
+        // 🔍 리뷰 감정 분석
+        String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
+
+        // ✅ 분석 결과 저장
+        reviewDTO.setReviewEmotion(sentiment); // 예: "positive", "negative"
+
+        // ✅ DB 저장
+        reviewMapper.insertReview(reviewDTO);
     }
 
     // 리뷰 삭제
@@ -71,21 +79,19 @@ public class ReviewController {
         return ResponseEntity.ok().build();
     }
     
-    // 리뷰 수정
-    @PutMapping("/edit/{reviewId}")
-    @ResponseBody
-    public ResponseEntity<?> editReview(@PathVariable("reviewId") int reviewId,
-                                        @RequestBody Map<String, String> body) {
-        System.out.println("✅ editReview() 호출됨 - reviewId: " + reviewId);
-        
-        String content = body.get("reviewContent");
-        if (content == null || content.trim().isEmpty()) {
-            return ResponseEntity.badRequest().body("내용이 없습니다.");
+        // 리뷰 수정
+        @PutMapping("/edit/{reviewId}")
+        @ResponseBody
+        public ResponseEntity<?> editReview(@PathVariable("reviewId") int reviewId,
+                                            @RequestBody Map<String, String> body) {
+            System.out.println("✅ editReview() 호출됨 - reviewId: " + reviewId);
+            
+            String content = body.get("reviewContent");
+            if (content == null || content.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("내용이 없습니다.");
+            }
+
+            reviewService.updateReview(reviewId, content);
+            return ResponseEntity.ok().build();
         }
-
-        reviewService.updateReviewContent(reviewId, content);
-        return ResponseEntity.ok().build();
-    }
-
-
 }

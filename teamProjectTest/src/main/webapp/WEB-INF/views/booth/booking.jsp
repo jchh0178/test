@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +8,9 @@
 </head>
 <body>
 	<div class="section section-movie" style="border: 1px solid black;">
-	    <!-- Header -->
-    <%@ include file="../main/header.jsp" %>
-	
+		<!-- Header -->
+		<%@ include file="../main/header.jsp"%>
+
 		<!-- col-head -->
 		<div class="col-head" id="skip_movie_list">
 			<h3 class="sreader">영화</h3>
@@ -157,15 +157,17 @@
 				onclick="skipToSomething('tnb_step_btn_right');return false;">인원/좌석선택
 				건너뛰기</a>
 		</div>
-				</div>
-		<div class="col-body">
-			<div class="person_screen">
-				<!-- NUMBEROFPEOPLE 섹션 -->
-				<div class="section section-numberofpeople">
-					<div class="col-body">
 
-						<!-- 인접좌석 -->
-						<!-- <div class="adjacent_seat_wrap">
+	</div>
+
+	<div class="col-body">
+		<div class="person_screen">
+			<!-- NUMBEROFPEOPLE 섹션 -->
+			<div class="section section-numberofpeople">
+				<div class="col-body">
+
+					<!-- 인접좌석 -->
+					<!-- <div class="adjacent_seat_wrap">
 											<div class="adjacent_seat" id="adjacent_seat">
 												<span class="title">좌석 붙임 설정</span>
 												<div class="block_wrap">
@@ -177,88 +179,88 @@
 											</div>
 										</div> -->
 
-						<div id="nopContainer" class="numberofpeople-select"
-							style="min-width: 426px;">
-							<!-- 2021.05.25 - 좌석 거리두기 -->
-							<!-- 최대 선택 가능 인원 표기 -->
-							<div id="maximum_people"
-								style="padding-bottom: 5px; text-align: right; font-size: 11px !important; color: red;"></div>
-							<div class="group adult" id="nop_group_adult">
-								<span class="title">일반</span>
-								<ul>
-									<li data-count="0" class="selected"><a href="#"
-										onclick="return false;"><span class="sreader mod">일반</span>0<span
-											class="sreader">명</span></a></li>
-									<li data-count="1"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>1<span class="sreader">명</span></a></li>
-									<li data-count="2"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>2<span class="sreader">명</span></a></li>
-									<li data-count="3"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>3<span class="sreader">명</span></a></li>
-									<li data-count="4"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>4<span class="sreader">명</span></a></li>
-									<li data-count="5"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>5<span class="sreader">명</span></a></li>
-									<li data-count="6"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>6<span class="sreader">명</span></a></li>
-									<li data-count="7"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>7<span class="sreader">명</span></a></li>
-									<li data-count="8"><a href="#" onclick="return false;"><span
-											class="sreader mod">일반</span>8<span class="sreader">명</span></a></li>
-								</ul>
-							</div>
-							<div class="group youth" id="nop_group_youth">
-								<span class="title">청소년</span>
-								<ul>
-									<li data-count="0" class="selected"><a href="#"
-										onclick="return false;"><span class="sreader mod">청소년</span>0<span
-											class="sreader">명</span></a></li>
-									<li data-count="1"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>1<span class="sreader">명</span></a></li>
-									<li data-count="2"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>2<span class="sreader">명</span></a></li>
-									<li data-count="3"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>3<span class="sreader">명</span></a></li>
-									<li data-count="4"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>4<span class="sreader">명</span></a></li>
-									<li data-count="5"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>5<span class="sreader">명</span></a></li>
-									<li data-count="6"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>6<span class="sreader">명</span></a></li>
-									<li data-count="7"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>7<span class="sreader">명</span></a></li>
-									<li data-count="8"><a href="#" onclick="return false;"><span
-											class="sreader mod">청소년</span>8<span class="sreader">명</span></a></li>
-								</ul>
-							</div>
-							<div class="group child" id="nop_group_child">
-								<span class="title">어린이</span>
-								<ul>
-									<li data-count="0" class="selected"><a href="#"
-										onclick="return false;"><span class="sreader mod">어린이</span>0<span
-											class="sreader">명</span></a></li>
-									<li data-count="1"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>1<span class="sreader">명</span></a></li>
-									<li data-count="2"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>2<span class="sreader">명</span></a></li>
-									<li data-count="3"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>3<span class="sreader">명</span></a></li>
-									<li data-count="4"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>4<span class="sreader">명</span></a></li>
-									<li data-count="5"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>5<span class="sreader">명</span></a></li>
-									<li data-count="6"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>6<span class="sreader">명</span></a></li>
-									<li data-count="7"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>7<span class="sreader">명</span></a></li>
-									<li data-count="8"><a href="#" onclick="return false;"><span
-											class="sreader mod">어린이</span>8<span class="sreader">명</span></a></li>
-								</ul>
-							</div>
+					<div id="nopContainer" class="numberofpeople-select"
+						style="min-width: 426px;">
+						<!-- 2021.05.25 - 좌석 거리두기 -->
+						<!-- 최대 선택 가능 인원 표기 -->
+						<div id="maximum_people"
+							style="padding-bottom: 5px; text-align: right; font-size: 11px !important; color: red;"></div>
+						<div class="group adult" id="nop_group_adult">
+							<span class="title">일반</span>
+							<ul>
+								<li data-count="0" class="selected"><a href="#"
+									onclick="return false;"><span class="sreader mod">일반</span>0<span
+										class="sreader">명</span></a></li>
+								<li data-count="1"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>1<span class="sreader">명</span></a></li>
+								<li data-count="2"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>2<span class="sreader">명</span></a></li>
+								<li data-count="3"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>3<span class="sreader">명</span></a></li>
+								<li data-count="4"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>4<span class="sreader">명</span></a></li>
+								<li data-count="5"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>5<span class="sreader">명</span></a></li>
+								<li data-count="6"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>6<span class="sreader">명</span></a></li>
+								<li data-count="7"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>7<span class="sreader">명</span></a></li>
+								<li data-count="8"><a href="#" onclick="return false;"><span
+										class="sreader mod">일반</span>8<span class="sreader">명</span></a></li>
+							</ul>
+						</div>
+						<div class="group youth" id="nop_group_youth">
+							<span class="title">청소년</span>
+							<ul>
+								<li data-count="0" class="selected"><a href="#"
+									onclick="return false;"><span class="sreader mod">청소년</span>0<span
+										class="sreader">명</span></a></li>
+								<li data-count="1"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>1<span class="sreader">명</span></a></li>
+								<li data-count="2"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>2<span class="sreader">명</span></a></li>
+								<li data-count="3"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>3<span class="sreader">명</span></a></li>
+								<li data-count="4"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>4<span class="sreader">명</span></a></li>
+								<li data-count="5"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>5<span class="sreader">명</span></a></li>
+								<li data-count="6"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>6<span class="sreader">명</span></a></li>
+								<li data-count="7"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>7<span class="sreader">명</span></a></li>
+								<li data-count="8"><a href="#" onclick="return false;"><span
+										class="sreader mod">청소년</span>8<span class="sreader">명</span></a></li>
+							</ul>
+						</div>
+						<div class="group child" id="nop_group_child">
+							<span class="title">어린이</span>
+							<ul>
+								<li data-count="0" class="selected"><a href="#"
+									onclick="return false;"><span class="sreader mod">어린이</span>0<span
+										class="sreader">명</span></a></li>
+								<li data-count="1"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>1<span class="sreader">명</span></a></li>
+								<li data-count="2"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>2<span class="sreader">명</span></a></li>
+								<li data-count="3"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>3<span class="sreader">명</span></a></li>
+								<li data-count="4"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>4<span class="sreader">명</span></a></li>
+								<li data-count="5"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>5<span class="sreader">명</span></a></li>
+								<li data-count="6"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>6<span class="sreader">명</span></a></li>
+								<li data-count="7"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>7<span class="sreader">명</span></a></li>
+								<li data-count="8"><a href="#" onclick="return false;"><span
+										class="sreader mod">어린이</span>8<span class="sreader">명</span></a></li>
+							</ul>
 						</div>
 					</div>
-					 <!-- Footer -->
-   <%@ include file="../main/footer.jsp" %>
 				</div>
+				<!-- Footer -->
+				<%@ include file="../main/footer.jsp"%>
+			</div>
 </body>
 </html>

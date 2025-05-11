@@ -38,10 +38,7 @@ https://mybatis.org/mybatis-3/getting-started.html
 		from theater2
 		where region = #{region}
 	</select>
-	
-  	
-  
-  	
+
 </mapper>
 
 

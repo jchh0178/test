@@ -20,6 +20,7 @@ public interface AdminMapper {
 
 	public void deleteScreen(int screen_id);
 
+
 	public List<MovieDTO2> listMovie();
 
 	public List<TheaterDTO> listTheater();

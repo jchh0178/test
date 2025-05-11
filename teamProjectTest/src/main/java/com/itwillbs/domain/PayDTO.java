@@ -18,6 +18,11 @@ public class PayDTO {
     private String pay_status;
     private Timestamp pay_date;
     private int booth_type_id;
+    
+//    예매 내역 출력용
+    private String theater_name;
+    private String screen_date;
+    private String movie_nm;
 	
 	
 	

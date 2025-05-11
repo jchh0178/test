@@ -23,11 +23,10 @@
 		parameterType="com.itwillbs.domain.ReviewDTO" useGeneratedKeys="true"
 		keyProperty="reviewId">
 		INSERT INTO review (member_id, movie_id, review_rating,
-		review_content,
-		review_select, review_like, review_date)
+		review_content,	review_select, review_like, review_date, sentiment)
 		VALUES
 		(#{memberId}, #{movieId}, #{reviewRating}, #{reviewContent},
-		#{reviewSelect}, #{reviewLike}, NOW())
+		#{reviewSelect}, #{reviewLike}, NOW(), #{sentiment})
 	</insert>
 
 	<!-- 리뷰 삭제 -->

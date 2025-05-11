@@ -12,6 +12,8 @@ public interface LoginMapper {
 	public void register(LoginDTO loginDTO);
 
 	public int isExist(String member_id);
+
+	public LoginDTO getMember(String id);
 	
 	public LoginDTO getMember(String id);
 

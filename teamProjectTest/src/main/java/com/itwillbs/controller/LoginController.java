@@ -1,6 +1,5 @@
 package com.itwillbs.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -28,7 +27,7 @@ import com.itwillbs.service.LoginService;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @Controller
-@RequestMapping("/login/*")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Inject
@@ -50,7 +49,7 @@ public class LoginController {
 		System.out.println("LoginController LoginPro()");
 		try {
 			LoginDTO loginDTO2 = loginService.login(loginDTO);
-		
+			
 		
 			
 			if(loginDTO2 != null) {

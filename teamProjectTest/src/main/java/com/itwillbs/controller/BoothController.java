@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.LoginDTO;
-import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.MovieDTO2;
 import com.itwillbs.domain.ScreenDTO;
 import com.itwillbs.domain.TheaterDTO;
@@ -92,12 +91,4 @@ public class BoothController {
     public String seat() {
         return "booth/seat";
     }
-   
-   
-
-   
-
-   
-   
-   
 }

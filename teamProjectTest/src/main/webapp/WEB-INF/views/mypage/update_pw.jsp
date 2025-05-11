@@ -87,11 +87,16 @@
         <div class="pw-guide">
           &lt;현재 비밀번호를 입력한 후 새로 사용할 비밀번호를 입력하세요.&gt;
         </div>
+        
+        <c:if test="${not empty msg}">
+		  <div class="error-msg" style="color:red; margin-bottom: 10px;">${msg}</div>
+		</c:if>
 
-        <form action="changePassword" method="post">
+        <form action="${pageContext.request.contextPath}/mypage/updatePass" method="post" method="post">
           <div class="pw-group">
             <label for="currentPw">현재 비밀번호</label>
             <input type="password" name="currentPw" id="currentPw" required>
+            <span id="pwCheckMsg" style="margin-left: 10px;"></span>
           </div>
 
           <div class="pw-group">
@@ -102,6 +107,7 @@
           <div class="pw-group">
             <label for="confirmPw">변경할 비밀번호 재입력</label>
             <input type="password" name="confirmPw" id="confirmPw" required>
+            <span id="pwMatchMsg" style="margin-left: 10px;"></span>
           </div>
 
           <div class="pw-buttons">
@@ -114,5 +120,57 @@
    <%@ include file="../main/footer.jsp" %>
     </div>
   </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(function(){
+	  $('#currentPw').on('blur keyup', function(){
+	    const inputPw = $('#currentPw').val();
+
+	    if (inputPw.trim().length === 0) {
+	      $('#pwCheckMsg').html("").css('color', '');
+	      return;
+	    }
+
+	    $.ajax({
+	      type: "GET",
+	      url: "${pageContext.request.contextPath}/mypage/checkPass",
+	      data: { password: inputPw },
+	      success: function(result){
+	        if(result === "OK"){
+	          $('#pwCheckMsg').html("비밀번호가 일치합니다.").css('color', 'green');
+	        } else {
+	          $('#pwCheckMsg').html("비밀번호가 일치하지 않습니다.").css('color', 'red');
+	        }
+	      }
+	    });
+	  });
+	});
+
+	// 새 비밀번호, 재입력 비교
+	$(function(){
+	  $('#confirmPw, #newPw').on('keyup blur', function(){
+	    let newPw = $('#newPw').val();
+	    let confirmPw = $('#confirmPw').val();
+
+	    if (newPw === "" || confirmPw === "") {
+	      $('#pwMatchMsg').text("").css("color", "");
+	    } else if (newPw === confirmPw) {
+	      $('#pwMatchMsg').text("비밀번호가 일치합니다.").css("color", "green");
+	    } else {
+	      $('#pwMatchMsg').text("비밀번호가 일치하지 않습니다.").css("color", "red");
+	    }
+	  });
+
+	  // 제출 시 일치 여부 검사
+	  $('form').on('submit', function(e){
+	    if ($('#newPw').val() !== $('#confirmPw').val()) {
+	      alert("비밀번호가 일치하지 않습니다.");
+	      e.preventDefault();
+	    }
+	  });
+	});
+</script>
+  
+  
 </body>
 </html>

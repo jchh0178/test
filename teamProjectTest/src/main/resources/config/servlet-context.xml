@@ -6,7 +6,6 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -21,9 +20,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.itwillbs.teamProjectTest" />
-	<context:component-scan base-package="com.itwillbs.controller" />
-	<context:component-scan base-package="com.itwillbs.service" />
+	<context:component-scan base-package="com.itwillbs." />
+<!-- 	<context:component-scan base-package="com.itwillbs.controller" /> -->
+<!-- 	<context:component-scan base-package="com.itwillbs.service" /> -->
 	
 	<context:property-placeholder location="classpath:/config/appdata.properties"/>
 	
@@ -34,10 +33,16 @@
 	</beans:bean>
 	
 <!-- 	서버에 업로드 할 물리적 경로 
-D:\Shared\JSP\workspace_sts\TourWeb\src\main\webapp\resources\upload
+C:\Users\admin\workspace_git\test\teamProjectTest\src\main\webapp\resources\upload
 -->
+
+<!-- 주현 노트북 : C:\\jsp\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload -->
+<!-- 대부분의 컴퓨터 : D:\\workspace_git\\test\\teamProjectTest\\src\\main\\webapp\\resources\\upload -->
 	<beans:bean id="uploadPath" class="java.lang.String">
+
 		<beans:constructor-arg value="D:\\workspace_merge\\mergePorject\\teamProjectTest\\src\\main\\webapp\\resources\\upload"></beans:constructor-arg>
+
 	</beans:bean>
 	
+
 </beans:beans>

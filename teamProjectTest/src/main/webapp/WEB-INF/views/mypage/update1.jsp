@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -119,6 +120,10 @@
     
         <div class="form-box">
            <h3>회원님의 개인 정보 보호를 위해 비밀번호를 입력해 주세요.</h3>
+	          <c:if test="${not empty msg}">
+			    <div class="error-msg">${msg}</div>
+			  </c:if>
+           
             <form action="updateCheck" method="post">
                 <div class="input-group">
                     <label for="password">비밀번호</label>  <input type="password" name="password" id="password" required>
@@ -126,16 +131,18 @@
 
                 <div class="btn-group">
                     <button type="submit">확인</button>
-                    <button type="button" onclick="location.href='/mypage'">취소</button>
+                    <button type="button" onclick="location.href='${pageContext.request.contextPath}/mypage/mymain'">취소</button>
                 </div>
 
                 <%-- 비밀번호 오류 5회 이상일 때만 보이게 --%>
-                <div class="captcha-box">
-                    <label>보안문자 입력</label>
-                    <img src="/captcha" alt="보안문자 이미지"><br>
-                    <input type="text" name="captcha" placeholder="보안문자를 입력해주세요">
-                    <div class="error-msg">보안문자를 정확히 입력해주세요.</div>
-                </div>
+               <c:if test="${requireCaptcha}">
+				  <div class="captcha-box">
+				      <label>보안문자 입력</label><br>
+				      <img src="${pageContext.request.contextPath}/mypage/captcha" alt="보안문자 이미지" onclick="this.src='${pageContext.request.contextPath}/mypage/captcha?' + Math.random()"
+				           style="cursor:pointer;"><br>
+				      <input type="text" name="captcha" placeholder="보안문자를 입력해주세요">
+				  </div>
+				</c:if>
             </form>
         </div>
     </div>

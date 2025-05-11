@@ -51,6 +51,7 @@
 
   <div class="info-box">
     <h2>예매 정보 확인</h2>
+<<<<<<< HEAD
     <p>영화: ${sessionScope.movie}</p>
     <p>극장: ${param.theater}</p>
     <p id="screenTime">상영 시간: </p>
