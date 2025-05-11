@@ -79,21 +79,20 @@ public class ReviewController {
         return ResponseEntity.ok().build();
     }
     
-    // 리뷰 수정
-    @PutMapping("/edit/{reviewId}")
-    @ResponseBody
-    public ResponseEntity<?> editReview(@PathVariable("reviewId") int reviewId,
-                                        @RequestBody Map<String, String> body) {
-        System.out.println("✅ editReview() 호출됨 - reviewId: " + reviewId);
-        
-        String content = body.get("reviewContent");
-        if (content == null || content.trim().isEmpty()) {
-            return ResponseEntity.badRequest().body("내용이 없습니다.");
+    나의 말:
+        // 리뷰 수정
+        @PutMapping("/edit/{reviewId}")
+        @ResponseBody
+        public ResponseEntity<?> editReview(@PathVariable("reviewId") int reviewId,
+                                            @RequestBody Map<String, String> body) {
+            System.out.println("✅ editReview() 호출됨 - reviewId: " + reviewId);
+            
+            String content = body.get("reviewContent");
+            if (content == null || content.trim().isEmpty()) {
+                return ResponseEntity.badRequest().body("내용이 없습니다.");
+            }
+
+            reviewService.updateReview(reviewId, content);
+            return ResponseEntity.ok().build();
         }
-
-        reviewService.updateReviewContent(reviewId, content);
-        return ResponseEntity.ok().build();
-    }
-
-
 }

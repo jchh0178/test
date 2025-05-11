@@ -19,6 +19,5 @@ public class ReviewDTO {
     private Timestamp reviewDate;
     private int reviewLike;
   	private String Sentiment;
-  	private String reviewEmotion;
 
 }

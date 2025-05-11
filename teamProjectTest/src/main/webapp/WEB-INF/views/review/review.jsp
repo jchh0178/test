@@ -27,7 +27,7 @@
       <h3>리뷰 작성</h3>
       <form id="reviewForm">
         <input type="hidden" name="movieId" value="${movieDTO.movieId}" />
-        <input type="text" name="memberId" value="${sessionScope.id}" />
+        <input type="text" name="memberId" value="${sessionScope.id}" readonly/>
         <select name="reviewRating">
           <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
           <option value="4">⭐⭐⭐⭐ (4점)</option>

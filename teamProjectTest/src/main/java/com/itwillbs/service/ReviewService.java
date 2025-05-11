@@ -28,16 +28,23 @@ public class ReviewService {
 		return reviewMapper.deleteReview(reviewId);
 	}
 
-//	public void updateReview(ReviewDTO review) {
-//		reviewMapper.updateReview(review);
-//	}
-	
-	public void updateReviewContent(int id, String content) {
-	    ReviewDTO dto = new ReviewDTO();
-	    dto.setReviewId(id);
-	    dto.setReviewContent(content);
-	    reviewMapper.updateReviewContent(dto);
+	public void updateReview(int reviewId, String content) {
+	    String sentiment;
+	    try {
+	        sentiment = openAiService.analyzeSentiment(content);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        sentiment = "error";
+	    }
+
+	    ReviewDTO reviewDTO = new ReviewDTO();
+	    reviewDTO.setReviewId(reviewId);
+	    reviewDTO.setReviewContent(content);
+	    reviewDTO.setSentiment(sentiment);
+
+	    reviewMapper.updateReview(reviewDTO);
 	}
+
 
 	public List<ReviewDTO> getReviewsByMovieId(int movieId) {
 		return reviewMapper.getReviewsByMovieId(movieId);
