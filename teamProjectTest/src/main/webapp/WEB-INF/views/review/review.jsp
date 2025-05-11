@@ -69,10 +69,10 @@
     function loadReviews(movieId) {
       movieId = Number(movieId);
 
-//       if (!movieId || isNaN(movieId)) {
-//         console.error("🚫 잘못된 movieId:", movieId);
-//         return;
-//       }
+      if (!movieId || isNaN(movieId)) {
+        console.error("🚫 잘못된 movieId:", movieId);
+        return;
+      }
 	const list = contextPath + "/review/list/" + movieId;
 	//alert(list);
       fetch(list)
@@ -109,8 +109,6 @@
               	  	  			  '<button type="button" onclick="editReview(' + review.reviewId + ')">수정</button>'+
               	      			  '<button type="button" onclick="deleteReview(' + review.reviewId + ')">삭제</button>' +
               	      			  '</div>'  ;
-            	  }else{
-            		  html;
             	  }
             div.innerHTML = html;
             reviewList.appendChild(div);
@@ -161,7 +159,6 @@
     // ✅ 리뷰 수정
     window.editReview = function(reviewId) {
       const reviewDiv = document.getElementById('review-' + reviewId);
->>>>>>> branch 'jjs' of https://github.com/jchh0178/test.git
       const commentP = reviewDiv.querySelector('.comment');
       const oldContent = commentP.innerText.trim();
       const newContent = prompt("수정할 내용을 입력하세요:", oldContent);
