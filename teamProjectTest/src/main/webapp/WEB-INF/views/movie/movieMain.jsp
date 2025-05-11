@@ -62,7 +62,7 @@
 	<!-- Header -->
     <%@ include file="../main/header.jsp" %>
     
-    <h1 style="text-align:center;">🎬 무비 차트</h1>
+    <h1 style="text-align:center;">🎬 현재상영작</h1>
     <div class="movie-grid">
         <c:forEach var="movieDTO" items="${movieList}">
             <div class="movie-card">

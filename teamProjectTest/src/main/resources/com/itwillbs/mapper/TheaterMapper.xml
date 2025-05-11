@@ -10,33 +10,33 @@ https://mybatis.org/mybatis-3/getting-started.html
 	
 	<select id="list" resultType="com.itwillbs.domain.TheaterDTO">
 		select *
-		from theater2
+		from theater
 	</select>
 	
 	<select id="detail" resultType="com.itwillbs.domain.TheaterDTO">
-		select brand, region, name, code
-		from theater2
-  		where region= #{region} and name = #{name}
+		select theater_region, theater_name, theater_code
+		from theater
+  		where theater_region= #{theater_region} and theater_name = #{theater_name}
 	</select>
 	
 	<select id="detail2" resultType="com.itwillbs.domain.TheaterDTO">
 		select *
-		from theater2
-		where region = #{region}	
-		group by region
+		from theater
+		where theater_region = #{theater_region}	
+		group by theater_region
 	</select>
   	
   	
   	<select id="list2" resultType="com.itwillbs.domain.TheaterDTO">
-		select region
-		from theater2
-		group by region
+		select theater_region
+		from theater
+		group by theater_region
 	</select>
 	
   	<select id="list3" resultType="com.itwillbs.domain.TheaterDTO">
-		select name
-		from theater2
-		where region = #{region}
+		select *
+		from theater
+		where theater_region = #{theater_region}
 	</select>
 	
   	

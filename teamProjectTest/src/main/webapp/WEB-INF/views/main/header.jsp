@@ -212,8 +212,7 @@
           <div class="hamburger-group">
             <h4>영화</h4>
             <ul>
-              <li><a href="${pageContext.request.contextPath}/movie/mmain">현재상영작</a></li>
-              <li><a href="${pageContext.request.contextPath}/movie/mmaind">상영예정작</a></li>
+              <li><a href="${pageContext.request.contextPath}/movie/main">현재상영작</a></li>
             </ul>
           </div>
           <div class="hamburger-group">

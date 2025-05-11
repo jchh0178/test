@@ -135,7 +135,6 @@
 	          <th>장르</th>
 	          <th>감독</th>
 	          <th>배우</th>
-	          <th>상세정보</th>
 	        </tr>
         </thead>
         <tbody>
@@ -150,7 +149,6 @@
 			    <td>${movie.genreNm}</td>
 			    <td>${movie.directors}</td>
 			    <td>${movie.actors}</td>
-			    <td><button class="action-button" onclick="location.href='adminmovied'">상세정보 확인</button></td>
 			  </tr>
 		  </c:forEach>
         </tbody>
@@ -172,6 +170,7 @@
 	  </div>
         <button class="add-button" onclick="location.href='register.html'">추가하기</button>
       </div>
+      
        <!-- Footer -->
    <%@ include file="../main/footer.jsp" %>
     </div>

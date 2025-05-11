@@ -24,6 +24,7 @@
     </select>
     
     <resultMap id="movieMap" type="com.itwillbs.domain.MovieDTO">
+    	<result property="movieId" column="movie_id"/>
 	    <result property="movieCd" column="movie_cd"/>
 	    <result property="movieNm" column="movie_nm"/>
 	    <result property="openDt" column="open_dt"/>
