@@ -75,6 +75,8 @@ footer .foot_area .copy {
   text-align: center; /* 추가 */
 }
 </style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body>
   <footer>

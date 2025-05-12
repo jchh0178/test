@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>영화 리뷰</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review.css" />
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body class="container">
   <!-- Header -->

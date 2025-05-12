@@ -46,6 +46,8 @@
       text-align: center;
     }
   </style>
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body>
 <div class="container">

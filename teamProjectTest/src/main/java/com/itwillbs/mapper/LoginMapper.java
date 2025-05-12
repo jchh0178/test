@@ -14,9 +14,5 @@ public interface LoginMapper {
 	public int isExist(String member_id);
 
 	public LoginDTO getMember(String id);
-	
-	public LoginDTO getMember(String id);
-
-	
 
 }

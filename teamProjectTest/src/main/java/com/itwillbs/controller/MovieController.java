@@ -1,5 +1,7 @@
 package com.itwillbs.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -132,5 +135,29 @@ public class MovieController {
     public String seat() {
         return "movie/seat"; // → /WEB-INF/views/spring/qna/qna_main.jsp 로 연결됨!
     }
+//	
+//	@GetMapping("/movie/chart/{movieId}")
+//	@ResponseBody
+//	public String generateChart(@PathVariable("movieId") int movieId) {
+//	    try {
+//	        ProcessBuilder pb = new ProcessBuilder("python", "C:\\Users\\admin\\git\\test1\\teamProjectTest\\src\\main\\webapp\\resources\\py_chart\\chart.py", String.valueOf(movieId));
+//	        pb.redirectErrorStream(true);
+//	        Process process = pb.start();
+//
+//	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+//	        String line;
+//	        while ((line = reader.readLine()) != null) {
+//	            System.out.println("[PYTHON] " + line);
+//	        }
+//
+//	        process.waitFor();
+//	    } catch (Exception e) {
+//	        e.printStackTrace();
+//	        return "error";
+//	    }
+//
+//	    return "ok";
+//	}
+
 
 }

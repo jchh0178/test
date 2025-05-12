@@ -74,7 +74,7 @@
     .reserve-btn {
       margin-top: 10px;
       padding: 8px 12px;
-      background-color: #007bff;
+      background-color: #e50914;
       color: white;
       border: none;
       border-radius: 5px;
@@ -84,9 +84,9 @@
     .reserve-btn:hover {
       background-color: #0056b3;
     }
-
-  
   </style>
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body>
   <div class="container">

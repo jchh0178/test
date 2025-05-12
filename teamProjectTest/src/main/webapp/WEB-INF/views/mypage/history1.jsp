@@ -66,6 +66,8 @@
       margin-left: 20px;
     }
   </style>
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body>
   <div class="container">

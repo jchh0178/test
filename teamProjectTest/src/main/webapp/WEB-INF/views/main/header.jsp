@@ -161,6 +161,8 @@
       color: #e74c3c;
     }
   </style>
+  <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body>
 
