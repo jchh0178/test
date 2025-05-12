@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- src/main/resources/mapper폴더/MemberMapper.xml파일 
+https://mybatis.org/mybatis-3/getting-started.html
+-->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.itwillbs.mapper.MypageMapper">
+	
+	<!-- 예매 내역 출력하기  -->
+	<select id="listMybooking" parameterType="String" resultType="com.itwillbs.domain.PayDTO">
+	  select p.pay_id, p.pay_date, t.theater_name, DATE_FORMAT(s.screen_date, '%Y-%m-%d') as screen_date, m.movie_nm
+	  from pay p join booth b on p.booth_id = b.booth_id
+	  join screen s on b.screen_id = s.screen_id
+	  join theater t on s.theater_id = t.theater_id
+	  join movie m on s.movie_id = m.movie_id
+	  where p.member_id = #{id}
+	  order by p.pay_date desc
+	</select>
+	
+	<!-- 프로필 사진 및 회원정보 업데이트 -->
+	<update id="updateProfile" parameterType="com.itwillbs.domain.LoginDTO">
+	  update member set member_name = #{member_name}, member_phone = #{member_phone}, member_gender = #{member_gender}, member_address = #{member_address}, member_profile = #{member_profile}
+	  where member_id = #{member_id}
+	</update>
+	
+	<!-- 회원정보 수정 전 비밀번호 확인 -->
+	<select id="checkPass" parameterType="String" resultType="String">
+	  select member_pass from member where member_id = #{member_id}
+	</select>
+	
+	<!-- 변경한 비밀번호 저장 -->
+	<update id="updatePass" parameterType="com.itwillbs.domain.LoginDTO">
+	  update member set member_pass = #{member_pass}
+	  where member_id = #{member_id}
+	</update>
+	
+	<!-- 영화 취향 수정 -->
+	<update id="updateGenre" parameterType="com.itwillbs.domain.LoginDTO">
+		update member set member_like_genre = #{member_like_genre}
+		where member_id = #{member_id}
+	</update>
+	
+	<!-- 영화 테이블 내 장르 가지고 오기 -->
+	<select id="getDistinctGenres" resultType="string">
+	  select distinct genre_nm from movie
+	  where genre_nm is not null and genre_nm != ''
+	  order by genre_nm
+	</select>
+</mapper>
+
+

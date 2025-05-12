@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <title>영화 리뷰</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/common.css" />
+	href="${pageContext.request.contextPath}/resources/css/review.css" />
 </head>
 <body class="container">
   <!-- Header -->
@@ -134,17 +134,13 @@
         return;
       }
 
-     const data = '{ movieId : '+ movieId +' , memberId : '+ memberId +', reviewRating : '+ reviewRating +', reviewContent : '+ reviewContent +' }'
-	  alert(data);
-      const add2 = contextPath + "/review/add/";
-      fetch(add2, {
+      const data = { movieId, memberId, reviewRating, reviewContent };
+	  
+      const add = contextPath + "/review/add/";
+      fetch(add, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({"reviewContent":form.reviewContent.value,
-        	"movieId":form.movieId.value,
-        	"memberId":form.memberId.value,
-        	"reviewRating":form.reviewRating.value
-        	})
+        body: JSON.stringify(data)
       })
       .then(res => {
         if (!res.ok) throw new Error("리뷰 등록 실패");

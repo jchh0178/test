@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* qna_menu 전용 */
+  /* 전체 좌우 구조 */
+.cols-content {
+  display: flex;
+  gap: 20px;
+}
+
+/* 왼쪽: 고객센터 메뉴 */
+.col-aside {
+  width: 220px;
+  flex-shrink: 0;
+  border-right: 1px solid #e0e0e0;
+  padding: 30px 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+}
+
+/* 오른쪽: 나머지 내용 */
+.col-detail {
+  flex-grow: 1;
+}
+
+/* 오른쪽 내용이 너무 넓어지지 않도록 제한 */
+.col-detail {
+  max-width: 900px;  /* 원하는 크기로 조절 가능 (700~900px 추천) */
+  width: 100%;
+  
+}
+
+
+/* qna_menu 예쁜 스타일 */
+
+
+.menu-title {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #222;
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 8px;
+}
+
+.snb ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.snb li {
+  margin: 0;
+}
+
+.snb a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #333;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.snb a:hover {
+  background-color: #e6f0ff;
+  color: #007bff;
+}
+
+.snb li.on a {
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+}
+
+

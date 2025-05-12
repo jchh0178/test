@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +27,8 @@ public class ReviewController {
     private MovieService movieService;
     @Autowired
     private OpenAiService openAiService;
-
+    @Autowired
+    private ReviewMapper reviewMapper;
 
 //    /** ✅ [1] 리뷰 JSP 렌더링용 메서드 */
     @GetMapping("/review")
@@ -60,16 +62,16 @@ public class ReviewController {
     // 리뷰 등록
     @PostMapping("/add")
     @ResponseBody
-    public ReviewDTO addReview(@RequestBody ReviewDTO reviewDTO) {
-        System.out.println("✅ 리뷰 등록 요청");
+    public ReviewDTO insertReview(@RequestBody ReviewDTO reviewDTO) {
+        try {
+            String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
+            reviewDTO.setSentiment(sentiment);
+        } catch (Exception e) {
+            e.printStackTrace();
+            reviewDTO.setSentiment("error");
+        }
 
-        // 1️ 감정 분석
-        String sentiment = openAiService.analyzeSentiment(reviewDTO.getReviewContent());
-        reviewDTO.setSentiment(sentiment); // ✅ 분석 결과 저장
-
-        // 2️ DB 저장
-        reviewService.insertReview(reviewDTO);
-
+        reviewMapper.insertReview(reviewDTO);
         return reviewDTO;
     }
 
@@ -98,6 +100,4 @@ public class ReviewController {
             reviewService.updateReview(reviewId, content);
             return ResponseEntity.ok().build();
         }
-        
-        
 }

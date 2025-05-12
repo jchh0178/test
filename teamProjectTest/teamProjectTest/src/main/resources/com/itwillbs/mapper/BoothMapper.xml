@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- src/main/resources/mapper폴더/MemberMapper.xml파일 
+https://mybatis.org/mybatis-3/getting-started.html
+-->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.itwillbs.mapper.BoothMapper">
+
+
+    <insert id="insertBooth" parameterType="com.itwillbs.domain.BoothDTO" useGeneratedKeys="true" keyProperty="booth_id">
+        insert into booth (member_id, screen_id, seat_name, booth_date, booth_status)
+        values (#{member_id}, #{screen_id}, #{seat_name}, #{booth_date}, #{booth_status});
+    </insert>
+
+	<select id="listScreen" resultType="com.itwillbs.domain.ScreenDTO">
+	  select * from screen where screen_date = #{screen_date}
+	</select>
+	
+
+	<select id="getBoothInfo" resultType="com.itwillbs.domain.BoothDTO">
+	  select b.*, m.movie_nm, t.theater_name, r.room_name
+	  from booth b
+	  join screen s on b.screen_id = s.screen_id
+	  join movie m on s.movie_id = m.movie_id
+	  join theater t on s.theater_id = t.theater_id
+	  join rooms r on s.room_id = r.room_id
+	  where b.booth_id = #{booth_id}
+	</select>
+	<select id="getMovieByScreenId" resultType="com.itwillbs.domain.MovieDTO2">
+     select m.*
+     from screen s
+     join movie m on s.movie_id = m.movie_id
+     where s.screen_id = #{screen_id}
+   </select>
+
+</mapper>
+
+
