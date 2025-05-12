@@ -10,7 +10,6 @@
 	<link href="${pageContext.request.contextPath}/resources/css/common.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/reset.css" rel="stylesheet">
 	<link href="${pageContext.request.contextPath}/resources/css/module.css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/resources/css/module.css" rel="stylesheet">
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.0.js"></script>
 </head>
 <body>
@@ -160,9 +159,11 @@
         <div class="wrap-theaterinfo">
             <div class="box-image">
                 <div id="theater_img_container" class="thumb-image">
-                
-                		리스트 출력 부분
-                
+                	<ul class="movie">
+                	
+                	
+                	
+					</ul>	                
                 
                 
                 </div>	<!-- theater_img_container  -->
@@ -210,12 +211,12 @@ $(function() {
 			data : {'theater_region': region},
 			dataType: 'json',
 			success: function(areaList) {
-				console.log("areaList", areaList);
+// 				console.log("areaList", areaList);
 
 				$('#ulcontent').html('');
 				
 				areaList.forEach(function(area) {
-					console.log("area", area);		//정상적으로 불러와지는지 확인
+// 					console.log("area", area);		//정상적으로 불러와지는지 확인
 					var text =
 						"<li class= >" 
 						+
@@ -229,30 +230,8 @@ $(function() {
                    		
 					$('#ulcontent').append(text);
 
-				
 				});
-				 $('.theater_name').on('click',  function() {
-	                    var selectedName = $(this).text(); // 클릭된 텍스트
-	                    $('.selectName').text(selectedName); // span에 출력 (ID는 원하는 대로 설정)
-	                    $('#ulcontent li').removeClass('on'); // 기존 선택된 극장 스타일 제거
-	                    $(this).parent('li').addClass('on'); // 현재 클릭된 극장 스타일 추가
-	                });
-					
-// 				 if (region == '서울' && areaList.length > 0) {
-// 	                    // "강변" 극장을 찾아서 선택
-// 	                    areaList.forEach(function(area, index) {
-// 	                        if (area.theater_name == '강변') {
-// 	                            $('#ulcontent li').removeClass('on');
-// 	                            $('#ulcontent li:eq('+index+')').addClass('on');
-// 	                            $('.txt-info').text(area.theater_name);
-// 	                            $('.selectName').text(area.theater_name);
-// 	                            return false; // 찾았으면 반복 종료
-// 	                        }
-// 	                    });
-				//이 둘로 인해서 자동으로 클릭 이벤트가 발생하긴 하나 반복적으로 클릭 이벤트가 발생해서 
-				// 계속해서 ajax로인해 데이터가 불러들이는 현상이 발생하게 됨 
-// 				$('.theater_region:first').trigger('click');
-// 				$('.theater_name:first').trigger('click');
+				
 				
 			},
 			error: function() {
@@ -261,7 +240,7 @@ $(function() {
 		});
 		
 		
-		$('.theater_region:contains("서울")').trigger('click');
+// 		$('.theater_region:contains("서울")').trigger('click');
 		
 		
 		
@@ -273,11 +252,63 @@ $(function() {
 
 </script>
 
+<script type="text/javascript">
+// var movieList = ${movieList};
+
+// $(function() {
+// 	$('.theater_name').on('click',  function() {
+	$(document).on('click', '.theater_name', function() {
+  		 var selectedName = $(this).text(); 	// 클릭된 텍스트
+  		 $('.selectName').text(selectedName); 	// span에 출력 (ID는 원하는 대로 설정)
+ 		 $('#ulcontent li').removeClass('on');	// 기존 선택된 극장 스타일 제거
+ 		 $(this).parent('li').addClass('on'); 	// 현재 클릭된 극장 스타일 추가
+		 
+ 		 
+ 		 	$.ajax({
+ 		 		type : 'get',
+				url:"${pageContext.request.contextPath}/theater/movieList",
+				dataType:'json',
+				success:function(movieList){
+					$('.movie').html('');
+					
+					
+					
+					movieList.forEach(function(area){
+						var text = 
+							"<li>"
+							+
+							area.movieNm
+							+
+							"</li>";
+							
+						$('.movie').append(text);
+						
+						
+					});
+					
+				},
+ 		 	
+				error: function() {
+					alert('오류');
+				}
+ 		 	
+ 		 	});
+ 		 	
+ 		 	
+ 		 	
+ 		 
+	
+	});	//click 이벤트
+  	
+// })
 
 
 
 
-        
+
+</script>
+
+
  
     
         <%@ include file="../main/footer.jsp" %>

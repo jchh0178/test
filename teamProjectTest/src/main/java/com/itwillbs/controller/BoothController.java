@@ -32,7 +32,7 @@ public class BoothController {
    
    @Inject
    private AdminService adminService;
-   
+  
    @GetMapping("/booking")
     public String booking(Model model) {
       List<MovieDTO2> movies = adminService.listMovie();

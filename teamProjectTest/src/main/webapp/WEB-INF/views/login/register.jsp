@@ -144,7 +144,7 @@
       return;
     }
 
-    fetch("/revue/sendSMS", {
+    fetch("${pageContext.request.contextPath}/login/sendSMS", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: "phone=" + encodeURIComponent(phone)

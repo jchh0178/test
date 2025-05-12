@@ -48,6 +48,12 @@
         ORDER BY movie_rank
   		limit #{startRow}, #{pageSize}
     </select>
+    
+    <select id="getMovieList2" resultMap="movieMap">
+        SELECT movie_nm
+        FROM movie
+       	where movie_id between 1 and 5
+    </select>
 	
 	<select id="countMovie" resultType="java.lang.Integer">
   		select count(*) from movie

@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.itwillbs.domain.MovieDTO;
 import com.itwillbs.domain.TheaterDTO;
+import com.itwillbs.service.MovieService;
 import com.itwillbs.service.TheaterService;
 
 @RestController
 public class AjaxController {
 
+	@Inject
+	private MovieService movieService;
 	
 	@Inject
 	private TheaterService theaterService;
+
 	
 	@GetMapping("theater/ajaxList")
 	public List<TheaterDTO> ajaxList(@RequestParam("theater_region") String region ,TheaterDTO theaterDTO, Model model) {
@@ -32,5 +37,17 @@ public class AjaxController {
 		
 		return list;
 		
+	}
+	
+	
+	
+	@GetMapping("theater/movieList")
+	public List<MovieDTO> movieList(){
+		System.out.println("AjaxController movieList()");
+
+		List<MovieDTO> movie = movieService.getMovieList2();
+		System.out.println(movie);
+		
+		return movie;
 	}
 }

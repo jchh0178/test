@@ -21,6 +21,12 @@ public class LoginService {
 		
 		return loginMapper.login(loginDTO);
 	}
+	
+	public LoginDTO idFound(LoginDTO loginDTO) {
+		System.out.println("LoginService idFound()");
+		
+		return loginMapper.idFound(loginDTO);
+	}
 
 	public void register(LoginDTO loginDTO) {
 		System.out.println("LoginService register()");
@@ -32,11 +38,32 @@ public class LoginService {
 	}
 
 	public boolean isExist(String member_id) {
-	    return loginMapper.isExist(member_id) > 0;
+		System.out.println("LoginService register()");
+
+		
+		return loginMapper.isExist(member_id) > 0;
 	}
 	public LoginDTO getMember(String id) {
+		System.out.println("LoginService getMember()");
+
+		
 		return loginMapper.getMember(id);
 	}
+
+	public void passChage(LoginDTO loginDTO) {
+		System.out.println("LoginService passChage()");
+		loginMapper.passChange(loginDTO);
+	
+	}
+	public LoginDTO passFound(LoginDTO loginDTO) {
+		System.out.println("LoginService passFound()");
+		
+		
+		
+		
+		return loginMapper.passFound(loginDTO);
+	}
+
 	
 	
 	

@@ -135,7 +135,14 @@ public class MovieService {
     	
         return movieMapper.getMovieList(pageDTO);
     }
+    
+    public List<MovieDTO> getMovieList2(){
+    	System.out.println("MovieService getMovieList2()");
 
+    	
+
+        return movieMapper.getMovieList2();
+    }
     public List<MovieDTO> getBoxOffice(String targetDate) {
     	System.out.println("MovieService getBoxOffice()");
         try {

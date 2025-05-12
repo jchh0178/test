@@ -15,6 +15,11 @@ public interface LoginMapper {
 	
 	public LoginDTO getMember(String id);
 
+	public LoginDTO idFound(LoginDTO loginDTO);
+
+	public void passChange(LoginDTO loginDTO);
+	
+	public LoginDTO passFound(LoginDTO loginDTO);
 	
 
 }

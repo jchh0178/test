@@ -1,7 +1,7 @@
 package com.itwillbs.controller;
 
-import java.sql.Date;
 import java.util.HashMap;
+import java.util.UUID;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -193,12 +193,67 @@ public class LoginController {
     public String idfound() {
         return "login/idFound";  
     }
-	
+	@PostMapping("idfoundPro")
+	public String idfoundPro(LoginDTO loginDTO, Model model) {
+		System.out.println("LoginController idfoundPro");
+		String rawPhone = loginDTO.getMember_phone();
+	    if (rawPhone != null && rawPhone.length() == 11) {
+	        String formatted = rawPhone.replaceAll("(\\d{3})(\\d{4})(\\d{4})", "$1-$2-$3");
+	        loginDTO.setMember_phone(formatted);
+	    }
+		
+	    System.out.println(loginDTO);
+		
+		 LoginDTO loginDTO2 = loginService.idFound(loginDTO);
+		
+		 System.out.println("아이디 값 : " + loginDTO2);
+		 
+		 
+		
+		if(loginDTO2 != null) {
+			System.out.println("아이디 찾기 성공");
+			
+			model.addAttribute("loginDTO",loginDTO2);
+		
+		return "/login/idMessage";
+			
+		}else {
+			System.out.println("아이디가 없음");
+			
+			return "redirect:/login/idFound";
+		}
+		
+		
+		
+		
+	}
 	@GetMapping("/pwfound")
     public String passfound() {
-        return "login/passFound"; 
+		System.out.println("LoginController passfound()");
+		
+		
+		return "/login/passFound"; 
 	}
 	
+	@PostMapping("/pwfoundPro")
+	public String passfoundPro(LoginDTO loginDTO, Model model) {
+		System.out.println("LoginController passfoundPro()");
+	    String autoPass = String.format("%09d", new java.util.Random().nextInt(999999999));
+	    System.out.println(autoPass);
+	    
+	    loginDTO.setMember_pass(autoPass);
+	    
+	    loginService.passChage(loginDTO);
+	    
+	    LoginDTO loginDTO2 = loginService.passFound(loginDTO);
+	    
+	    
+	    model.addAttribute("loginDTO",loginDTO2);
+	    
+	    
+	     
+		return null;
+	}
 	
 	
 //	회원 가입 로직 ---------------------------------------
