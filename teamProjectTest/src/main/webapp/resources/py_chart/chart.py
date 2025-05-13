@@ -98,9 +98,20 @@ def main():
     plt.axis("equal")
     plt.tight_layout()
 
-    save_dir = "C:/Users/admin/git/test1/teamProjectTest/src/main/webapp/resources/py_chart/pie_charts"
+    save_dir = "C:/Users/admin/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/teamProjectTest/resources/py_chart/pie_charts"
     os.makedirs(save_dir, exist_ok=True)
-    plt.savefig(f"{save_dir}/{target_movie_id}.png")
+    save_path = f"{save_dir}/{target_movie_id}.png"
+
+    # ✅ 기존 파일 삭제 (안전한 덮어쓰기 보장)
+    if os.path.exists(save_path):
+        os.remove(save_path)
+        print(f"🔁 기존 파일 삭제: {save_path}")
+    else:
+        print(f"📁 새 파일 저장 예정: {save_path}")
+
+    plt.savefig(save_path)
+    print(f"✅ 차트 저장 완료: {save_path}")
+    plt.close()
 
     print(f"movie_id {target_movie_id} 차트 저장 완료.")
 

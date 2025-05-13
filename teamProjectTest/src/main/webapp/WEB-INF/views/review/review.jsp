@@ -10,39 +10,46 @@
 	href="${pageContext.request.contextPath}/resources/css/common.css" />
 </head>
 <body class="container">
-  <!-- Header -->
-  <%@ include file="../main/header.jsp" %>
+	<!-- Header -->
+	<%@ include file="../main/header.jsp"%>
 	<h1>영화 리뷰</h1>
 
 	<!-- ✅ 영화 정보 출력 -->
 	<div class="movie-title">
 		<h2>영화 제목: ${movieDTO.rank} - ${movieDTO.movieNm}</h2>
-		<input type="hidden" id="movieId" value="${movieDTO.movieId}" /> <input
-			type="hidden" id="loginUserId" value="${sessionScope.id}" />
+		<input type="hidden" id="movieId" value="${movieDTO.movieId}" />
+		<input	type="hidden" id="loginUserId" value="${sessionScope.id}" />
 	</div>
 
-	  <!-- ✅ 로그인한 경우에만 리뷰 작성 폼 출력 -->
-  <c:if test="${not empty sessionScope.id}">
-    <div class="review-form">
-      <h3>리뷰 작성</h3>
-      <form id="reviewForm">
-        <input type="hidden" name="movieId" value="${movieDTO.movieId}" />
-        <input type="text" name="memberId" value="${sessionScope.id}" readonly/>
-        <select name="reviewRating">
-          <option value="5">⭐⭐⭐⭐⭐ (5점)</option>
-          <option value="4">⭐⭐⭐⭐ (4점)</option>
-          <option value="3">⭐⭐⭐ (3점)</option>
-          <option value="2">⭐⭐ (2점)</option>
-          <option value="1">⭐ (1점)</option>
-        </select>
-        <textarea name="reviewContent" rows="4" placeholder="리뷰를 입력하세요" required></textarea>
-        <button type="submit">리뷰 등록</button>
-      </form>
-    </div>
-  </c:if>
-  <c:if test="${empty sessionScope.id}">
-    <p style="color:gray;">로그인 후 리뷰를 작성하실 수 있습니다.</p>
-  </c:if>
+	<!-- ✅ 로그인한 경우에만 리뷰 작성 폼 출력 -->
+	<c:if test="${not empty sessionScope.id}">
+		<div class="review-form">
+			<h3>리뷰 작성</h3>
+			<form id="reviewForm">
+				<input type="hidden" name="movieId" value="${movieDTO.movieId}" />
+				<input type="text" name="memberId" value="${sessionScope.id}"
+					readonly /> <select name="reviewRating">
+					<option value="5">⭐⭐⭐⭐⭐ (5점)</option>
+					<option value="4">⭐⭐⭐⭐ (4점)</option>
+					<option value="3">⭐⭐⭐ (3점)</option>
+					<option value="2">⭐⭐ (2점)</option>
+					<option value="1">⭐ (1점)</option>
+				</select>
+				<textarea name="reviewContent" rows="4" placeholder="리뷰를 입력하세요"
+					required></textarea>
+				<button type="submit">리뷰 등록</button>
+			</form>
+		</div>
+		<div style="margin-top: 20px;">
+			<h3>리뷰 긍정/부정 차트</h3>
+			<img id="sentimentChart"
+				src="${pageContext.request.contextPath}/resources/py_chart/pie_charts/${movieDTO.movieId}.png?ts=${System.currentTimeMillis()}"
+				alt="감정 차트" style="max-width: 400px;">
+		</div>
+	</c:if>
+	<c:if test="${empty sessionScope.id}">
+		<p style="color: gray;">로그인 후 리뷰를 작성하실 수 있습니다.</p>
+	</c:if>
 
 	<!-- ✅ 리뷰 목록 출력 영역 -->
 	<div class="review-list">
@@ -50,9 +57,9 @@
 		<div id="reviewList"></div>
 	</div>
 
-  <!-- Footer -->
-  <%@ include file="../main/footer.jsp" %>
-  
+	<!-- Footer -->
+	<%@ include file="../main/footer.jsp"%>
+
 	<!-- ✅ 스크립트 -->
 	<script>
     const contextPath = "${pageContext.request.contextPath}";
@@ -101,9 +108,9 @@
             console.log("세션 로그인 ID =", loginUserId);
            let html = 
 //             '<p>디버그용 출력: ' + review.reviewContent + '</p>;' + 
-               	  '<strong>' + review.memberId + '</strong> -' +
+               	  '<strong>' + review.memberId + '</strong> ' +
             	  '<span class="star">'+ stars + '</span>' + '<br>' +
-            	  '<p class="comment">' + review.reviewContent + '-</p>' ;
+            	  '<p class="comment">' + review.reviewContent + '</p>' ;
             	  if(review.memberId == loginUserId){
             		 html += '<div class="review-buttons">' + 
               	  	  			  '<button type="button" onclick="editReview(' + review.reviewId + ')">수정</button>'+
@@ -135,7 +142,7 @@
       }
 
      const data = '{ movieId : '+ movieId +' , memberId : '+ memberId +', reviewRating : '+ reviewRating +', reviewContent : '+ reviewContent +' }'
-	  alert(data);
+	 // alert(data);
       const add2 = contextPath + "/review/add/";
       fetch(add2, {
         method: "POST",
@@ -152,7 +159,11 @@
       })
       .then(() => {
         form.reset();
-        loadReviews(movieId); // ✅ 등록 후 갱신
+        loadReviews(movieId);// ✅ 등록 후 갱신
+        const chartImg = document.getElementById("sentimentChart");
+        if (chartImg) {
+          chartImg.src = chartImg.src.split("?")[0] + "?ts=" + new Date().getTime();
+        }
       })
       .catch(err => {
         console.error("등록 중 오류:", err);
@@ -162,11 +173,10 @@
 
     // ✅ 리뷰 수정
     window.editReview = function(reviewId) {
-      const reviewDiv = document.getElementById('review-' + reviewId);
+      const reviewDiv =document.getElementById(`review-${reviewId}`);
       const commentP = reviewDiv.querySelector('.comment');
       const oldContent = commentP.innerText.trim();
       const newContent = prompt("수정할 내용을 입력하세요:", oldContent);
-
       if (newContent === null || newContent.trim() === "") return;
       const edit = contextPath + "/review/edit/" + reviewId;
       fetch(edit, {
